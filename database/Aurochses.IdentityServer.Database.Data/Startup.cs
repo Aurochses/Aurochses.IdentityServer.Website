@@ -14,7 +14,8 @@ namespace Aurochses.IdentityServer.Database.Data
             var builder = new ConfigurationBuilder()
                 .SetBasePath(PlatformServices.Default.Application.ApplicationBasePath)
                 .AddJsonFile("appsettings.json")
-                .AddJsonFile($"appsettings.{environmentName}.json", true);
+                .AddJsonFile($"appsettings.{environmentName}.json", true)
+                .AddEnvironmentVariables();
 
             Configuration = builder.Build();
         }
