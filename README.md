@@ -1,1 +1,1 @@
-# Aurochses.IdentityServer.WebSite
+# Aurochses IdentityServer WebSite
