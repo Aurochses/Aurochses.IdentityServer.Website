@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Aurochses.Identity.EntityFrameworkCore;
+using Aurochses.IdentityServer.WebSite.App.IdentityServer;
 using Aurochses.Testing;
 using IdentityModel;
 using IdentityServer4.Models;
@@ -39,7 +41,7 @@ namespace Aurochses.IdentityServer.WebSite.Tests.App.IdentityServer
                 UserName = "john.black",
                 FirstName = "John",
                 LastName = "Black",
-                Email = EmailHelpers.Create(typeof(IdentityProfileServiceTests), methodName),
+                Email = typeof(IdentityProfileServiceTests).GenerateEmail(methodName),
                 EmailConfirmed = true,
                 PhoneNumber = "+375297841506",
                 PhoneNumberConfirmed = true

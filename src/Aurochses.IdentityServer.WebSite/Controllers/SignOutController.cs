@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Aurochses.Identity.EntityFramework;
+using Aurochses.Identity.EntityFrameworkCore;
 using Aurochses.IdentityServer.WebSite.Filters;
 using Aurochses.IdentityServer.WebSite.Models.SignOut;
 using IdentityModel;
@@ -16,7 +16,7 @@ namespace Aurochses.IdentityServer.WebSite.Controllers
     /// <summary>
     /// Class SignOutController.
     /// </summary>
-    /// <seealso cref="Microsoft.AspNetCore.Mvc.Controller" />
+    /// <seealso cref="T:Microsoft.AspNetCore.Mvc.Controller" />
     [SecurityHeaders]
     public class SignOutController : Controller
     {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Aurochses.Identity.EntityFrameworkCore;
 using IdentityServer4.Extensions;
 using IdentityServer4.Models;
 using IdentityServer4.Services;

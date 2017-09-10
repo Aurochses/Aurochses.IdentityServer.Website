@@ -1,7 +1,6 @@
 ﻿using System.IO;
 using System.Security.Cryptography.X509Certificates;
-using Aurochses.Identity.EntityFramework;
-using Aurochses.Identity.EntityFramework.IdentityServer4;
+using Aurochses.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;

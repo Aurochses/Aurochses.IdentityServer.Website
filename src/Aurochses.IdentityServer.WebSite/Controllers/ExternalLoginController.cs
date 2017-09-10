@@ -1,10 +1,11 @@
 ﻿using System.Security.Claims;
 using System.Threading.Tasks;
-using Aurochses.Identity.EntityFramework;
-using Aurochses.Identity.Mvc;
+using Aurochses.Identity;
+using Aurochses.Identity.EntityFrameworkCore;
 using Aurochses.IdentityServer.WebSite.Filters;
+using Aurochses.IdentityServer.WebSite.Helpers;
 using Aurochses.IdentityServer.WebSite.Models.Registration;
-using Aurochses.Mvc;
+using Aurochses.Mvc.Helpers;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using PaulMiami.AspNetCore.Mvc.Recaptcha;
