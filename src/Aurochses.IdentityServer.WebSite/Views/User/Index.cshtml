@@ -1,0 +1,15 @@
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer ViewLocalization
+
+@model Aurochses.Identity.EntityFramework.ApplicationUser
+
+@{
+    ViewData["Title"] = ViewLocalization["Page.Title"];
+}
+
+@section PageHeader
+{
+    @ViewLocalization["Page.Header"]
+}
+
+<h4>@Model.FirstName @Model.LastName</h4>
+<div>@Model.Email</div>

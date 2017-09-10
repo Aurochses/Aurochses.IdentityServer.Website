@@ -1,0 +1,41 @@
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer ViewLocalization
+
+@model IdentityServer4.Models.ErrorMessage
+
+@{
+    Layout = "_InfoLayout";
+
+    ViewData["Title"] = ViewLocalization["Page.Title"];
+
+    var error = Model?.Error;
+    var requestId = Model?.RequestId;
+}
+
+@section PageHeader
+{
+    @ViewLocalization["Page.Header"]
+}
+
+@section Icon
+{
+    <i class="fa fa-warning fa-4x fa-fw text-danger"></i>
+}
+
+<p>
+    @ViewLocalization["Information"]
+</p>
+
+@if (error != null)
+{
+    <p>
+        @error
+
+        @if (requestId != null)
+        {
+            <br />
+            <small>
+                @ViewLocalization["RequestId"] @requestId
+            </small>
+        }
+    </p>
+}

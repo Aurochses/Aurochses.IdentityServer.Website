@@ -5,9 +5,26 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove=".gitignore" />
+    <None Remove="IdentityServer.pfx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="IdentityServer.pfx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="wwwroot\" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Aurochses.Html" Version="1.2.0" />
+    <PackageReference Include="Aurochses.Identity.EntityFrameworkCore" Version="1.2.0" />
+    <PackageReference Include="Aurochses.Identity.SendGrid" Version="1.2.0" />
+    <PackageReference Include="Aurochses.Identity.Twilio" Version="1.2.0" />
+    <PackageReference Include="Aurochses.Mvc" Version="1.2.0" />
+    <PackageReference Include="Aurochses.Razor.TagHelpers" Version="1.2.0" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore" Version="1.1.2" />
   </ItemGroup>

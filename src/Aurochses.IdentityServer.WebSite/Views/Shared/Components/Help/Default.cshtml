@@ -1,0 +1,24 @@
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer ViewLocalization
+
+@model Aurochses.IdentityServer.WebSite.Models.Shared.Components.Help.HelpViewModel
+
+<div class="row">
+    <div class="col-md-1 col-xs-2">
+        <i class="fa fa-comments fa-4x fa-fw text-primary"></i>
+    </div>
+    <div class="col-md-11 col-xs-10">
+        <h4>@ViewLocalization["ReportError"]</h4>
+        @ViewLocalization["ReportError.Information", Model.SupportEmail]
+    </div>
+</div>
+
+<hr />
+<div class="row">
+    <div class="col-md-1 col-xs-2">
+        <i class="fa fa-cogs fa-4x fa-fw text-primary"></i>
+    </div>
+    <div class="col-md-11 col-xs-10">
+        <h4>@ViewLocalization["Support"]</h4>
+        @ViewLocalization["Support.Information", Model.SupportUrl]
+    </div>
+</div>

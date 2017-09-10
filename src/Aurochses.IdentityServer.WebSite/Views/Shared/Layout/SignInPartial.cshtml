@@ -1,0 +1,26 @@
+﻿@using Aurochses.Identity.EntityFramework
+@using Microsoft.AspNetCore.Identity
+
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer ViewLocalization
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            <a asp-controller="User" asp-action="Index">@UserManager.GetUserName(User)</a>
+        </li>
+        <li>
+            <a asp-controller="SignOut" asp-action="Index">@ViewLocalization["SignOut"]</a>
+        </li>
+    </ul>
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li><a asp-controller="Registration" asp-action="Index">@ViewLocalization["Registration"]</a></li>
+        <li><a asp-controller="SignIn" asp-action="Index">@ViewLocalization["SignIn"]</a></li>
+    </ul>
+}

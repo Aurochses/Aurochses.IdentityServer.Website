@@ -1,0 +1,62 @@
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer ViewLocalization
+
+@model Aurochses.IdentityServer.WebSite.Models.RemindPassword.RemindPasswordViewModel
+
+@{
+    ViewData["Title"] = ViewLocalization["Page.Title"];
+}
+
+@section PageHeader
+{
+    @ViewLocalization["Page.Header"]
+}
+
+<form asp-controller="RemindPassword" asp-action="Index" method="post" class="form-horizontal">
+    <div class="form-group">
+        <label asp-for="Email" class="col-md-3 control-label"></label>
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <input asp-for="Email" class="form-control"/>
+
+                    <div class="help-block">
+                        <div asp-description-for="Email"></div>
+                    </div>
+                </div>
+                <div class="help-block col-md-6 col-sm-12">
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-9 col-md-offset-3">
+            <recaptcha />
+            
+            <div id="recaptchaErrorMessage" class="text-danger"></div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-6 col-md-offset-3">
+            @ViewLocalization["Form.Information"]
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-9 col-md-offset-3">
+            <button class="btn btn-primary" type="submit">
+                @ViewLocalization["Form.Button.Submit"]
+            </button>
+            <a class="btn btn-default" href="@Url.Action("Index", "Home")">
+                @ViewLocalization["Form.Button.Cancel"]
+            </a>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @* ReSharper disable once Html.TagNotResolved *@
+    <recaptcha-script validation-message-element-id="recaptchaErrorMessage" />
+}

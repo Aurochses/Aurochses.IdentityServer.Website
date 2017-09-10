@@ -1,0 +1,55 @@
+﻿@using System.Security.Claims
+
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer ViewLocalization
+
+@model Aurochses.IdentityServer.WebSite.Models.SignOut.SignedOutViewModel
+
+@{
+    ViewData["Title"] = ViewLocalization["Page.Title"];
+
+    // set this so UI rendering sees an anonymous user
+    Context.User = new ClaimsPrincipal(new ClaimsIdentity());
+}
+
+@section PageHeader
+{
+    @ViewLocalization["Page.Header"]
+}
+
+<div class="jumbotron text-center">
+    <p>
+        <i class="fa fa-sign-out fa-4x fa-fw"></i>
+    </p>
+    
+    <p>
+        @ViewLocalization["Information"]
+    </p>
+
+    <hr />
+
+    @if (Model.PostLogoutRedirectUri != null)
+    {
+        <p>
+            @ViewLocalization["Application", Model.PostLogoutRedirectUri, Model.ClientName]
+        </p>
+    }
+    else
+    {
+        <p>
+            <a class="btn btn-primary btn-lg" href="~/" role="button">@ViewLocalization["Button.Home"]</a>
+        </p>
+    }
+    
+    @if (Model.SignOutIframeUrl != null)
+    {
+        <iframe width="0" height="0" src="@Model.SignOutIframeUrl"></iframe>
+    }
+</div>
+
+@section scripts
+{
+    @if (Model.AutomaticRedirectAfterSignOut)
+    {
+        <script src="~/js/signout-redirect.js"></script>
+    }
+}

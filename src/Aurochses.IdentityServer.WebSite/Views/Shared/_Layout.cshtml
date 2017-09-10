@@ -1,0 +1,69 @@
+﻿@using Aurochses.Html
+
+@{
+    var projectNameContent = await Component.InvokeAsync("ProjectName");
+    var projectName = projectNameContent.GetString();
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>
+        @if (ViewData["Title"] != null)
+        {
+            <text>
+            @ViewData["Title"] | @projectName
+            </text>
+        }
+        else
+        {
+            <text>
+            @projectName
+            </text>
+        }
+    </title>
+
+    <link rel="icon" type="image/x-icon" href="~/favicon.ico" />
+    <link rel="shortcut icon" type="image/x-icon" href="~/favicon.ico" />
+
+    <link rel="stylesheet" href="~/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/font-awesome.css">
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="~/">
+                    <span class="navbar-brand">
+                        <img src="~/images/logotype.png" class="icon-banner" alt="@projectName">
+                    </span>
+                </a>
+            </div>
+
+            @await Html.PartialAsync("Layout/SignInPartial")
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="page-header">
+            <h1>@RenderSection("PageHeader")</h1>
+        </div>
+
+        @RenderBody()
+    </div>
+
+    <script src="~/js/jquery/jquery.js"></script>
+    <script src="~/js/jquery-validation/jquery.validate.js"></script>
+    <script src="~/js/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script src="~/js/jquery-validation-unobtrusive-bootstrap/jquery.validate.unobtrusive.bootstrap.js"></script>
+    <script src="~/js/bootstrap/bootstrap.js"></script>
+
+    @RenderSection("Scripts", false)
+</body>
+</html>
