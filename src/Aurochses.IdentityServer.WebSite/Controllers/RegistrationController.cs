@@ -10,10 +10,11 @@ using PaulMiami.AspNetCore.Mvc.Recaptcha;
 
 namespace Aurochses.IdentityServer.WebSite.Controllers
 {
+    /// <inheritdoc />
     /// <summary>
     /// Class RegistrationController.
     /// </summary>
-    /// <seealso cref="Microsoft.AspNetCore.Mvc.Controller" />
+    /// <seealso cref="T:Microsoft.AspNetCore.Mvc.Controller" />
     [SecurityHeaders]
     public class RegistrationController : Controller
     {

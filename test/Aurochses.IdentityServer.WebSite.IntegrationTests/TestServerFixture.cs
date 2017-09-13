@@ -17,7 +17,7 @@ namespace Aurochses.IdentityServer.WebSite.IntegrationTests
         {
             var webHostBuilder = new WebHostBuilder()
                 .UseContentRoot(
-                    ProjectHelpers.GetPath("Aurochses.IdentityServer.WebSite", "src", "Aurochses.IdentityServer.WebSite")
+                    ProjectHelpers.GetFolderPath("Aurochses.IdentityServer.WebSite", "src", "Aurochses.IdentityServer.WebSite")
                 )
                 .UseEnvironment("Production")
                 .UseStartup<Startup>()
@@ -27,7 +27,7 @@ namespace Aurochses.IdentityServer.WebSite.IntegrationTests
                     services.Configure((RazorViewEngineOptions options) =>
                     {
                         var previous = options.CompilationCallback;
-                        options.CompilationCallback = (context) =>
+                        options.CompilationCallback = context =>
                         {
                             previous?.Invoke(context);
 

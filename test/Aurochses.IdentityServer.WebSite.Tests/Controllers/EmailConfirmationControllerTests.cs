@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Aurochses.Identity.EntityFramework;
+using Aurochses.Identity.EntityFrameworkCore;
 using Aurochses.IdentityServer.WebSite.Controllers;
 using Aurochses.IdentityServer.WebSite.Models.EmailConfirmation;
 using Microsoft.AspNetCore.Identity;
@@ -8,7 +8,9 @@ using Moq;
 using PaulMiami.AspNetCore.Mvc.Recaptcha;
 using Xunit;
 using System;
+using Aurochses.Identity;
 using Aurochses.IdentityServer.WebSite.Filters;
+using Aurochses.Runtime;
 using Aurochses.Testing;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Routing;
@@ -70,7 +72,7 @@ namespace Aurochses.IdentityServer.WebSite.Tests.Controllers
         {
             return new EmailConfirmationViewModel
             {
-                Email = EmailHelpers.Create(typeof(EmailConfirmationControllerTests), methodName)
+                Email = typeof(EmailConfirmationControllerTests).GenerateEmail(methodName)
             };
         }
 
@@ -171,7 +173,7 @@ namespace Aurochses.IdentityServer.WebSite.Tests.Controllers
                         (
                             context => context.Action == "Confirm"
                                        && context.Controller == "EmailConfirmation"
-                                       && context.Values.Equal(new {UserId = applicationUser.Id, Token = token})
+                                       && context.Values.ValueEquals(new {UserId = applicationUser.Id, Token = token})
                                        && context.Protocol == scheme
                         )
                     )

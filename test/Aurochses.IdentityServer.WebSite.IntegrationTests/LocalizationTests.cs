@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Reflection;
 using Aurochses.Testing;
-using Aurochses.Testing.Localization;
+using Aurochses.Testing.Mvc.Localization;
 using Xunit;
 
 namespace Aurochses.IdentityServer.WebSite.IntegrationTests
@@ -12,7 +12,7 @@ namespace Aurochses.IdentityServer.WebSite.IntegrationTests
 
         public LocalizationTests()
         {
-            _projectPath = ProjectHelpers.GetPath("Aurochses.IdentityServer.WebSite", "src", "Aurochses.IdentityServer.WebSite");
+            _projectPath = ProjectHelpers.GetFolderPath("Aurochses.IdentityServer.WebSite", "src", "Aurochses.IdentityServer.WebSite");
         }
 
         [Fact]

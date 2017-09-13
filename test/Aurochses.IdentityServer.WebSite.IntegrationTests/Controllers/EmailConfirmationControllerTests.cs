@@ -50,7 +50,7 @@ namespace Aurochses.IdentityServer.WebSite.IntegrationTests.Controllers
         public async Task IndexPost_RedirectToUserNotFound_WhenUserNotFound()
         {
             // Arrange
-            var email = EmailHelpers.Create(GetType(), nameof(IndexPost_RedirectToUserNotFound_WhenUserNotFound));
+            var email = GetType().GenerateEmail(nameof(IndexPost_RedirectToUserNotFound_WhenUserNotFound));
 
             var request = new HttpRequestMessage(HttpMethod.Post, "/EmailConfirmation");
             await request.SetupAsync(GetEmailConfirmationFormData(email), await GetEmailConfirmationResponse());
@@ -67,7 +67,7 @@ namespace Aurochses.IdentityServer.WebSite.IntegrationTests.Controllers
         public async Task IndexPost_RedirectToIsAlreadyConfirmed_WhenIsAlreadyConfirmed()
         {
             // Arrange
-            var email = EmailHelpers.Create(GetType(), nameof(IndexPost_RedirectToIsAlreadyConfirmed_WhenIsAlreadyConfirmed));
+            var email = GetType().GenerateEmail(nameof(IndexPost_RedirectToIsAlreadyConfirmed_WhenIsAlreadyConfirmed));
 
             await _fixture.AddUser(email);
 
@@ -86,7 +86,7 @@ namespace Aurochses.IdentityServer.WebSite.IntegrationTests.Controllers
         public async Task IndexPost_RedirectToEmailSent()
         {
             // Arrange
-            var email = EmailHelpers.Create(GetType(), nameof(IndexPost_RedirectToEmailSent));
+            var email = GetType().GenerateEmail(nameof(IndexPost_RedirectToEmailSent));
 
             await _fixture.AddUser(email, emailConfirmed: false);
 
@@ -163,7 +163,7 @@ namespace Aurochses.IdentityServer.WebSite.IntegrationTests.Controllers
         public async Task Confirm_RedirectToError_WhenTokenIsNull()
         {
             // Arrange
-            var email = EmailHelpers.Create(GetType(), nameof(Confirm_RedirectToError_WhenTokenIsNull));
+            var email = GetType().GenerateEmail(nameof(Confirm_RedirectToError_WhenTokenIsNull));
 
             var user = await _fixture.AddUser(email, emailConfirmed: false);
 
@@ -190,7 +190,7 @@ namespace Aurochses.IdentityServer.WebSite.IntegrationTests.Controllers
         public async Task Confirm_RedirectToSuccess()
         {
             // Arrange
-            var email = EmailHelpers.Create(GetType(), nameof(Confirm_RedirectToSuccess));
+            var email = GetType().GenerateEmail(nameof(Confirm_RedirectToSuccess));
 
             var user = await _fixture.AddUser(email, emailConfirmed: false);
             var token = await _fixture.UserManager.GenerateEmailConfirmationTokenAsync(user);
@@ -207,7 +207,7 @@ namespace Aurochses.IdentityServer.WebSite.IntegrationTests.Controllers
         public async Task Confirm_RedirectToError_WhenConfirmEmailFailed()
         {
             // Arrange
-            var email = EmailHelpers.Create(GetType(), nameof(Confirm_RedirectToError_WhenConfirmEmailFailed));
+            var email = GetType().GenerateEmail(nameof(Confirm_RedirectToError_WhenConfirmEmailFailed));
 
             var user = await _fixture.AddUser(email, emailConfirmed: false);
 

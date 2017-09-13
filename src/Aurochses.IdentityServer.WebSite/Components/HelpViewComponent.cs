@@ -5,10 +5,11 @@ using Microsoft.Extensions.Options;
 
 namespace Aurochses.IdentityServer.WebSite.Components
 {
+    /// <inheritdoc />
     /// <summary>
     /// Class HelpViewComponent.
     /// </summary>
-    /// <seealso cref="Microsoft.AspNetCore.Mvc.ViewComponent" />
+    /// <seealso cref="T:Microsoft.AspNetCore.Mvc.ViewComponent" />
     public class HelpViewComponent : ViewComponent
     {
         private readonly ProjectOptions _projectOptions;

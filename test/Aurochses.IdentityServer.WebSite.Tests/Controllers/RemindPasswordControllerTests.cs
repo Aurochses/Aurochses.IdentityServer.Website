@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Aurochses.Identity.EntityFramework;
+using Aurochses.Identity;
+using Aurochses.Identity.EntityFrameworkCore;
 using Aurochses.IdentityServer.WebSite.Controllers;
 using Aurochses.IdentityServer.WebSite.Filters;
 using Aurochses.IdentityServer.WebSite.Models.RemindPassword;
+using Aurochses.Runtime;
 using Aurochses.Testing;
 using Aurochses.Testing.Mvc;
 using Microsoft.AspNetCore.Http;
@@ -70,7 +72,7 @@ namespace Aurochses.IdentityServer.WebSite.Tests.Controllers
         {
             return new RemindPasswordViewModel
             {
-                Email = EmailHelpers.Create(typeof(RemindPasswordControllerTests), methodName)
+                Email = typeof(RemindPasswordControllerTests).GenerateEmail(methodName)
             };
         }
 
@@ -171,7 +173,7 @@ namespace Aurochses.IdentityServer.WebSite.Tests.Controllers
                         (
                             context => context.Action == "Index"
                                        && context.Controller == "ResetPassword"
-                                       && context.Values.Equal(new { UserId = applicationUser.Id, Token = token })
+                                       && context.Values.ValueEquals(new { UserId = applicationUser.Id, Token = token })
                                        && context.Protocol == scheme
                         )
                     )

@@ -7,7 +7,7 @@ using Aurochses.IdentityServer.Database.Context;
 namespace Aurochses.IdentityServer.Database.Migrations.Identity
 {
     [DbContext(typeof(IdentityContext))]
-    partial class IdentityContextModelSnapshot : ModelSnapshot
+    public class IdentityContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {

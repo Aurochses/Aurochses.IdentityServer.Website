@@ -7,7 +7,7 @@ using Aurochses.IdentityServer.Database.Context;
 namespace Aurochses.IdentityServer.Database.Migrations.IdentityServerPersistedGrant
 {
     [DbContext(typeof(IdentityServerPersistedGrantContext))]
-    partial class IdentityServerPersistedGrantContextModelSnapshot : ModelSnapshot
+    public class IdentityServerPersistedGrantContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {

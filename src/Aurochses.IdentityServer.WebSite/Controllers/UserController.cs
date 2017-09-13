@@ -9,10 +9,11 @@ using Microsoft.Extensions.Options;
 
 namespace Aurochses.IdentityServer.WebSite.Controllers
 {
+    /// <inheritdoc />
     /// <summary>
     /// Class UserController.
     /// </summary>
-    /// <seealso cref="Microsoft.AspNetCore.Mvc.Controller" />
+    /// <seealso cref="T:Microsoft.AspNetCore.Mvc.Controller" />
     [Authorize]
     [SecurityHeaders]
     public class UserController : Controller

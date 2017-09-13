@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Aurochses.Identity.EntityFramework;
+using Aurochses.Identity;
+using Aurochses.Identity.EntityFrameworkCore;
 using Aurochses.IdentityServer.WebSite.Controllers;
 using Aurochses.IdentityServer.WebSite.Filters;
 using Aurochses.IdentityServer.WebSite.Models.Registration;
+using Aurochses.Runtime;
 using Aurochses.Testing;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
@@ -86,7 +88,7 @@ namespace Aurochses.IdentityServer.WebSite.Tests.Controllers
                         (
                             context => context.Action == "Callback"
                                        && context.Controller == "ExternalLogin"
-                                       && context.Values.Equal(new {ReturnUrl = returnUrl})
+                                       && context.Values.ValueEquals(new {ReturnUrl = returnUrl})
                         )
                     )
                 )
@@ -286,7 +288,7 @@ namespace Aurochses.IdentityServer.WebSite.Tests.Controllers
         {
             // Arrange
             var claimsIdentity = new ClaimsIdentity();
-            claimsIdentity.AddClaim(new Claim(ClaimTypes.Email, EmailHelpers.Create(GetType(), nameof(Callback_ReturnViewResultWithRegistrationViewModel_WhenSignInResultFailed))));
+            claimsIdentity.AddClaim(new Claim(ClaimTypes.Email, GetType().GenerateEmail(nameof(Callback_ReturnViewResultWithRegistrationViewModel_WhenSignInResultFailed))));
             claimsIdentity.AddClaim(new Claim(ClaimTypes.GivenName, "John"));
             claimsIdentity.AddClaim(new Claim(ClaimTypes.Surname, "Black"));
             _externalLoginInfo.Principal = new ClaimsPrincipal(claimsIdentity);
@@ -332,7 +334,7 @@ namespace Aurochses.IdentityServer.WebSite.Tests.Controllers
         {
             return new RegistrationViewModel
             {
-                Email = EmailHelpers.Create(typeof(ExternalLoginControllerTests), methodName),
+                Email = typeof(ExternalLoginControllerTests).GenerateEmail(methodName),
                 Password = "TestPassword",
                 ConfirmPassword = "TestConfirmPassword",
                 FirstName = "John",
@@ -589,7 +591,7 @@ namespace Aurochses.IdentityServer.WebSite.Tests.Controllers
                         (
                             context => context.Action == "Confirm"
                                        && context.Controller == "EmailConfirmation"
-                                       && context.Values.Equal(new {UserId = userId, Token = token})
+                                       && context.Values.ValueEquals(new {UserId = userId, Token = token})
                                        && context.Protocol == scheme
                         )
                     )

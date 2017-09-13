@@ -4,10 +4,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Aurochses.IdentityServer.WebSite.Controllers
 {
+    /// <inheritdoc />
     /// <summary>
     /// Class HomeController.
     /// </summary>
-    /// <seealso cref="Microsoft.AspNetCore.Mvc.Controller" />
+    /// <seealso cref="T:Microsoft.AspNetCore.Mvc.Controller" />
     /// <remarks>
     /// https://github.com/IdentityServer/IdentityServer4.Samples/tree/f189416024a15820b1f474dccdc48c73185559f4/Quickstarts/6_AspNetIdentity/src/IdentityServerWithAspNetIdentity
     /// </remarks>

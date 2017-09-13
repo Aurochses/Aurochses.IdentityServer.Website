@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Aurochses.Identity.EntityFramework;
+using Aurochses.Identity;
+using Aurochses.Identity.EntityFrameworkCore;
 using Aurochses.IdentityServer.WebSite.Controllers;
 using Aurochses.IdentityServer.WebSite.Filters;
 using Aurochses.IdentityServer.WebSite.Models.Registration;
+using Aurochses.Runtime;
 using Aurochses.Testing;
 using Aurochses.Testing.Mvc;
 using Microsoft.AspNetCore.Http;
@@ -74,7 +76,7 @@ namespace Aurochses.IdentityServer.WebSite.Tests.Controllers
         public async Task ValidateEmailPost_ReturnJsonResultFalse_WhenUserFoundByEmail()
         {
             // Arrange
-            var email = EmailHelpers.Create(GetType(), nameof(ValidateEmailPost_ReturnJsonResultFalse_WhenUserFoundByEmail));
+            var email = GetType().GenerateEmail(nameof(ValidateEmailPost_ReturnJsonResultFalse_WhenUserFoundByEmail));
 
             _mockUserManager
                 .Setup(x => x.FindByNameAsync(email))
@@ -92,7 +94,7 @@ namespace Aurochses.IdentityServer.WebSite.Tests.Controllers
         public async Task ValidateEmailPost_ReturnJsonResultTrue_WhenUserNotFoundByEmail()
         {
             // Arrange
-            var email = EmailHelpers.Create(GetType(), nameof(ValidateEmailPost_ReturnJsonResultTrue_WhenUserNotFoundByEmail));
+            var email = GetType().GenerateEmail(nameof(ValidateEmailPost_ReturnJsonResultTrue_WhenUserNotFoundByEmail));
 
             _mockUserManager
                 .Setup(x => x.FindByNameAsync(email))
@@ -120,7 +122,7 @@ namespace Aurochses.IdentityServer.WebSite.Tests.Controllers
         {
             return new RegistrationViewModel
             {
-                Email = EmailHelpers.Create(typeof(RegistrationControllerTests), methodName),
+                Email = typeof(RegistrationControllerTests).GenerateEmail(methodName),
                 Password = "TestPassword",
                 ConfirmPassword = "TestPassword",
                 FirstName = "TestFirstName",
@@ -257,7 +259,7 @@ namespace Aurochses.IdentityServer.WebSite.Tests.Controllers
                         (
                             context => context.Action == "Confirm"
                                        && context.Controller == "EmailConfirmation"
-                                       && context.Values.Equal(new { UserId = userId, Token = token })
+                                       && context.Values.ValueEquals(new { UserId = userId, Token = token })
                                        && context.Protocol == scheme
                         )
                     )

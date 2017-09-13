@@ -5,10 +5,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Aurochses.IdentityServer.WebSite.Controllers
 {
+    /// <inheritdoc />
     /// <summary>
     /// Class ErrorController.
     /// </summary>
-    /// <seealso cref="Microsoft.AspNetCore.Mvc.Controller" />
+    /// <seealso cref="T:Microsoft.AspNetCore.Mvc.Controller" />
     [SecurityHeaders]
     public class ErrorController : Controller
     {

@@ -12,7 +12,7 @@ namespace Aurochses.IdentityServer.WebSite.SeleniumTests.Fakes
             //new object[] { SeleniumWebDriverType.Edge },
             // todo: solve Firefox driver don't see running
             //new object[] { SeleniumWebDriverType.Firefox },
-            new object[] { SeleniumWebDriverType.GoogleChrome },
+            new object[] { SeleniumWebDriverType.GoogleChrome }
             // todo: IE issue on server must be solved
             //new object[] { SeleniumWebDriverType.InternetExplorer }
         };

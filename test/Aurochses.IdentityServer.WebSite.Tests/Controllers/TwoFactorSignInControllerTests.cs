@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Aurochses.Identity.EntityFramework;
+using Aurochses.Identity;
+using Aurochses.Identity.EntityFrameworkCore;
 using Aurochses.IdentityServer.WebSite.Controllers;
 using Aurochses.IdentityServer.WebSite.Filters;
 using Aurochses.IdentityServer.WebSite.Models.TwoFactorSignIn;
@@ -18,7 +19,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Moq;
 using Xunit;
-using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
+//using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
 
 namespace Aurochses.IdentityServer.WebSite.Tests.Controllers
 {
@@ -260,7 +261,7 @@ namespace Aurochses.IdentityServer.WebSite.Tests.Controllers
         {
             // Arrange
             var user = new ApplicationUser();
-            var token = "token";
+            const string token = "token";
 
             var viewModel = GetSendCodeViewModel("Email", returnUrl, rememberMe);
 
@@ -307,7 +308,7 @@ namespace Aurochses.IdentityServer.WebSite.Tests.Controllers
         {
             // Arrange
             var user = new ApplicationUser();
-            var token = "token";
+            const string token = "token";
 
             var viewModel = GetSendCodeViewModel("Phone", returnUrl, rememberMe);
 
@@ -443,7 +444,7 @@ namespace Aurochses.IdentityServer.WebSite.Tests.Controllers
 
             _mockSignInManager
                 .Setup(x => x.TwoFactorSignInAsync(viewModel.Provider, viewModel.Token, viewModel.RememberMe, viewModel.RememberBrowser))
-                .ReturnsAsync(() => SignInResult.Failed)
+                .ReturnsAsync(() => Microsoft.AspNetCore.Identity.SignInResult.Failed)
                 .Verifiable();
 
             // Act
@@ -468,7 +469,7 @@ namespace Aurochses.IdentityServer.WebSite.Tests.Controllers
 
             _mockSignInManager
                 .Setup(x => x.TwoFactorSignInAsync(viewModel.Provider, viewModel.Token, viewModel.RememberMe, viewModel.RememberBrowser))
-                .ReturnsAsync(() => SignInResult.Success)
+                .ReturnsAsync(() => Microsoft.AspNetCore.Identity.SignInResult.Success)
                 .Verifiable();
 
             var mockUrlHelper = new Mock<IUrlHelper>(MockBehavior.Strict);
@@ -504,7 +505,7 @@ namespace Aurochses.IdentityServer.WebSite.Tests.Controllers
 
             _mockSignInManager
                 .Setup(x => x.TwoFactorSignInAsync(viewModel.Provider, viewModel.Token, viewModel.RememberMe, viewModel.RememberBrowser))
-                .ReturnsAsync(() => SignInResult.LockedOut)
+                .ReturnsAsync(() => Microsoft.AspNetCore.Identity.SignInResult.LockedOut)
                 .Verifiable();
 
             // Act

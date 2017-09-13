@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="Aurochses.Testing" Version="1.2.1" />
+    <PackageReference Include="Aurochses.Testing.Mvc" Version="1.2.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.0.0" />
     <PackageReference Include="Moq" Version="4.7.99" />
     <PackageReference Include="xunit" Version="2.2.0" />

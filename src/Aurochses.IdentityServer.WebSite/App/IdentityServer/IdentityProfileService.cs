@@ -8,10 +8,11 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Aurochses.IdentityServer.WebSite.App.IdentityServer
 {
+    /// <inheritdoc />
     /// <summary>
     /// Class IdentityProfileService.
     /// </summary>
-    /// <seealso cref="IProfileService" />
+    /// <seealso cref="T:IdentityServer4.Services.IProfileService" />
     public class IdentityProfileService : IProfileService
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -28,13 +29,14 @@ namespace Aurochses.IdentityServer.WebSite.App.IdentityServer
             _userClaimsPrincipalFactory = userClaimsPrincipalFactory;
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// This method is called whenever claims about the user are requested (e.g. during token creation or via the userinfo endpoint)
         /// </summary>
         /// <param name="context">The context.</param>
         /// <returns></returns>
-        /// <exception cref="System.ArgumentNullException">Subject</exception>
-        /// <exception cref="System.Exception">User not found.</exception>
+        /// <exception cref="T:System.ArgumentNullException">Subject</exception>
+        /// <exception cref="T:System.Exception">User not found.</exception>
         public async Task GetProfileDataAsync(ProfileDataRequestContext context)
         {
             var subject = context.Subject;
@@ -47,14 +49,15 @@ namespace Aurochses.IdentityServer.WebSite.App.IdentityServer
             context.AddFilteredClaims(principal.Claims);
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// This method gets called whenever identity server needs to determine if the user is valid or active (e.g. if the user's account has been deactivated since they logged in).
         /// (e.g. during token issuance or validation).
         /// </summary>
         /// <param name="context">The context.</param>
         /// <returns></returns>
-        /// <exception cref="System.ArgumentNullException">Subject</exception>
-        /// <exception cref="System.Exception">User not found.</exception>
+        /// <exception cref="T:System.ArgumentNullException">Subject</exception>
+        /// <exception cref="T:System.Exception">User not found.</exception>
         public async Task IsActiveAsync(IsActiveContext context)
         {
             var subject = context.Subject;

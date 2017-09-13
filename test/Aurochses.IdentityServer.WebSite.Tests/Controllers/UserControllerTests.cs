@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Aurochses.Identity.EntityFramework;
+using Aurochses.Identity.EntityFrameworkCore;
 using Aurochses.IdentityServer.WebSite.App.Project;
 using Aurochses.IdentityServer.WebSite.Controllers;
 using Aurochses.IdentityServer.WebSite.Filters;

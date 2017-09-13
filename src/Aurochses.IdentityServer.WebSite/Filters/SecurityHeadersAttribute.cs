@@ -3,10 +3,11 @@ using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace Aurochses.IdentityServer.WebSite.Filters
 {
+    /// <inheritdoc />
     /// <summary>
     /// Class SecurityHeadersAttribute.
     /// </summary>
-    /// <seealso cref="Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute" />
+    /// <seealso cref="T:Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute" />
     public class SecurityHeadersAttribute : ActionFilterAttribute
     {
         private const string Csp = "default-src 'self';" +

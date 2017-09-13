@@ -9,10 +9,11 @@ using PaulMiami.AspNetCore.Mvc.Recaptcha;
 
 namespace Aurochses.IdentityServer.WebSite.Controllers
 {
+    /// <inheritdoc />
     /// <summary>
     /// Class ResetPasswordController.
     /// </summary>
-    /// <seealso cref="Microsoft.AspNetCore.Mvc.Controller" />
+    /// <seealso cref="T:Microsoft.AspNetCore.Mvc.Controller" />
     [SecurityHeaders]
     public class ResetPasswordController : Controller
     {

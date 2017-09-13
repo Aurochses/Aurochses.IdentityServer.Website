@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Aurochses.IdentityServer.WebSite.Api.Controllers
 {
+    /// <inheritdoc />
     /// <summary>
     /// Values
     /// </summary>

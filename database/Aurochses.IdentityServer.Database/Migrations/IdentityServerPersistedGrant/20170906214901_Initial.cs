@@ -8,20 +8,20 @@ namespace Aurochses.IdentityServer.Database.Migrations.IdentityServerPersistedGr
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.EnsureSchema(
-                name: "identityServer");
+                "identityServer");
 
             migrationBuilder.CreateTable(
-                name: "PersistedGrants",
+                "PersistedGrants",
                 schema: "identityServer",
                 columns: table => new
                 {
-                    Key = table.Column<string>(maxLength: 200, nullable: false),
-                    ClientId = table.Column<string>(maxLength: 200, nullable: false),
-                    CreationTime = table.Column<DateTime>(nullable: false),
-                    Data = table.Column<string>(maxLength: 50000, nullable: false),
+                    Key = table.Column<string>(maxLength: 200),
+                    ClientId = table.Column<string>(maxLength: 200),
+                    CreationTime = table.Column<DateTime>(),
+                    Data = table.Column<string>(maxLength: 50000),
                     Expiration = table.Column<DateTime>(nullable: true),
                     SubjectId = table.Column<string>(maxLength: 200, nullable: true),
-                    Type = table.Column<string>(maxLength: 50, nullable: false)
+                    Type = table.Column<string>(maxLength: 50)
                 },
                 constraints: table =>
                 {
@@ -29,7 +29,7 @@ namespace Aurochses.IdentityServer.Database.Migrations.IdentityServerPersistedGr
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_PersistedGrants_SubjectId_ClientId_Type",
+                "IX_PersistedGrants_SubjectId_ClientId_Type",
                 schema: "identityServer",
                 table: "PersistedGrants",
                 columns: new[] { "SubjectId", "ClientId", "Type" });
@@ -38,8 +38,8 @@ namespace Aurochses.IdentityServer.Database.Migrations.IdentityServerPersistedGr
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "PersistedGrants",
-                schema: "identityServer");
+                "PersistedGrants",
+                "identityServer");
         }
     }
 }

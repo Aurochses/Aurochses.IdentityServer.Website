@@ -132,6 +132,7 @@
   <data name="Email.Description" xml:space="preserve">
     <value>Email необходим для восстановления доступа к Вашему аккаунту, а также для подтверждения регистрации</value>
   </data>
+  <!-- ReSharper disable once OverriddenWithSameValue -->
   <data name="Email.Prompt" xml:space="preserve">
     <value>Email</value>
   </data>

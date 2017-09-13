@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Aurochses.Identity.EntityFramework;
+using Aurochses.Identity.EntityFrameworkCore;
 using Aurochses.IdentityServer.WebSite.Controllers;
 using Aurochses.IdentityServer.WebSite.Filters;
 using Aurochses.IdentityServer.WebSite.Models.ResetPassword;
@@ -76,7 +76,7 @@ namespace Aurochses.IdentityServer.WebSite.Tests.Controllers
         {
             return new ResetPasswordViewModel
             {
-                Email = EmailHelpers.Create(typeof(ResetPasswordController), methodName),
+                Email = typeof(ResetPasswordController).GenerateEmail(methodName),
                 Password = "TestPassword",
                 ConfirmPassword = "TestPassword",
                 Token = "Token"

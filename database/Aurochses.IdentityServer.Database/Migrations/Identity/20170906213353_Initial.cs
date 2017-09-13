@@ -9,10 +9,10 @@ namespace Aurochses.IdentityServer.Database.Migrations.Identity
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.EnsureSchema(
-                name: "identity");
+                "identity");
 
             migrationBuilder.CreateTable(
-                name: "Role",
+                "Role",
                 schema: "identity",
                 columns: table => new
                 {
@@ -27,28 +27,28 @@ namespace Aurochses.IdentityServer.Database.Migrations.Identity
                 });
 
             migrationBuilder.CreateTable(
-                name: "User",
+                "User",
                 schema: "identity",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false, defaultValueSql: "newsequentialid()"),
                     UserName = table.Column<string>(maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(maxLength: 256, nullable: true),
-                    FirstName = table.Column<string>(maxLength: 50, nullable: false),
-                    LastName = table.Column<string>(maxLength: 50, nullable: false),
+                    FirstName = table.Column<string>(maxLength: 50),
+                    LastName = table.Column<string>(maxLength: 50),
                     Email = table.Column<string>(maxLength: 256, nullable: true),
                     NormalizedEmail = table.Column<string>(maxLength: 256, nullable: true),
-                    EmailConfirmed = table.Column<bool>(nullable: false),
+                    EmailConfirmed = table.Column<bool>(),
                     PasswordHash = table.Column<string>(nullable: true),
                     SecurityStamp = table.Column<string>(nullable: true),
                     ConcurrencyStamp = table.Column<string>(nullable: true),
                     PhoneNumber = table.Column<string>(nullable: true),
-                    PhoneNumberConfirmed = table.Column<bool>(nullable: false),
-                    TwoFactorEnabled = table.Column<bool>(nullable: false),
+                    PhoneNumberConfirmed = table.Column<bool>(),
+                    TwoFactorEnabled = table.Column<bool>(),
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
-                    LockoutEnabled = table.Column<bool>(nullable: false),
-                    AccessFailedCount = table.Column<int>(nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getutcdate()")
+                    LockoutEnabled = table.Column<bool>(),
+                    AccessFailedCount = table.Column<int>(),
+                    CreatedDate = table.Column<DateTime>("datetime2", nullable: false, defaultValueSql: "getutcdate()")
                 },
                 constraints: table =>
                 {
@@ -56,13 +56,13 @@ namespace Aurochses.IdentityServer.Database.Migrations.Identity
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserToken",
+                "UserToken",
                 schema: "identity",
                 columns: table => new
                 {
-                    UserId = table.Column<Guid>(nullable: false),
-                    LoginProvider = table.Column<string>(nullable: false),
-                    Name = table.Column<string>(nullable: false),
+                    UserId = table.Column<Guid>(),
+                    LoginProvider = table.Column<string>(),
+                    Name = table.Column<string>(),
                     Value = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -71,22 +71,22 @@ namespace Aurochses.IdentityServer.Database.Migrations.Identity
                 });
 
             migrationBuilder.CreateTable(
-                name: "RoleClaim",
+                "RoleClaim",
                 schema: "identity",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>()
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true),
-                    RoleId = table.Column<Guid>(nullable: false)
+                    RoleId = table.Column<Guid>()
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_RoleClaim", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_RoleClaim_Role_RoleId",
-                        column: x => x.RoleId,
+                        "FK_RoleClaim_Role_RoleId",
+                        x => x.RoleId,
                         principalSchema: "identity",
                         principalTable: "Role",
                         principalColumn: "Id",
@@ -94,22 +94,22 @@ namespace Aurochses.IdentityServer.Database.Migrations.Identity
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserClaim",
+                "UserClaim",
                 schema: "identity",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>()
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true),
-                    UserId = table.Column<Guid>(nullable: false)
+                    UserId = table.Column<Guid>()
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_UserClaim", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_UserClaim_User_UserId",
-                        column: x => x.UserId,
+                        "FK_UserClaim_User_UserId",
+                        x => x.UserId,
                         principalSchema: "identity",
                         principalTable: "User",
                         principalColumn: "Id",
@@ -117,21 +117,21 @@ namespace Aurochses.IdentityServer.Database.Migrations.Identity
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserLogin",
+                "UserLogin",
                 schema: "identity",
                 columns: table => new
                 {
-                    LoginProvider = table.Column<string>(nullable: false),
-                    ProviderKey = table.Column<string>(nullable: false),
+                    LoginProvider = table.Column<string>(),
+                    ProviderKey = table.Column<string>(),
                     ProviderDisplayName = table.Column<string>(nullable: true),
-                    UserId = table.Column<Guid>(nullable: false)
+                    UserId = table.Column<Guid>()
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_UserLogin", x => new { x.LoginProvider, x.ProviderKey });
                     table.ForeignKey(
-                        name: "FK_UserLogin_User_UserId",
-                        column: x => x.UserId,
+                        "FK_UserLogin_User_UserId",
+                        x => x.UserId,
                         principalSchema: "identity",
                         principalTable: "User",
                         principalColumn: "Id",
@@ -139,26 +139,26 @@ namespace Aurochses.IdentityServer.Database.Migrations.Identity
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserRole",
+                "UserRole",
                 schema: "identity",
                 columns: table => new
                 {
-                    UserId = table.Column<Guid>(nullable: false),
-                    RoleId = table.Column<Guid>(nullable: false)
+                    UserId = table.Column<Guid>(),
+                    RoleId = table.Column<Guid>()
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_UserRole", x => new { x.UserId, x.RoleId });
                     table.ForeignKey(
-                        name: "FK_UserRole_Role_RoleId",
-                        column: x => x.RoleId,
+                        "FK_UserRole_Role_RoleId",
+                        x => x.RoleId,
                         principalSchema: "identity",
                         principalTable: "Role",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_UserRole_User_UserId",
-                        column: x => x.UserId,
+                        "FK_UserRole_User_UserId",
+                        x => x.UserId,
                         principalSchema: "identity",
                         principalTable: "User",
                         principalColumn: "Id",
@@ -166,45 +166,45 @@ namespace Aurochses.IdentityServer.Database.Migrations.Identity
                 });
 
             migrationBuilder.CreateIndex(
-                name: "RoleNameIndex",
+                "RoleNameIndex",
                 schema: "identity",
                 table: "Role",
                 column: "NormalizedName",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "EmailIndex",
+                "EmailIndex",
                 schema: "identity",
                 table: "User",
                 column: "NormalizedEmail");
 
             migrationBuilder.CreateIndex(
-                name: "UserNameIndex",
+                "UserNameIndex",
                 schema: "identity",
                 table: "User",
                 column: "NormalizedUserName",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_RoleClaim_RoleId",
+                "IX_RoleClaim_RoleId",
                 schema: "identity",
                 table: "RoleClaim",
                 column: "RoleId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserClaim_UserId",
+                "IX_UserClaim_UserId",
                 schema: "identity",
                 table: "UserClaim",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserLogin_UserId",
+                "IX_UserLogin_UserId",
                 schema: "identity",
                 table: "UserLogin",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserRole_RoleId",
+                "IX_UserRole_RoleId",
                 schema: "identity",
                 table: "UserRole",
                 column: "RoleId");
@@ -213,32 +213,32 @@ namespace Aurochses.IdentityServer.Database.Migrations.Identity
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "RoleClaim",
-                schema: "identity");
+                "RoleClaim",
+                "identity");
 
             migrationBuilder.DropTable(
-                name: "UserClaim",
-                schema: "identity");
+                "UserClaim",
+                "identity");
 
             migrationBuilder.DropTable(
-                name: "UserLogin",
-                schema: "identity");
+                "UserLogin",
+                "identity");
 
             migrationBuilder.DropTable(
-                name: "UserRole",
-                schema: "identity");
+                "UserRole",
+                "identity");
 
             migrationBuilder.DropTable(
-                name: "UserToken",
-                schema: "identity");
+                "UserToken",
+                "identity");
 
             migrationBuilder.DropTable(
-                name: "Role",
-                schema: "identity");
+                "Role",
+                "identity");
 
             migrationBuilder.DropTable(
-                name: "User",
-                schema: "identity");
+                "User",
+                "identity");
         }
     }
 }

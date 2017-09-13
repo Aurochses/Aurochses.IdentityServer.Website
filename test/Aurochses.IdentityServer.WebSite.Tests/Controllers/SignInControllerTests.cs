@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Security.Claims;
 using System.Security.Principal;
 using System.Threading.Tasks;
-using Aurochses.Identity.EntityFramework;
+using Aurochses.Identity.EntityFrameworkCore;
 using Aurochses.IdentityServer.WebSite.Controllers;
 using Aurochses.IdentityServer.WebSite.Filters;
 using Aurochses.IdentityServer.WebSite.Models.SignIn;
@@ -96,7 +96,7 @@ namespace Aurochses.IdentityServer.WebSite.Tests.Controllers
         {
             return new SignInViewModel
             {
-                Email = EmailHelpers.Create(typeof(SignInControllerTests), methodName)
+                Email = typeof(SignInControllerTests).GenerateEmail(methodName)
             };
         }
 

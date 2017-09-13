@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Aurochses.Identity.EntityFramework;
+using Aurochses.Identity.EntityFrameworkCore;
 using Aurochses.IdentityServer.WebSite.Controllers;
 using Aurochses.IdentityServer.WebSite.Filters;
 using Aurochses.IdentityServer.WebSite.Models.SignOut;
 using Aurochses.IdentityServer.WebSite.Tests.Fakes;
+using Aurochses.Runtime;
 using Aurochses.Testing;
 using Aurochses.Testing.Mvc;
 using IdentityModel;
@@ -146,7 +147,7 @@ namespace Aurochses.IdentityServer.WebSite.Tests.Controllers
                         (
                             context => context.Action == "Index"
                                        && context.Controller == "SignOut"
-                                       && context.Values.Equal(new { LogoutId = logoutId })
+                                       && context.Values.ValueEquals(new { LogoutId = logoutId })
                         )
                     )
                 )
