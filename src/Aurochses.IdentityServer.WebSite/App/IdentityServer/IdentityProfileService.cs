@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Aurochses.IdentityServer.WebSite.App.IdentityServer
 {
-    /// <inheritdoc />
     /// <summary>
     /// Class IdentityProfileService.
     /// </summary>
@@ -29,7 +28,6 @@ namespace Aurochses.IdentityServer.WebSite.App.IdentityServer
             _userClaimsPrincipalFactory = userClaimsPrincipalFactory;
         }
 
-        /// <inheritdoc />
         /// <summary>
         /// This method is called whenever claims about the user are requested (e.g. during token creation or via the userinfo endpoint)
         /// </summary>
@@ -49,7 +47,6 @@ namespace Aurochses.IdentityServer.WebSite.App.IdentityServer
             context.AddFilteredClaims(principal.Claims);
         }
 
-        /// <inheritdoc />
         /// <summary>
         /// This method gets called whenever identity server needs to determine if the user is valid or active (e.g. if the user's account has been deactivated since they logged in).
         /// (e.g. during token issuance or validation).

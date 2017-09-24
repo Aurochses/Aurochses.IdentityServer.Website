@@ -5,7 +5,6 @@ using Microsoft.Extensions.Options;
 
 namespace Aurochses.IdentityServer.WebSite.Components
 {
-    /// <inheritdoc />
     /// <summary>
     /// Class HelpViewComponent.
     /// </summary>

@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace Aurochses.IdentityServer.WebSite.Filters
 {
-    /// <inheritdoc />
     /// <summary>
     /// Class SecurityHeadersAttribute.
     /// </summary>
@@ -20,7 +19,6 @@ namespace Aurochses.IdentityServer.WebSite.Filters
         /// Called when [result executing].
         /// </summary>
         /// <param name="context">The context.</param>
-        /// <inheritdoc />
         public override void OnResultExecuting(ResultExecutingContext context)
         {
             var result = context.Result;

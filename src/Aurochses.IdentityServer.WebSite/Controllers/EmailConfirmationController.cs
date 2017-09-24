@@ -9,7 +9,6 @@ using PaulMiami.AspNetCore.Mvc.Recaptcha;
 
 namespace Aurochses.IdentityServer.WebSite.Controllers
 {
-    /// <inheritdoc />
     /// <summary>
     /// Class EmailConfirmationController.
     /// </summary>

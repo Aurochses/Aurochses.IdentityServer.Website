@@ -13,7 +13,6 @@ using Microsoft.AspNetCore.Http.Authentication;
 
 namespace Aurochses.IdentityServer.WebSite.Controllers
 {
-    /// <inheritdoc />
     /// <summary>
     /// Class SignOutController.
     /// </summary>

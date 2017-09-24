@@ -9,7 +9,6 @@ using Microsoft.Extensions.Options;
 
 namespace Aurochses.IdentityServer.WebSite.Controllers
 {
-    /// <inheritdoc />
     /// <summary>
     /// Class UserController.
     /// </summary>

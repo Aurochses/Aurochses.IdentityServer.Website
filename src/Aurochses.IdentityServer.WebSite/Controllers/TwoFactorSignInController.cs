@@ -12,7 +12,6 @@ using Microsoft.Extensions.Localization;
 
 namespace Aurochses.IdentityServer.WebSite.Controllers
 {
-    /// <inheritdoc />
     /// <summary>
     /// Class TwoFactorSignInController.
     /// </summary>

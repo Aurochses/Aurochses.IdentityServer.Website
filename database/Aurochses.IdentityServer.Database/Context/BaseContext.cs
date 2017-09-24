@@ -2,14 +2,12 @@
 
 namespace Aurochses.IdentityServer.Database.Context
 {
-    /// <inheritdoc />
     /// <summary>
     /// BaseContext.
     /// </summary>
     /// <seealso cref="T:Microsoft.EntityFrameworkCore.DbContext" />
     public class BaseContext : DbContext
     {
-        /// <inheritdoc />
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Aurochses.IdentityServer.Database.Context.BaseContext" /> class.
         /// </summary>

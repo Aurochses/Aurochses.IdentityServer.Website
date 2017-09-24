@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Aurochses.IdentityServer.WebSite.Controllers
 {
-    /// <inheritdoc />
     /// <summary>
     /// Class UnauthorizedController
     /// </summary>
