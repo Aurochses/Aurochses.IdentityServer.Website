@@ -19,7 +19,7 @@ namespace Aurochses.IdentityServer.WebSite.IntegrationTests
                 .UseContentRoot(
                     ProjectHelpers.GetFolderPath("Aurochses.IdentityServer.WebSite", "src", "Aurochses.IdentityServer.WebSite")
                 )
-                .UseEnvironment("Production")
+                .UseEnvironment("Development")
                 .UseStartup<Startup>()
                 // todo: this is temp solution: https://github.com/aspnet/Hosting/issues/954#issuecomment-287482546
                 .ConfigureServices(services =>

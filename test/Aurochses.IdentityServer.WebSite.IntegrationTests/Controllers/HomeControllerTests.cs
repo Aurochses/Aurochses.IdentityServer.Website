@@ -1,5 +1,8 @@
 ﻿using System.Net;
 using System.Threading.Tasks;
+using Aurochses.Testing;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.TestHost;
 using Xunit;
 
 namespace Aurochses.IdentityServer.WebSite.IntegrationTests.Controllers
@@ -16,8 +19,20 @@ namespace Aurochses.IdentityServer.WebSite.IntegrationTests.Controllers
         [Fact]
         public async Task Index_RedirectToSignIn()
         {
-            // Arrange & Act
-            var response = await _fixture.Client.GetAsync("/");
+            // Arrange
+            var webHostBuilder = new WebHostBuilder()
+                .UseContentRoot(
+                    ProjectHelpers.GetFolderPath("Aurochses.IdentityServer.WebSite", "src", "Aurochses.IdentityServer.WebSite")
+                )
+                .UseEnvironment("Production")
+                .UseStartup<Startup>();
+
+            var server = new TestServer(webHostBuilder);
+
+            var client = server.CreateClient();
+
+            // Act
+            var response = await client.GetAsync("/");
 
             // Assert
             Assert.Equal(HttpStatusCode.Redirect, response.StatusCode);
