@@ -1,5 +1,5 @@
 ﻿using Aurochses.IdentityServer.WebSite.SeleniumTests.Fakes;
-using Aurochses.Testing.Selenium;
+using Aurochses.Xunit.Selenium;
 using OpenQA.Selenium;
 using Xunit;
 

@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
-using Aurochses.Identity;
-using Aurochses.Identity.EntityFrameworkCore;
+using Aurochses.AspNetCore.Identity;
+using Aurochses.AspNetCore.Identity.EntityFrameworkCore;
 using Aurochses.IdentityServer.WebSite.Filters;
 using Aurochses.IdentityServer.WebSite.Models.RemindPassword;
 using Microsoft.AspNetCore.Identity;

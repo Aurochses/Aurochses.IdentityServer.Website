@@ -1,4 +1,4 @@
-﻿using Aurochses.Identity.EntityFrameworkCore;
+﻿using Aurochses.AspNetCore.Identity.EntityFrameworkCore;
 using Aurochses.IdentityServer.Database.Context;
 using IdentityServer4.EntityFramework.DbContexts;
 using Microsoft.AspNetCore.Hosting;
@@ -16,24 +16,17 @@ namespace Aurochses.IdentityServer.Database
         /// <summary>
         /// Initializes a new instance of the <see cref="Startup"/> class.
         /// </summary>
-        /// <param name="env">The env.</param>
-        public Startup(IHostingEnvironment env)
+        /// <param name="configuration">The configuration.</param>
+        public Startup(IConfiguration configuration)
         {
-            // Set up configuration providers.
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json")
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", true)
-                .AddEnvironmentVariables();
-
-            Configuration = builder.Build();
+            Configuration = configuration;
         }
 
         /// <summary>
-        /// Gets or sets the configuration.
+        /// Gets the configuration.
         /// </summary>
         /// <value>The configuration.</value>
-        public IConfiguration Configuration { get; set; }
+        public IConfiguration Configuration { get; }
 
         /// <summary>
         /// Configures the services.

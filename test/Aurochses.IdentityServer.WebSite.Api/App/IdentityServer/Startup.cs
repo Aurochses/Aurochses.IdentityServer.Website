@@ -1,6 +1,6 @@
-﻿using System.Linq;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Aurochses.IdentityServer.WebSite.Api.App.IdentityServer
 {
@@ -10,21 +10,20 @@ namespace Aurochses.IdentityServer.WebSite.Api.App.IdentityServer
     public static class Startup
     {
         /// <summary>
-        /// Configures the specified application.
+        /// Configures the services.
         /// </summary>
-        /// <param name="app">The application.</param>
+        /// <param name="services">The services.</param>
         /// <param name="configuration">The configuration.</param>
-        public static void Configure(IApplicationBuilder app, IConfigurationRoot configuration)
+        public static void ConfigureServices(IServiceCollection services, IConfiguration configuration)
         {
-            // IdentityServer Authentication
-            app.UseIdentityServerAuthentication(
-                new IdentityServerAuthenticationOptions
-                {
-                    Authority = configuration.GetValue<string>("IdentityServer:Authority"),
-                    AllowedScopes = configuration.GetSection("IdentityServer:AllowedScopes").GetChildren().Select(x => x.Value).ToList(),
-                    RequireHttpsMetadata = configuration.GetValue<bool>("IdentityServer:RequireHttpsMetadata")
-                }
-            );
+            services.AddAuthentication("Bearer")
+                .AddIdentityServerAuthentication(
+                    options =>
+                    {
+                        options.Authority = configuration.GetValue<string>("IdentityServer:Authority");
+                        options.RequireHttpsMetadata = configuration.GetValue<bool>("IdentityServer:RequireHttpsMetadata");
+                    }
+                );
         }
     }
 }

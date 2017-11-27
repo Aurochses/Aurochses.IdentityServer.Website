@@ -1,4 +1,4 @@
-﻿using System.IO;
+﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
 namespace Aurochses.IdentityServer.WebSite.Api
@@ -14,15 +14,17 @@ namespace Aurochses.IdentityServer.WebSite.Api
         /// <param name="args">The arguments.</param>
         public static void Main(string[] args)
         {
-            var host = new WebHostBuilder()
-                .UseKestrel()
-                .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseIISIntegration()
-                .UseStartup<Startup>()
-                .UseApplicationInsights()
-                .Build();
-
-            host.Run();
+            BuildWebHost(args).Run();
         }
+
+        /// <summary>
+        /// Build web host
+        /// </summary>
+        /// <param name="args">The arguments.</param>
+        /// <returns>IWebHost</returns>
+        public static IWebHost BuildWebHost(string[] args) =>
+            WebHost.CreateDefaultBuilder(args)
+                .UseStartup<Startup>()
+                .Build();
     }
 }

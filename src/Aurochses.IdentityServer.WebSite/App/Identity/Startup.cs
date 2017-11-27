@@ -1,9 +1,10 @@
 ﻿using System;
-using Aurochses.Identity;
-using Aurochses.Identity.EntityFrameworkCore;
-using Aurochses.Identity.SendGrid;
-using Aurochses.Identity.Twilio;
+using Aurochses.AspNetCore.Identity;
+using Aurochses.AspNetCore.Identity.EntityFrameworkCore;
+using Aurochses.AspNetCore.Identity.SendGrid;
+using Aurochses.AspNetCore.Identity.Twilio;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

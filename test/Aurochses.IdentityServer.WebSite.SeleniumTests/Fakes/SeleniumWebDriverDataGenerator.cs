@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Aurochses.Testing.Selenium;
+using Aurochses.Xunit.Selenium;
 
 namespace Aurochses.IdentityServer.WebSite.SeleniumTests.Fakes
 {

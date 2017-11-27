@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 
 namespace Aurochses.IdentityServer.WebSite.Api
 {
@@ -16,23 +15,17 @@ namespace Aurochses.IdentityServer.WebSite.Api
         /// <summary>
         /// Initializes a new instance of the <see cref="Startup"/> class.
         /// </summary>
-        /// <param name="env">The env.</param>
-        public Startup(IHostingEnvironment env)
+        /// <param name="configuration">The configuration.</param>
+        public Startup(IConfiguration configuration)
         {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", false, true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", true)
-                .AddEnvironmentVariables();
-
-            Configuration = builder.Build();
+            Configuration = configuration;
         }
 
         /// <summary>
         /// Gets the configuration.
         /// </summary>
         /// <value>The configuration.</value>
-        public IConfigurationRoot Configuration { get; }
+        public IConfiguration Configuration { get; }
 
         /// <summary>
         /// Configures the services.
@@ -40,9 +33,6 @@ namespace Aurochses.IdentityServer.WebSite.Api
         /// <param name="services">The services.</param>
         public void ConfigureServices(IServiceCollection services)
         {
-            // Authorization
-            App.Authorization.Startup.ConfigureServices(services);
-
             // Swagger
             App.Swagger.Startup.ConfigureServices(services, Configuration);
 
@@ -60,6 +50,12 @@ namespace Aurochses.IdentityServer.WebSite.Api
                     );
                 }
             );
+
+            // Authorization
+            App.Authorization.Startup.ConfigureServices(services);
+
+            // IdentityServer
+            App.IdentityServer.Startup.ConfigureServices(services, Configuration);
         }
 
         /// <summary>
@@ -67,20 +63,16 @@ namespace Aurochses.IdentityServer.WebSite.Api
         /// </summary>
         /// <param name="app">The application.</param>
         /// <param name="env">The env.</param>
-        /// <param name="loggerFactory">The logger factory.</param>
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            // Logging
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-
             // Cors
             App.Cors.Startup.Configure(app);
 
-            // IdentityServer
-            App.IdentityServer.Startup.Configure(app, Configuration);
-
             // Swagger
             App.Swagger.Startup.Configure(app, Configuration);
+
+            // Authentication
+            app.UseAuthentication();
 
             // MVC
             app.UseMvc();
