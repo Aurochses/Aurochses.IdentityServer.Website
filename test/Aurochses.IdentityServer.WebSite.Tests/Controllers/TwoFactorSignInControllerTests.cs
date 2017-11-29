@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Aurochses.Identity;
-using Aurochses.Identity.EntityFrameworkCore;
+using Aurochses.AspNetCore.Identity;
+using Aurochses.AspNetCore.Identity.EntityFrameworkCore;
 using Aurochses.IdentityServer.WebSite.Controllers;
 using Aurochses.IdentityServer.WebSite.Filters;
 using Aurochses.IdentityServer.WebSite.Models.TwoFactorSignIn;
-using Aurochses.Testing;
-using Aurochses.Testing.Mvc;
-using Microsoft.AspNetCore.Builder;
+using Aurochses.Xunit;
+using Aurochses.Xunit.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -19,7 +18,6 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Moq;
 using Xunit;
-//using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
 
 namespace Aurochses.IdentityServer.WebSite.Tests.Controllers
 {

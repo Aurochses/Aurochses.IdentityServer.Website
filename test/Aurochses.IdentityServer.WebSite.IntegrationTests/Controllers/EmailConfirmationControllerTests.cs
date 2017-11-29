@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Aurochses.Testing;
-using Aurochses.Testing.Mvc;
+using Aurochses.Xunit;
+using Aurochses.Xunit.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
 using Xunit;
 

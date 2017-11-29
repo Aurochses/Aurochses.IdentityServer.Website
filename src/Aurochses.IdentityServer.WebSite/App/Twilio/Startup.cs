@@ -12,7 +12,7 @@ namespace Aurochses.IdentityServer.WebSite.App.Twilio
         /// Configures the services.
         /// </summary>
         /// <param name="configuration">The configuration.</param>
-        public static void ConfigureServices(IConfigurationRoot configuration)
+        public static void ConfigureServices(IConfiguration configuration)
         {
             // Add TwilioClient
             TwilioClient.Init(configuration["Twilio:AccountSid"], configuration["Twilio:AuthToken"]);

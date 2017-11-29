@@ -1,9 +1,8 @@
-﻿using System;
-using Aurochses.Identity;
-using Aurochses.Identity.EntityFrameworkCore;
-using Aurochses.Identity.SendGrid;
-using Aurochses.Identity.Twilio;
-using Microsoft.AspNetCore.Builder;
+﻿using Aurochses.AspNetCore.Identity;
+using Aurochses.AspNetCore.Identity.EntityFrameworkCore;
+using Aurochses.AspNetCore.Identity.SendGrid;
+using Aurochses.AspNetCore.Identity.Twilio;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,15 +19,15 @@ namespace Aurochses.IdentityServer.WebSite.App.Identity
         /// </summary>
         /// <param name="services">The services.</param>
         /// <param name="configuration">The configuration.</param>
-        public static void ConfigureServices(IServiceCollection services, IConfigurationRoot configuration)
+        public static void ConfigureServices(IServiceCollection services, IConfiguration configuration)
         {
             // Add IdentityDbContext
             services.AddDbContext<IdentityDbContext>(
-                options => options.UseSqlServer(configuration["Data:DefaultConnection:ConnectionString"]));
+                options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
             // Add Identity
             services.AddIdentity<ApplicationUser, ApplicationRole>()
-                .AddEntityFrameworkStores<IdentityDbContext, Guid>()
+                .AddEntityFrameworkStores<IdentityDbContext>()
                 .AddDefaultTokenProviders()
                 .AddClaimsPrincipalFactory<ApplicationUserClaimsPrincipalFactory>();
 
@@ -42,10 +41,16 @@ namespace Aurochses.IdentityServer.WebSite.App.Identity
                     options.Password.RequireNonAlphanumeric = configuration.GetValue<bool>("Identity:Password:RequireNonAlphanumeric");
                     options.Password.RequireUppercase = configuration.GetValue<bool>("Identity:Password:RequireUppercase");
                     options.Password.RequiredLength = configuration.GetValue<int>("Identity:Password:RequiredLength");
-                    // Cookies
-                    options.Cookies.ApplicationCookie.LoginPath = configuration.GetValue<string>("Identity:Cookies:ApplicationCookie:LoginPath");
-                    options.Cookies.ApplicationCookie.LogoutPath = configuration.GetValue<string>("Identity:Cookies:ApplicationCookie:LogoutPath");
-                    options.Cookies.ApplicationCookie.AccessDeniedPath = configuration.GetValue<string>("Identity:Cookies:ApplicationCookie:AccessDeniedPath");
+                }
+            );
+
+            // Configure Identity cookies
+            services.ConfigureApplicationCookie(
+                options =>
+                {
+                    options.LoginPath = configuration.GetValue<string>("Authentication:Cookies:CookieAuthentication:LoginPath");
+                    options.LogoutPath = configuration.GetValue<string>("Authentication:Cookies:CookieAuthentication:LogoutPath");
+                    options.AccessDeniedPath = configuration.GetValue<string>("Authentication:Cookies:CookieAuthentication:AccessDeniedPath");
                 }
             );
 
@@ -56,16 +61,6 @@ namespace Aurochses.IdentityServer.WebSite.App.Identity
             // Add SmsService.
             services.Configure<TwilioOptions>(configuration.GetSection("Identity:TwilioOptions"));
             services.AddTransient<ISmsService, SmsService>();
-        }
-
-        /// <summary>
-        /// Configures the specified application.
-        /// </summary>
-        /// <param name="app">The application.</param>
-        public static void Configure(IApplicationBuilder app)
-        {
-            // Enable Identity
-            app.UseIdentity();
         }
     }
 }

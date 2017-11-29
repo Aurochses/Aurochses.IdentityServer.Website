@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Aurochses.Identity.EntityFrameworkCore;
+using Aurochses.AspNetCore.Identity.EntityFrameworkCore;
 using Aurochses.IdentityServer.WebSite.App.IdentityServer;
-using Aurochses.Testing;
+using Aurochses.Xunit;
 using IdentityModel;
 using IdentityServer4.Models;
 using Microsoft.AspNetCore.Identity;
@@ -192,7 +192,7 @@ namespace Aurochses.IdentityServer.WebSite.Tests.App.IdentityServer
             await identityProfileService.IsActiveAsync(_mockIsActiveContext.Object);
 
             // Assert
-            Assert.Equal(true, _mockIsActiveContext.Object.IsActive);
+            Assert.True(_mockIsActiveContext.Object.IsActive);
         }
     }
 }

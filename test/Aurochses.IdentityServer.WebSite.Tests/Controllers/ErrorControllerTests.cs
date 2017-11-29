@@ -2,12 +2,12 @@
 using System.Threading.Tasks;
 using Aurochses.IdentityServer.WebSite.Controllers;
 using Aurochses.IdentityServer.WebSite.Filters;
-using Aurochses.Testing;
 using IdentityServer4.Services;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using Xunit;
-using Aurochses.Testing.Mvc;
+using Aurochses.Xunit;
+using Aurochses.Xunit.AspNetCore.Mvc;
 
 namespace Aurochses.IdentityServer.WebSite.Tests.Controllers
 {

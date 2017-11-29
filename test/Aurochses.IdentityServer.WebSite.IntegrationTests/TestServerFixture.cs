@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Net.Http;
 using System.Reflection;
-using Aurochses.Testing;
+using Aurochses.Xunit;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.TestHost;

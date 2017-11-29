@@ -1,4 +1,4 @@
-﻿using Aurochses.Identity.EntityFrameworkCore;
+﻿using Aurochses.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Aurochses.IdentityServer.Database.Context
@@ -6,7 +6,7 @@ namespace Aurochses.IdentityServer.Database.Context
     /// <summary>
     /// IdentityContext.
     /// </summary>
-    /// <seealso cref="Aurochses.Identity.EntityFrameworkCore.IdentityDbContext" />
+    /// <seealso cref="Aurochses.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext" />
     public class IdentityContext : IdentityDbContext
     {
         /// <summary>

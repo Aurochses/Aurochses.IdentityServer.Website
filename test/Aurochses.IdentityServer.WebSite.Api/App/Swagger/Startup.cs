@@ -15,7 +15,7 @@ namespace Aurochses.IdentityServer.WebSite.Api.App.Swagger
         /// </summary>
         /// <param name="services">The services.</param>
         /// <param name="configuration">The configuration.</param>
-        public static void ConfigureServices(IServiceCollection services, IConfigurationRoot configuration)
+        public static void ConfigureServices(IServiceCollection services, IConfiguration configuration)
         {
             // Register the Swagger generator, defining one or more Swagger documents
             services.AddSwaggerGen(
@@ -51,7 +51,7 @@ namespace Aurochses.IdentityServer.WebSite.Api.App.Swagger
         /// </summary>
         /// <param name="app">The application.</param>
         /// <param name="configuration">The configuration.</param>
-        public static void Configure(IApplicationBuilder app, IConfigurationRoot configuration)
+        public static void Configure(IApplicationBuilder app, IConfiguration configuration)
         {
             // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();

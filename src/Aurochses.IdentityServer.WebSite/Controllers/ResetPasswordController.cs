@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Aurochses.Identity.EntityFrameworkCore;
+using Aurochses.AspNetCore.Identity.EntityFrameworkCore;
 using Aurochses.IdentityServer.WebSite.Filters;
 using Aurochses.IdentityServer.WebSite.Helpers;
 using Aurochses.IdentityServer.WebSite.Models.ResetPassword;

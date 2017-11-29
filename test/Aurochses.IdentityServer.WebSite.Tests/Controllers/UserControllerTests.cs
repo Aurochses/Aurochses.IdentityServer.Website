@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Aurochses.Identity.EntityFrameworkCore;
+using Aurochses.AspNetCore.Identity.EntityFrameworkCore;
 using Aurochses.IdentityServer.WebSite.App.Project;
 using Aurochses.IdentityServer.WebSite.Controllers;
 using Aurochses.IdentityServer.WebSite.Filters;
-using Aurochses.Testing;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using Xunit;
-using Aurochses.Testing.Mvc;
+using Aurochses.Xunit;
+using Aurochses.Xunit.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 
 namespace Aurochses.IdentityServer.WebSite.Tests.Controllers

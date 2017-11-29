@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Aurochses.IdentityServer.WebSite.App.Authentication
 {
@@ -11,20 +11,21 @@ namespace Aurochses.IdentityServer.WebSite.App.Authentication
         /// <summary>
         /// Configures the specified application.
         /// </summary>
-        /// <param name="app">The application.</param>
+        /// <param name="services">The services.</param>
         /// <param name="configuration">The configuration.</param>
-        public static void Configure(IApplicationBuilder app, IConfigurationRoot configuration)
+        public static void Configure(IServiceCollection services, IConfiguration configuration)
         {
             // Enable Facebook Authentication
             if (!string.IsNullOrWhiteSpace(configuration["Authentication:Facebook:AppId"]))
             {
-                app.UseFacebookAuthentication(
-                    new FacebookOptions
-                    {
-                        AppId = configuration["Authentication:Facebook:AppId"],
-                        AppSecret = configuration["Authentication:Facebook:AppSecret"]
-                    }
-                );
+                services.AddAuthentication()
+                    .AddFacebook(
+                        options =>
+                        {
+                            options.AppId = configuration["Authentication:Facebook:AppId"];
+                            options.AppSecret = configuration["Authentication:Facebook:AppSecret"];
+                        }
+                    );
             }
         }
     }

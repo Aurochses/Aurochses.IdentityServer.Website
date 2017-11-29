@@ -18,7 +18,7 @@ namespace Aurochses.IdentityServer.WebSite.App.Localization
         /// </summary>
         /// <param name="services">The services.</param>
         /// <param name="configuration">The configuration.</param>
-        public static void ConfigureServices(IServiceCollection services, IConfigurationRoot configuration)
+        public static void ConfigureServices(IServiceCollection services, IConfiguration configuration)
         {
             // Add Localization
             services.AddLocalization(options => options.ResourcesPath = "Resources");

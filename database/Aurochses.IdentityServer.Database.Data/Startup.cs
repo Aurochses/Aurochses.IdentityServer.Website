@@ -32,7 +32,7 @@ namespace Aurochses.IdentityServer.Database.Data
             );
 
             services.AddDbContext<ConfigurationDbContext>(
-                options => options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]));
+                options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddTransient<Service>();
         }

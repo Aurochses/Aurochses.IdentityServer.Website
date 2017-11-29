@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using Aurochses.Identity.EntityFrameworkCore;
 using Aurochses.IdentityServer.WebSite.Controllers;
 using Aurochses.IdentityServer.WebSite.Models.EmailConfirmation;
 using Microsoft.AspNetCore.Identity;
@@ -8,13 +7,14 @@ using Moq;
 using PaulMiami.AspNetCore.Mvc.Recaptcha;
 using Xunit;
 using System;
-using Aurochses.Identity;
+using Aurochses.AspNetCore.Identity;
+using Aurochses.AspNetCore.Identity.EntityFrameworkCore;
 using Aurochses.IdentityServer.WebSite.Filters;
 using Aurochses.Runtime;
-using Aurochses.Testing;
+using Aurochses.Xunit;
+using Aurochses.Xunit.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Routing;
-using Aurochses.Testing.Mvc;
 
 namespace Aurochses.IdentityServer.WebSite.Tests.Controllers
 {

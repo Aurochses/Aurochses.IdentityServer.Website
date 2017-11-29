@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using Aurochses.IdentityServer.WebSite.Controllers;
 using Aurochses.IdentityServer.WebSite.Filters;
-using Aurochses.Testing;
 using Microsoft.AspNetCore.Hosting.Internal;
 using Microsoft.AspNetCore.Mvc;
 using Xunit;
-using Aurochses.Testing.Mvc;
+using Aurochses.Xunit;
+using Aurochses.Xunit.AspNetCore.Mvc;
 
 namespace Aurochses.IdentityServer.WebSite.Tests.Controllers
 {

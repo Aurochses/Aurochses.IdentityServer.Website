@@ -1,14 +1,14 @@
 ﻿using System;
-using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 
 namespace Aurochses.IdentityServer.WebSite.IntegrationTests
 {
     public class Startup : WebSite.Startup
     {
-        public Startup(IHostingEnvironment env)
-            : base(env)
+        public Startup(IConfiguration configuration)
+            : base(configuration)
         {
-            Configuration["Data:DefaultConnection:ConnectionString"] =
+            Configuration["ConnectionStrings:DefaultConnection"] =
                 $"Server=(localdb)\\mssqllocaldb;Database=Aurochses.IdentityServer.WebSite.IntegrationTests_{Guid.NewGuid()};Trusted_Connection=True;";
 
             // Disable ReCaptcha

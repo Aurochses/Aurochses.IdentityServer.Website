@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using Aurochses.IdentityServer.WebSite.Models.Registration;
-using Aurochses.Testing;
+using Aurochses.Xunit;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using Xunit;

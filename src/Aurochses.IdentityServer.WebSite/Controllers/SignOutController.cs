@@ -1,15 +1,13 @@
-﻿using System;
-using System.Threading.Tasks;
-using Aurochses.Identity.EntityFrameworkCore;
+﻿using System.Threading.Tasks;
+using Aurochses.AspNetCore.Identity.EntityFrameworkCore;
 using Aurochses.IdentityServer.WebSite.Filters;
 using Aurochses.IdentityServer.WebSite.Models.SignOut;
 using IdentityModel;
-using IdentityServer4.Extensions;
 using IdentityServer4.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using IdentityServer4;
-using Microsoft.AspNetCore.Http.Authentication;
+using Microsoft.AspNetCore.Authentication;
 
 namespace Aurochses.IdentityServer.WebSite.Controllers
 {
@@ -52,7 +50,7 @@ namespace Aurochses.IdentityServer.WebSite.Controllers
                 LogoutId = logoutId
             };
 
-            var user = await HttpContext.GetIdentityServerUserAsync();
+            var user = HttpContext.User;
 
             var identityProvider = user?.FindFirst(JwtClaimTypes.IdentityProvider)?.Value;
             if (identityProvider != null && identityProvider != IdentityServerConstants.LocalIdentityProvider)
@@ -70,26 +68,15 @@ namespace Aurochses.IdentityServer.WebSite.Controllers
 
             if (model.TriggerExternalSignout)
             {
-                try
-                {
-                    // hack: try/catch to handle social providers that throw
-                    await HttpContext.Authentication.SignOutAsync(
-                        model.ExternalAuthenticationScheme,
-                        new AuthenticationProperties
-                        {
-                            // ReSharper disable once RedundantAnonymousTypePropertyName
-                            RedirectUri = Url.Action("Index", "SignOut", new {LogoutId = model.LogoutId})
-                        }
-                    );
-                }
-                catch (NotSupportedException) // this is for the external providers that don't have signout
-                {
+                // build a return URL so the upstream provider will redirect back
+                // to us after the user has logged out. this allows us to then
+                // complete our single sign-out processing.
+                // ReSharper disable once RedundantAnonymousTypePropertyName
+                var url = Url.Action("Index", "SignOut", new { LogoutId = model.LogoutId });
 
-                }
-                catch (InvalidOperationException) // this is for Windows/Negotiate
-                {
-
-                }
+                // this triggers a redirect to the external provider for sign-out
+                // hack: try/catch to handle social providers that throw
+                return SignOut(new AuthenticationProperties { RedirectUri = url }, model.ExternalAuthenticationScheme);
             }
 
             // delete authentication cookie

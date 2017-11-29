@@ -15,13 +15,13 @@ namespace Aurochses.IdentityServer.WebSite.App.ExceptionHandler
         /// <param name="app">The application.</param>
         /// <param name="env">The env.</param>
         /// <param name="configuration">The configuration.</param>
-        public static void Configure(IApplicationBuilder app, IHostingEnvironment env, IConfigurationRoot configuration)
+        public static void Configure(IApplicationBuilder app, IHostingEnvironment env, IConfiguration configuration)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage();
                 app.UseBrowserLink();
+                app.UseDatabaseErrorPage();
 
                 app.UseStatusCodePages();
             }
