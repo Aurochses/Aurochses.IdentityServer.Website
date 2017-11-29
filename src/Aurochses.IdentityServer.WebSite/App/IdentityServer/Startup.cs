@@ -19,7 +19,7 @@ namespace Aurochses.IdentityServer.WebSite.App.IdentityServer
         /// </summary>
         /// <param name="services">The services.</param>
         /// <param name="configuration">The configuration.</param>
-        public static void ConfigureServices(IServiceCollection services, IConfigurationRoot configuration)
+        public static void ConfigureServices(IServiceCollection services, IConfiguration configuration)
         {
             // Configure IdentityServer
             services
@@ -42,17 +42,26 @@ namespace Aurochses.IdentityServer.WebSite.App.IdentityServer
                     )
                 )
                 .AddConfigurationStore(
-                    builder => builder.UseSqlServer(configuration["Data:DefaultConnection:ConnectionString"]),
                     options =>
                     {
+                        options.ConfigureDbContext = builder =>
+                        {
+                            builder.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+                        };
                         options.DefaultSchema = configuration["IdentityServer:ConfigurationStore:DefaultSchema"];
                     }
                 )
                 .AddOperationalStore(
-                    builder => builder.UseSqlServer(configuration["Data:DefaultConnection:ConnectionString"]),
                     options =>
                     {
+                        options.ConfigureDbContext = builder =>
+                        {
+                            builder.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+                        };
                         options.DefaultSchema = configuration["IdentityServer:OperationalStore:DefaultSchema"];
+
+                        options.EnableTokenCleanup = configuration.GetValue<bool>("IdentityServer:OperationalStore:EnableTokenCleanup");
+                        options.TokenCleanupInterval = configuration.GetValue<int>("IdentityServer:OperationalStore:TokenCleanupInterval");
                     }
                 )
                 .AddAspNetIdentity<ApplicationUser>()

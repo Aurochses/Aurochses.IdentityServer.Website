@@ -31,6 +31,7 @@
     <Folder Include="wwwroot\" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Aurochses.AspNetCore.Html" Version="2.0.0" />
     <PackageReference Include="Aurochses.AspNetCore.Identity.EntityFrameworkCore" Version="2.0.0" />
     <PackageReference Include="Aurochses.AspNetCore.Identity.SendGrid" Version="2.0.0" />
     <PackageReference Include="Aurochses.AspNetCore.Identity.Twilio" Version="2.0.0" />

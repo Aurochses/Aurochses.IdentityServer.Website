@@ -47,6 +47,9 @@ namespace Aurochses.IdentityServer.WebSite
             // IdentityServer
             App.IdentityServer.Startup.ConfigureServices(services, Configuration);
 
+            // Authentication
+            App.Authentication.Startup.Configure(services, Configuration);
+
             // Project
             App.Project.Startup.ConfigureServices(services, Configuration);
 
@@ -72,12 +75,6 @@ namespace Aurochses.IdentityServer.WebSite
 
             // Localization
             App.Localization.Startup.Configure(app, requestLocalizationOptions);
-
-            // Identity
-            App.Identity.Startup.Configure(app);
-
-            // Authentication
-            App.Authentication.Startup.Configure(app, Configuration);
 
             // IdentityServer
             App.IdentityServer.Startup.Configure(app);

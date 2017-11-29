@@ -1,7 +1,6 @@
 ﻿using Aurochses.AspNetCore.Identity.EntityFrameworkCore;
 using Aurochses.IdentityServer.Database.Context;
 using IdentityServer4.EntityFramework.DbContexts;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -35,28 +34,28 @@ namespace Aurochses.IdentityServer.Database
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<BaseContext>(
-                options => options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]));
+                options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDbContext<IdentityContext>(
-                options => options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]));
+                options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             // have to add this context because IdentityContext use it
             services.AddDbContext<IdentityDbContext>(
-                options => options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]));
+                options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDbContext<IdentityServerConfigurationContext>(
-                options => options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]));
+                options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             // have to add this context because IdentityServerConfigurationContext use it
             services.AddDbContext<ConfigurationDbContext>(
-                options => options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]));
+                options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDbContext<IdentityServerPersistedGrantContext>(
-                options => options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]));
+                options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             // have to add this context because IdentityServerPersistedGrantContext use it
             services.AddDbContext<PersistedGrantDbContext>(
-                options => options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]));
+                options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
         }
 
         /// <summary>

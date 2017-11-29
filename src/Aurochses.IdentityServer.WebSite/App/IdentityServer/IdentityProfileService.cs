@@ -44,7 +44,7 @@ namespace Aurochses.IdentityServer.WebSite.App.IdentityServer
             if (user == null) throw new Exception("User not found.");
 
             var principal = await _userClaimsPrincipalFactory.CreateAsync(user);
-            context.AddFilteredClaims(principal.Claims);
+            context.AddRequestedClaims(principal.Claims);
         }
 
         /// <summary>

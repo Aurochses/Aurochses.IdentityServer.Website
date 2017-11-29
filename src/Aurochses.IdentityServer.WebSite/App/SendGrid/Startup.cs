@@ -14,7 +14,7 @@ namespace Aurochses.IdentityServer.WebSite.App.SendGrid
         /// </summary>
         /// <param name="services">The services.</param>
         /// <param name="configuration">The configuration.</param>
-        public static void ConfigureServices(IServiceCollection services, IConfigurationRoot configuration)
+        public static void ConfigureServices(IServiceCollection services, IConfiguration configuration)
         {
             // Add SendGridClient
             services.AddTransient<ISendGridClient, SendGridClient>(provider => new SendGridClient(configuration.GetValue<string>("SendGrid:ApiKey")));

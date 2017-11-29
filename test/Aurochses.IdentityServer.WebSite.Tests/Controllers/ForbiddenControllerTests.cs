@@ -1,8 +1,8 @@
 ﻿using System;
 using Aurochses.IdentityServer.WebSite.Controllers;
 using Aurochses.IdentityServer.WebSite.Filters;
-using Aurochses.Testing;
-using Aurochses.Testing.Mvc;
+using Aurochses.Xunit;
+using Aurochses.Xunit.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc;
 using Xunit;
 

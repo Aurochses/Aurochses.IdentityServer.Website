@@ -1,5 +1,5 @@
-﻿@using Aurochses.Html
-@using Aurochses.Identity.EntityFrameworkCore
+﻿@using Aurochses.AspNetCore.Html
+@using Aurochses.AspNetCore.Identity.EntityFrameworkCore
 @using Microsoft.AspNetCore.Identity
 
 @inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer ViewLocalization
@@ -16,7 +16,7 @@
 
     var modelState = ViewData.ModelState;
 
-    var loginProviders = SignInManager.GetExternalAuthenticationSchemes().ToList();
+    var loginProviders = (await SignInManager.GetExternalAuthenticationSchemesAsync()).ToList();
 }
 
 @section PageHeader
@@ -121,7 +121,7 @@
                     <p>
                         @foreach (var provider in loginProviders)
                         {
-                            <button type="submit" class="btn btn-default" name="provider" value="@provider.AuthenticationScheme" title="@ViewLocalization["SocialSignIn.Button.Title", provider.DisplayName]">@provider.DisplayName</button>
+                            <button type="submit" class="btn btn-default" name="provider" value="@provider.Name" title="@ViewLocalization["SocialSignIn.Button.Title", provider.DisplayName]">@provider.DisplayName</button>
                         }
                     </p>
                 </div>

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Reflection;
-using Aurochses.Testing;
-using Aurochses.Testing.Mvc.Localization;
+using Aurochses.Xunit;
+using Aurochses.Xunit.AspNetCore.Mvc.Localization;
 using Xunit;
 
 namespace Aurochses.IdentityServer.WebSite.IntegrationTests

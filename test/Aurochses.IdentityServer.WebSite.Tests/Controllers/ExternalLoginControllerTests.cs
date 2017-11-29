@@ -2,16 +2,14 @@
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Aurochses.Identity;
-using Aurochses.Identity.EntityFrameworkCore;
+using Aurochses.AspNetCore.Identity;
+using Aurochses.AspNetCore.Identity.EntityFrameworkCore;
 using Aurochses.IdentityServer.WebSite.Controllers;
 using Aurochses.IdentityServer.WebSite.Filters;
 using Aurochses.IdentityServer.WebSite.Models.Registration;
 using Aurochses.Runtime;
-using Aurochses.Testing;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.Authentication;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Routing;
@@ -21,7 +19,8 @@ using Microsoft.Extensions.Options;
 using Moq;
 using PaulMiami.AspNetCore.Mvc.Recaptcha;
 using Xunit;
-using Aurochses.Testing.Mvc;
+using Aurochses.Xunit;
+using Aurochses.Xunit.AspNetCore.Mvc;
 
 namespace Aurochses.IdentityServer.WebSite.Tests.Controllers
 {

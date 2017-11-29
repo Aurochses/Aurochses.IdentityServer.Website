@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using Aurochses.IdentityServer.WebSite.Models.EmailConfirmation;
-using Aurochses.Testing;
+using Aurochses.Xunit;
 using Xunit;
 
 namespace Aurochses.IdentityServer.WebSite.Tests.Models.EmailConfirmation

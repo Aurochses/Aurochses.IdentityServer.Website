@@ -33,6 +33,12 @@ namespace Aurochses.IdentityServer.WebSite.Api
         /// <param name="services">The services.</param>
         public void ConfigureServices(IServiceCollection services)
         {
+            // Authorization
+            App.Authorization.Startup.ConfigureServices(services);
+
+            // IdentityServer
+            App.IdentityServer.Startup.ConfigureServices(services, Configuration);
+
             // Swagger
             App.Swagger.Startup.ConfigureServices(services, Configuration);
 
@@ -50,12 +56,6 @@ namespace Aurochses.IdentityServer.WebSite.Api
                     );
                 }
             );
-
-            // Authorization
-            App.Authorization.Startup.ConfigureServices(services);
-
-            // IdentityServer
-            App.IdentityServer.Startup.ConfigureServices(services, Configuration);
         }
 
         /// <summary>
