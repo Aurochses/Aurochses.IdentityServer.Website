@@ -9,6 +9,7 @@ using Aurochses.IdentityServer.WebSite.Filters;
 using Aurochses.IdentityServer.WebSite.Models.TwoFactorSignIn;
 using Aurochses.Xunit;
 using Aurochses.Xunit.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -37,7 +38,7 @@ namespace Aurochses.IdentityServer.WebSite.Tests.Controllers
             _mockControllerLocalization = new Mock<IStringLocalizer<TwoFactorSignInController>>(MockBehavior.Strict);
 
             _mockUserManager = new Mock<UserManager<ApplicationUser>>(new Mock<IUserStore<ApplicationUser>>().Object, null, null, null, null, null, null, null, null);
-            _mockSignInManager = new Mock<SignInManager<ApplicationUser>>(_mockUserManager.Object, new Mock<IHttpContextAccessor>().Object, new Mock<IUserClaimsPrincipalFactory<ApplicationUser>>().Object, new Mock<IOptions<IdentityOptions>>().Object, new Mock<ILogger<SignInManager<ApplicationUser>>>().Object);
+            _mockSignInManager = new Mock<SignInManager<ApplicationUser>>(_mockUserManager.Object, new Mock<IHttpContextAccessor>().Object, new Mock<IUserClaimsPrincipalFactory<ApplicationUser>>().Object, new Mock<IOptions<IdentityOptions>>().Object, new Mock<ILogger<SignInManager<ApplicationUser>>>().Object, new Mock<IAuthenticationSchemeProvider>().Object);
             _mockEmailService = new Mock<IEmailService>(MockBehavior.Strict);
             _mockSmsService = new Mock<ISmsService>(MockBehavior.Strict);
 

@@ -39,7 +39,7 @@ namespace Aurochses.IdentityServer.WebSite.Tests.Controllers
             _externalLoginInfo = new ExternalLoginInfo(ClaimsPrincipal.Current, "TestLoginProvider", "TestProviderKey", "TestDisplayName");
 
             _mockUserManager = new Mock<UserManager<ApplicationUser>>(new Mock<IUserStore<ApplicationUser>>().Object, null, null, null, null, null, null, null, null);
-            _mockSignInManager = new Mock<SignInManager<ApplicationUser>>(_mockUserManager.Object, new Mock<IHttpContextAccessor>().Object, new Mock<IUserClaimsPrincipalFactory<ApplicationUser>>().Object, new Mock<IOptions<IdentityOptions>>().Object, new Mock<ILogger<SignInManager<ApplicationUser>>>().Object);
+            _mockSignInManager = new Mock<SignInManager<ApplicationUser>>(_mockUserManager.Object, new Mock<IHttpContextAccessor>().Object, new Mock<IUserClaimsPrincipalFactory<ApplicationUser>>().Object, new Mock<IOptions<IdentityOptions>>().Object, new Mock<ILogger<SignInManager<ApplicationUser>>>().Object, new Mock<IAuthenticationSchemeProvider>().Object);
             _mockEmailService = new Mock<IEmailService>(MockBehavior.Strict);
 
             _controller = new ExternalLoginController(_mockUserManager.Object, _mockSignInManager.Object, _mockEmailService.Object);
