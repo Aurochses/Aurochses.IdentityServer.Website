@@ -17,8 +17,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove=".gitattributes" />
     <None Remove=".gitignore" />
-    <None Remove="IdentityServer.pfx" />
   </ItemGroup>
 
   <ItemGroup>
