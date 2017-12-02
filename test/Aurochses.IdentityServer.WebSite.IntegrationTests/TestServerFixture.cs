@@ -3,6 +3,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Reflection;
 using Aurochses.Xunit;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.TestHost;
@@ -15,7 +16,7 @@ namespace Aurochses.IdentityServer.WebSite.IntegrationTests
     {
         public TestServerFixture()
         {
-            var webHostBuilder = new WebHostBuilder()
+            var webHostBuilder = WebHost.CreateDefaultBuilder()
                 .UseContentRoot(
                     ProjectHelpers.GetFolderPath("Aurochses.IdentityServer.WebSite", "src", "Aurochses.IdentityServer.WebSite")
                 )
