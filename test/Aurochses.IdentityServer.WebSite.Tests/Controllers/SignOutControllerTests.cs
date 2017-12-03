@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Aurochses.AspNetCore.Identity.EntityFrameworkCore;
@@ -7,10 +6,8 @@ using Aurochses.IdentityServer.WebSite.Controllers;
 using Aurochses.IdentityServer.WebSite.Filters;
 using Aurochses.IdentityServer.WebSite.Models.SignOut;
 using Aurochses.IdentityServer.WebSite.Tests.Fakes;
-using Aurochses.Runtime;
 using Aurochses.Xunit;
 using Aurochses.Xunit.AspNetCore.Mvc;
-using IdentityModel;
 using IdentityServer4.Configuration;
 using IdentityServer4.Models;
 using IdentityServer4.Services;
@@ -19,13 +16,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Moq;
 using Xunit;
-using AuthenticationProperties = Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties;
 
 namespace Aurochses.IdentityServer.WebSite.Tests.Controllers
 {
@@ -35,7 +30,7 @@ namespace Aurochses.IdentityServer.WebSite.Tests.Controllers
         private readonly Mock<IIdentityServerInteractionService> _mockIdentityServerInteractionService;
 
         private readonly Mock<AuthenticationManager> _mockAuthenticationManager;
-        private readonly Mock<IUrlHelper> _mockUrlHelper;
+        //private readonly Mock<IUrlHelper> _mockUrlHelper;
 
         private readonly SignOutController _controller;
 
@@ -46,7 +41,7 @@ namespace Aurochses.IdentityServer.WebSite.Tests.Controllers
             _mockIdentityServerInteractionService = new Mock<IIdentityServerInteractionService>(MockBehavior.Strict);
 
             _mockAuthenticationManager = new Mock<AuthenticationManager>(MockBehavior.Strict);
-            _mockUrlHelper = new Mock<IUrlHelper>(MockBehavior.Strict);
+            //_mockUrlHelper = new Mock<IUrlHelper>(MockBehavior.Strict);
 
             _controller = new SignOutController(_mockSignInManager.Object, _mockIdentityServerInteractionService.Object);
         }
@@ -134,43 +129,43 @@ namespace Aurochses.IdentityServer.WebSite.Tests.Controllers
             MvcAssert.ViewResult(actionResult, "SignedOut", GetSignedOutViewModel(logoutRequest, logoutId, null));
         }
 
-        private void SetupAuthenticationSignOutAsync(string logoutId, string identityProvider)
-        {
-            const string redirectUri = "redirectUri";
+        //private void SetupAuthenticationSignOutAsync(string logoutId, string identityProvider)
+        //{
+        //    const string redirectUri = "redirectUri";
 
-            _mockUrlHelper
-                .Setup
-                (
-                    x => x.Action
-                    (
-                        It.Is<UrlActionContext>
-                        (
-                            context => context.Action == "Index"
-                                       && context.Controller == "SignOut"
-                                       && context.Values.ValueEquals(new { LogoutId = logoutId })
-                        )
-                    )
-                )
-                .Returns(redirectUri)
-                .Verifiable();
+        //    _mockUrlHelper
+        //        .Setup
+        //        (
+        //            x => x.Action
+        //            (
+        //                It.Is<UrlActionContext>
+        //                (
+        //                    context => context.Action == "Index"
+        //                               && context.Controller == "SignOut"
+        //                               && context.Values.ValueEquals(new { LogoutId = logoutId })
+        //                )
+        //            )
+        //        )
+        //        .Returns(redirectUri)
+        //        .Verifiable();
 
-            _controller.Url = _mockUrlHelper.Object;
+        //    _controller.Url = _mockUrlHelper.Object;
 
-            _mockAuthenticationManager
-                .Setup(
-                    x =>
-                        x.SignOutAsync(
-                            identityProvider,
-                            It.Is<AuthenticationProperties>
-                            (
-                                properties => properties.RedirectUri == redirectUri
-                            )
-                        )
-                )
-                .Returns(() => Task.FromResult(0))
-                .Verifiable();
+        //    _mockAuthenticationManager
+        //        .Setup(
+        //            x =>
+        //                x.SignOutAsync(
+        //                    identityProvider,
+        //                    It.Is<AuthenticationProperties>
+        //                    (
+        //                        properties => properties.RedirectUri == redirectUri
+        //                    )
+        //                )
+        //        )
+        //        .Returns(() => Task.FromResult(0))
+        //        .Verifiable();
 
-        }
+        //}
 
         //[Fact]
         //public async Task Index_ReturnSignedOutViewResultWithSignedOutViewModel_WhenUserIsNotNull()
