@@ -1,3 +1,6 @@
+using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Hosting;
+
 namespace Aurochses.IdentityServer.Database
 {
     /// <summary>
@@ -11,7 +14,17 @@ namespace Aurochses.IdentityServer.Database
         /// <param name="args">The arguments.</param>
         public static void Main(string[] args)
         {
-
+            BuildWebHost(args).Run();
         }
+
+        /// <summary>
+        /// Build web host
+        /// </summary>
+        /// <param name="args">The arguments.</param>
+        /// <returns>IWebHost</returns>
+        public static IWebHost BuildWebHost(string[] args) =>
+            WebHost.CreateDefaultBuilder(args)
+                .UseStartup<Startup>()
+                .Build();
     }
 }
