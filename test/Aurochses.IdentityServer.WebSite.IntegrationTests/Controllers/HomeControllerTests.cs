@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Aurochses.Xunit;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
+using Microsoft.Extensions.Configuration;
 using Xunit;
 
 namespace Aurochses.IdentityServer.WebSite.IntegrationTests.Controllers
@@ -20,12 +21,23 @@ namespace Aurochses.IdentityServer.WebSite.IntegrationTests.Controllers
         public async Task Index_RedirectToSignIn()
         {
             // Arrange
+            const string environmentName = "Production";
+
             var webHostBuilder = new WebHostBuilder()
                 .UseContentRoot(
                     ProjectHelpers.GetFolderPath("Aurochses.IdentityServer.WebSite", "src", "Aurochses.IdentityServer.WebSite")
                 )
-                .UseEnvironment("Production")
-                .UseStartup<Startup>();
+                .UseEnvironment(environmentName)
+                .UseStartup<Startup>()
+                .ConfigureAppConfiguration(
+                    (context, builder) =>
+                    {
+                        var env = context.HostingEnvironment;
+
+                        builder.AddJsonFile("appsettings.json")
+                            .AddJsonFile($"appsettings.{env.EnvironmentName}.json", true);
+                    }
+                );
 
             var server = new TestServer(webHostBuilder);
 
