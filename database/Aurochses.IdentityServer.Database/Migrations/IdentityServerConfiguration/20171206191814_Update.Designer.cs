@@ -3,14 +3,16 @@ using Aurochses.IdentityServer.Database.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 
 namespace Aurochses.IdentityServer.Database.Migrations.IdentityServerConfiguration
 {
     [DbContext(typeof(IdentityServerConfigurationContext))]
-    public class IdentityServerConfigurationContextModelSnapshot : ModelSnapshot
+    [Migration("20171206191814_Update")]
+    partial class Update
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
