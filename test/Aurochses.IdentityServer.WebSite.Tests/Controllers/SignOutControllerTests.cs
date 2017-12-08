@@ -13,7 +13,6 @@ using IdentityServer4.Models;
 using IdentityServer4.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
@@ -29,7 +28,6 @@ namespace Aurochses.IdentityServer.WebSite.Tests.Controllers
         private readonly Mock<SignInManager<ApplicationUser>> _mockSignInManager;
         private readonly Mock<IIdentityServerInteractionService> _mockIdentityServerInteractionService;
 
-        private readonly Mock<AuthenticationManager> _mockAuthenticationManager;
         //private readonly Mock<IUrlHelper> _mockUrlHelper;
 
         private readonly SignOutController _controller;
@@ -40,7 +38,6 @@ namespace Aurochses.IdentityServer.WebSite.Tests.Controllers
             _mockSignInManager = new Mock<SignInManager<ApplicationUser>>(mockUserManager.Object, new Mock<IHttpContextAccessor>().Object, new Mock<IUserClaimsPrincipalFactory<ApplicationUser>>().Object, new Mock<IOptions<IdentityOptions>>().Object, new Mock<ILogger<SignInManager<ApplicationUser>>>().Object, new Mock<IAuthenticationSchemeProvider>().Object);
             _mockIdentityServerInteractionService = new Mock<IIdentityServerInteractionService>(MockBehavior.Strict);
 
-            _mockAuthenticationManager = new Mock<AuthenticationManager>(MockBehavior.Strict);
             //_mockUrlHelper = new Mock<IUrlHelper>(MockBehavior.Strict);
 
             _controller = new SignOutController(_mockSignInManager.Object, _mockIdentityServerInteractionService.Object);
@@ -86,11 +83,7 @@ namespace Aurochses.IdentityServer.WebSite.Tests.Controllers
                 .Setup(provider => provider.GetService(typeof(IdentityServerOptions)))
                 .Returns(() => new IdentityServerOptions());
 
-            _mockAuthenticationManager
-                .Setup(x => x.AuthenticateAsync(It.IsAny<string>()))
-                .ReturnsAsync(() => user);
-
-            var httpContext = new FakeHttpContext(_mockAuthenticationManager.Object)
+            var httpContext = new FakeHttpContext
             {
                 RequestServices = mockServiceProvider.Object
             };
