@@ -79,11 +79,11 @@ namespace Aurochses.IdentityServer.Database.Migrations.IdentityServerConfigurati
                 schema: "identityServer",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>()
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    ClientId = table.Column<int>(nullable: false),
-                    Key = table.Column<string>(maxLength: 250, nullable: false),
-                    Value = table.Column<string>(maxLength: 2000, nullable: false)
+                    ClientId = table.Column<int>(),
+                    Key = table.Column<string>(maxLength: 250),
+                    Value = table.Column<string>(maxLength: 2000)
                 },
                 constraints: table =>
                 {
