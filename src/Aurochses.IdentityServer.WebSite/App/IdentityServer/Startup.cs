@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.PlatformAbstractions;
 
 namespace Aurochses.IdentityServer.WebSite.App.IdentityServer
 {
@@ -35,7 +34,7 @@ namespace Aurochses.IdentityServer.WebSite.App.IdentityServer
                 .AddSigningCredential(
                     new X509Certificate2(
                         Path.Combine(
-                            PlatformServices.Default.Application.ApplicationBasePath,
+                            Directory.GetCurrentDirectory(),
                             configuration["SigningCertificate:Path"]
                         ),
                         configuration["SigningCertificate:Password"]

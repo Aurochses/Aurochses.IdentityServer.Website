@@ -1,9 +1,9 @@
-﻿using IdentityServer4.EntityFramework.DbContexts;
+﻿using System.IO;
+using IdentityServer4.EntityFramework.DbContexts;
 using IdentityServer4.EntityFramework.Options;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.PlatformAbstractions;
 
 namespace Aurochses.IdentityServer.Database.Data
 {
@@ -12,7 +12,7 @@ namespace Aurochses.IdentityServer.Database.Data
         public Startup(string environmentName)
         {
             var builder = new ConfigurationBuilder()
-                .SetBasePath(PlatformServices.Default.Application.ApplicationBasePath)
+                .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json")
                 .AddJsonFile($"appsettings.{environmentName}.json", true)
                 .AddEnvironmentVariables();
