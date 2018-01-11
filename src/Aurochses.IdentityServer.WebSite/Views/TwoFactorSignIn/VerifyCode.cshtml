@@ -1,0 +1,78 @@
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer ViewLocalization
+
+@model Aurochses.IdentityServer.WebSite.Models.TwoFactorSignIn.VerifyCodeViewModel
+
+@{
+    ViewData["Title"] = ViewLocalization["Page.Title"];
+
+    var modelState = ViewData.ModelState;
+}
+
+@section PageHeader
+{
+    @ViewLocalization["Page.Header"]
+}
+
+<form asp-controller="TwoFactorSignIn" asp-action="VerifyCode" asp-route-returnurl="@Model.ReturnUrl" method="post" class="form-horizontal">
+    
+    @if (!modelState.IsValid)
+    {
+        if (modelState.ContainsKey("InvalidCode"))
+        {
+            <div class="alert alert-warning" role="alert">
+                <h5>
+                    <strong>@ViewLocalization["InvalidCode.Header"]</strong>
+                </h5>
+
+                <ul>
+                    <li>@ViewLocalization["InvalidCode.Error"]</li>
+                </ul>
+            </div>
+        }
+    }
+
+    <input asp-for="Provider" type="hidden"/>
+
+    <input asp-for="RememberMe" type="hidden"/>
+
+    <div class="form-group">
+        <label asp-for="Token" class="col-md-3 control-label"></label>
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <input asp-for="Token" class="form-control" />
+
+                    <div class="help-block">
+                        <div asp-description-for="Token"></div>
+                    </div>
+                </div>
+                <div class="help-block col-md-6 col-sm-12">
+                    <span asp-validation-for="Token" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <div class="col-md-offset-3 col-md-9">
+            <div class="checkbox">
+                <label asp-for="RememberBrowser">
+                    <input asp-for="RememberBrowser" />
+
+                    @Html.DisplayNameFor(m => m.RememberBrowser)
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-9 col-md-offset-3">
+            <button class="btn btn-primary" type="submit">
+                @ViewLocalization["Form.Button.Submit"]
+            </button>
+            <a class="btn btn-default" href="@Url.Action("Index", "Home")">
+                @ViewLocalization["Form.Button.Cancel"]
+            </a>
+        </div>
+    </div>
+</form>

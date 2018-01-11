@@ -1,0 +1,73 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "database", "database", "{803E30F9-A342-40A6-8A87-E78EE070C01E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{3E0457B5-A148-4FAB-B266-259D86758043}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{DD3A6381-5A08-4395-A918-913947D91850}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurochses.IdentityServer.Database", "database\Aurochses.IdentityServer.Database\Aurochses.IdentityServer.Database.csproj", "{A9DB9CC4-5657-441B-898C-7B800326EAEB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurochses.IdentityServer.Database.Data", "database\Aurochses.IdentityServer.Database.Data\Aurochses.IdentityServer.Database.Data.csproj", "{EFAA447A-BED7-4C48-8074-3FE47CBCE087}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurochses.IdentityServer.WebSite", "src\Aurochses.IdentityServer.WebSite\Aurochses.IdentityServer.WebSite.csproj", "{5A52EC99-70F0-4F37-96B9-456A30B72444}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurochses.IdentityServer.WebSite.Api", "test\Aurochses.IdentityServer.WebSite.Api\Aurochses.IdentityServer.WebSite.Api.csproj", "{5A2742B6-5B08-453F-BADF-ADB3BB7553D5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurochses.IdentityServer.WebSite.IntegrationTests", "test\Aurochses.IdentityServer.WebSite.IntegrationTests\Aurochses.IdentityServer.WebSite.IntegrationTests.csproj", "{CB6EF9F3-F8AD-4EE5-B5A9-EF7357E87AD5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurochses.IdentityServer.WebSite.SeleniumTests", "test\Aurochses.IdentityServer.WebSite.SeleniumTests\Aurochses.IdentityServer.WebSite.SeleniumTests.csproj", "{DC84D874-E628-4430-9B0C-61CDDDDBB068}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurochses.IdentityServer.WebSite.Tests", "test\Aurochses.IdentityServer.WebSite.Tests\Aurochses.IdentityServer.WebSite.Tests.csproj", "{3CE58275-3F26-4852-9D3B-AAF4C2970FAA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A9DB9CC4-5657-441B-898C-7B800326EAEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9DB9CC4-5657-441B-898C-7B800326EAEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9DB9CC4-5657-441B-898C-7B800326EAEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9DB9CC4-5657-441B-898C-7B800326EAEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFAA447A-BED7-4C48-8074-3FE47CBCE087}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFAA447A-BED7-4C48-8074-3FE47CBCE087}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFAA447A-BED7-4C48-8074-3FE47CBCE087}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFAA447A-BED7-4C48-8074-3FE47CBCE087}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A52EC99-70F0-4F37-96B9-456A30B72444}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A52EC99-70F0-4F37-96B9-456A30B72444}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A52EC99-70F0-4F37-96B9-456A30B72444}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A52EC99-70F0-4F37-96B9-456A30B72444}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A2742B6-5B08-453F-BADF-ADB3BB7553D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A2742B6-5B08-453F-BADF-ADB3BB7553D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A2742B6-5B08-453F-BADF-ADB3BB7553D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A2742B6-5B08-453F-BADF-ADB3BB7553D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB6EF9F3-F8AD-4EE5-B5A9-EF7357E87AD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB6EF9F3-F8AD-4EE5-B5A9-EF7357E87AD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB6EF9F3-F8AD-4EE5-B5A9-EF7357E87AD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB6EF9F3-F8AD-4EE5-B5A9-EF7357E87AD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC84D874-E628-4430-9B0C-61CDDDDBB068}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC84D874-E628-4430-9B0C-61CDDDDBB068}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC84D874-E628-4430-9B0C-61CDDDDBB068}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC84D874-E628-4430-9B0C-61CDDDDBB068}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CE58275-3F26-4852-9D3B-AAF4C2970FAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CE58275-3F26-4852-9D3B-AAF4C2970FAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CE58275-3F26-4852-9D3B-AAF4C2970FAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CE58275-3F26-4852-9D3B-AAF4C2970FAA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A9DB9CC4-5657-441B-898C-7B800326EAEB} = {803E30F9-A342-40A6-8A87-E78EE070C01E}
+		{EFAA447A-BED7-4C48-8074-3FE47CBCE087} = {803E30F9-A342-40A6-8A87-E78EE070C01E}
+		{5A52EC99-70F0-4F37-96B9-456A30B72444} = {3E0457B5-A148-4FAB-B266-259D86758043}
+		{5A2742B6-5B08-453F-BADF-ADB3BB7553D5} = {DD3A6381-5A08-4395-A918-913947D91850}
+		{CB6EF9F3-F8AD-4EE5-B5A9-EF7357E87AD5} = {DD3A6381-5A08-4395-A918-913947D91850}
+		{DC84D874-E628-4430-9B0C-61CDDDDBB068} = {DD3A6381-5A08-4395-A918-913947D91850}
+		{3CE58275-3F26-4852-9D3B-AAF4C2970FAA} = {DD3A6381-5A08-4395-A918-913947D91850}
+	EndGlobalSection
+EndGlobal
