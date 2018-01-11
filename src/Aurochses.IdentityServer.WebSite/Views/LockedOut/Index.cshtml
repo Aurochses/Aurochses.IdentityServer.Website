@@ -1,0 +1,21 @@
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer ViewLocalization
+
+@{
+    Layout = "_InfoLayout";
+
+    ViewData["Title"] = ViewLocalization["Page.Title"];
+}
+
+@section PageHeader
+{
+    @ViewLocalization["Page.Header"]
+}
+
+@section Icon
+{
+    <i class="fa fa-lock fa-4x fa-fw text-danger"></i>
+}
+
+<p>
+    @ViewLocalization["Information"]
+</p>
