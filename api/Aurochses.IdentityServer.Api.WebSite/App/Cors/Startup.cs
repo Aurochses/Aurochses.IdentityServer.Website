@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 
-namespace Aurochses.IdentityServer.WebSite.Api.App.Cors
+namespace Aurochses.IdentityServer.Api.WebSite.App.Cors
 {
     /// <summary>
     /// Class Startup.
