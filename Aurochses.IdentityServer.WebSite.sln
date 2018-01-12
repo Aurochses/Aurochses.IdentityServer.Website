@@ -23,7 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aurochses.IdentityServer.We
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "api", "api", "{1611AC2B-D5D6-424C-9ED8-C301BAD9FD7F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aurochses.IdentityServer.WebSite.Api", "api\Aurochses.IdentityServer.WebSite.Api\Aurochses.IdentityServer.WebSite.Api.csproj", "{40B7AA56-CC0E-4477-955F-742D606B7E1A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurochses.IdentityServer.Api.WebSite", "api\Aurochses.IdentityServer.Api.WebSite\Aurochses.IdentityServer.Api.WebSite.csproj", "{2625D737-DA7C-45AF-9738-8252799AE845}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,10 +55,10 @@ Global
 		{3CE58275-3F26-4852-9D3B-AAF4C2970FAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3CE58275-3F26-4852-9D3B-AAF4C2970FAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3CE58275-3F26-4852-9D3B-AAF4C2970FAA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{40B7AA56-CC0E-4477-955F-742D606B7E1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{40B7AA56-CC0E-4477-955F-742D606B7E1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{40B7AA56-CC0E-4477-955F-742D606B7E1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{40B7AA56-CC0E-4477-955F-742D606B7E1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2625D737-DA7C-45AF-9738-8252799AE845}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2625D737-DA7C-45AF-9738-8252799AE845}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2625D737-DA7C-45AF-9738-8252799AE845}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2625D737-DA7C-45AF-9738-8252799AE845}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -70,7 +70,7 @@ Global
 		{CB6EF9F3-F8AD-4EE5-B5A9-EF7357E87AD5} = {DD3A6381-5A08-4395-A918-913947D91850}
 		{DC84D874-E628-4430-9B0C-61CDDDDBB068} = {DD3A6381-5A08-4395-A918-913947D91850}
 		{3CE58275-3F26-4852-9D3B-AAF4C2970FAA} = {DD3A6381-5A08-4395-A918-913947D91850}
-		{40B7AA56-CC0E-4477-955F-742D606B7E1A} = {1611AC2B-D5D6-424C-9ED8-C301BAD9FD7F}
+		{2625D737-DA7C-45AF-9738-8252799AE845} = {1611AC2B-D5D6-424C-9ED8-C301BAD9FD7F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C1EB2964-9157-4F7D-BBD9-39029A7EABB1}
