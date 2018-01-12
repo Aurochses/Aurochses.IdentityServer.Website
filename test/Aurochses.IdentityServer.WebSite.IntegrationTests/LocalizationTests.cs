@@ -12,7 +12,7 @@ namespace Aurochses.IdentityServer.WebSite.IntegrationTests
 
         public LocalizationTests()
         {
-            _projectPath = ProjectHelpers.GetProjectPath(@"src\Aurochses.IdentityServer.WebSite", typeof(WebSite.Startup).Assembly);
+            _projectPath = ProjectHelpers.GetProjectPath(@"src", typeof(WebSite.Startup).Assembly);
         }
 
         [Fact]
