@@ -25,7 +25,7 @@ namespace Aurochses.IdentityServer.WebSite.IntegrationTests.Controllers
 
             var webHostBuilder = new WebHostBuilder()
                 .UseContentRoot(
-                    ProjectHelpers.GetFolderPath("Aurochses.IdentityServer.WebSite", "src", "Aurochses.IdentityServer.WebSite")
+                    ProjectHelpers.GetProjectPath(@"src", typeof(WebSite.Startup).Assembly)
                 )
                 .UseEnvironment(environmentName)
                 .UseStartup<Startup>()

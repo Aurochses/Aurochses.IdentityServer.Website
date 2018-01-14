@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Aurochses.IdentityServer.WebSite.Api.Controllers
+namespace Aurochses.IdentityServer.Api.WebSite.Controllers
 {
     /// <summary>
     /// Values
