@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace Aurochses.IdentityServer.WebSite.Api
+namespace Aurochses.IdentityServer.Api.WebSite
 {
     /// <summary>
     /// Class Program.

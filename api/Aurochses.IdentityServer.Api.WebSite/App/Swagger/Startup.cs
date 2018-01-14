@@ -3,7 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
 
-namespace Aurochses.IdentityServer.WebSite.Api.App.Swagger
+namespace Aurochses.IdentityServer.Api.WebSite.App.Swagger
 {
     /// <summary>
     /// Class Startup.

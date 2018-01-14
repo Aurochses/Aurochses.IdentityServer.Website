@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Aurochses.IdentityServer.WebSite.Api.App.IdentityServer
+namespace Aurochses.IdentityServer.Api.WebSite.App.IdentityServer
 {
     /// <summary>
     /// Class Startup.

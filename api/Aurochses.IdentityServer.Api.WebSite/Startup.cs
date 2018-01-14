@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Aurochses.IdentityServer.WebSite.Api
+namespace Aurochses.IdentityServer.Api.WebSite
 {
     /// <summary>
     /// Class Startup.

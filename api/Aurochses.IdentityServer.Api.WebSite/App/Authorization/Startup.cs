@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace Aurochses.IdentityServer.WebSite.Api.App.Authorization
+namespace Aurochses.IdentityServer.Api.WebSite.App.Authorization
 {
     /// <summary>
     /// Class Startup.
