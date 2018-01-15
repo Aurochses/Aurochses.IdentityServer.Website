@@ -11,10 +11,10 @@ namespace Aurochses.IdentityServer.Database.Data
             _identityServerService = identityServerService;
         }
 
-        public void Run()
+        public void Run(string environmentName)
         {
             // IdentityServer
-            _identityServerService.Run();
+            _identityServerService.Run(environmentName);
         }
     }
 }

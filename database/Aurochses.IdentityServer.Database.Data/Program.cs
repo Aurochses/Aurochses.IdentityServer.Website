@@ -23,7 +23,7 @@ namespace Aurochses.IdentityServer.Database.Data
             // Service
             var service = services.GetService<Service>();
 
-            service.Run();
+            service.Run(environmentName);
         }
 
         public static IConfigurationRoot BuildConfiguration(string environmentName) =>
@@ -31,6 +31,14 @@ namespace Aurochses.IdentityServer.Database.Data
                 .SetBasePath(Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), @"..\Aurochses.IdentityServer.Database")))
                 .AddJsonFile("appsettings.json")
                 .AddJsonFile($"appsettings.{environmentName}.json", true)
+                .AddEnvironmentVariables()
+                .Build();
+
+        public static IConfigurationRoot BuildConfiguration(string path, string fileName, string environmentName) =>
+            new ConfigurationBuilder()
+                .SetBasePath(Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), path)))
+                .AddJsonFile($"{fileName}.json")
+                .AddJsonFile($"{fileName}.{environmentName}.json", true)
                 .AddEnvironmentVariables()
                 .Build();
     }

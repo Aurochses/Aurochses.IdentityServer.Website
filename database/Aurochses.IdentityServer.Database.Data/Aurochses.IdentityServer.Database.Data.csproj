@@ -9,4 +9,19 @@
     <ProjectReference Include="..\Aurochses.IdentityServer.Database\Aurochses.IdentityServer.Database.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="IdentityServer\Data\ApiResourceData.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="IdentityServer\Data\ClientData.Development.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="IdentityServer\Data\ClientData.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="IdentityServer\Data\IdentityResourceData.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
