@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "name": "identity",
+  "name": "identityserver",
   "private": true,
   "dependencies": {
     "bootstrap-sass": "3.3.7",
