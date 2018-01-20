@@ -13,6 +13,15 @@
     <None Update="IdentityServer\Data\ApiResourceData.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="IdentityServer\Data\ClientData.Production.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="IdentityServer\Data\ClientData.Staging.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="IdentityServer\Data\ClientData.Test.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="IdentityServer\Data\ClientData.Development.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
