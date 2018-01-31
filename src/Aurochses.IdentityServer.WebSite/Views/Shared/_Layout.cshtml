@@ -36,24 +36,22 @@
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a href="~/">
-                    <span class="navbar-brand">
-                        <img src="~/images/logotype.png" class="icon-banner" alt="@projectName">
-                    </span>
-                </a>
-            </div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="~/">
+            <img src="~/images/logotype.png" class="icon-banner" alt="@projectName">
+        </a>
 
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbar">
             @await Html.PartialAsync("Layout/SignInPartial")
         </div>
-    </div>
+    </nav>
 
     <div class="container">
-        <div class="page-header">
-            <h1>@RenderSection("PageHeader")</h1>
-        </div>
+        <h1 class="display-3">@RenderSection("PageHeader")</h1>
 
         @RenderBody()
     </div>
