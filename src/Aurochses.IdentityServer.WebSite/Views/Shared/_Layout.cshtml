@@ -50,8 +50,8 @@
         </div>
     </nav>
 
-    <div class="container">
-        <h1 class="display-3">@RenderSection("PageHeader")</h1>
+    <div class="container pt-4">
+        <h1 class="display-3 pb-4">@RenderSection("PageHeader")</h1>
 
         @RenderBody()
     </div>
@@ -60,6 +60,7 @@
     <script src="~/js/jquery-validation/jquery.validate.js"></script>
     <script src="~/js/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
     <script src="~/js/jquery-validation-unobtrusive-bootstrap/jquery.validate.unobtrusive.bootstrap.js"></script>
+    <script src="~/js/popper.js/popper.js"></script>
     <script src="~/js/bootstrap/bootstrap.js"></script>
 
     @RenderSection("Scripts", false)
