@@ -14,6 +14,7 @@
 <form asp-controller="EmailConfirmation" asp-action="Index" method="post">
     <div class="form-group row">
         <label asp-for="Email" class="col-md-3 col-form-label"></label>
+
         <div class="col-md-9">
             <input asp-for="Email" class="form-control" />
 
@@ -29,7 +30,7 @@
         <div class="col-md-9 offset-md-3">
             <recaptcha />
             
-            <div id="recaptchaErrorMessage" class="text-danger"></div>
+            <div id="recaptchaErrorMessage" class="invalid-tooltip"></div>
         </div>
     </div>
 
@@ -44,6 +45,7 @@
             <button class="btn btn-primary" type="submit">
                 @ViewLocalization["Form.Button.Submit"]
             </button>
+
             <a class="btn btn-light" href="@Url.Action("Index", "Home")" role="button">
                 @ViewLocalization["Form.Button.Cancel"]
             </a>
