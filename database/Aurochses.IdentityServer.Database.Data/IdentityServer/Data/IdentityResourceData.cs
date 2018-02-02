@@ -17,7 +17,7 @@ namespace Aurochses.IdentityServer.Database.Data.IdentityServer.Data
                 new IdentityResources.Phone()
             };
 
-            var configuration = Program.BuildConfiguration(@"IdentityServer\Data", nameof(IdentityResource), environmentName);
+            var configuration = Program.BuildConfiguration(@"IdentityServer\Data", nameof(IdentityResourceData), environmentName);
 
             list.AddRange(configuration.GetSection("Data").Get<IList<IdentityResource>>());
 
