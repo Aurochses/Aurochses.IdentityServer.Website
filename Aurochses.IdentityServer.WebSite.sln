@@ -23,7 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aurochses.IdentityServer.We
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "api", "api", "{1611AC2B-D5D6-424C-9ED8-C301BAD9FD7F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurochses.IdentityServer.Api.WebSite", "api\Aurochses.IdentityServer.Api.WebSite\Aurochses.IdentityServer.Api.WebSite.csproj", "{2625D737-DA7C-45AF-9738-8252799AE845}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aurochses.IdentityServer.Api.WebSite", "api\Aurochses.IdentityServer.Api.WebSite\Aurochses.IdentityServer.Api.WebSite.csproj", "{2625D737-DA7C-45AF-9738-8252799AE845}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

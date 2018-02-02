@@ -31,7 +31,7 @@ namespace Aurochses.IdentityServer.Database
         /// Configures the services.
         /// </summary>
         /// <param name="services">The services.</param>
-        public void ConfigureServices(IServiceCollection services)
+        public virtual void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<BaseContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));

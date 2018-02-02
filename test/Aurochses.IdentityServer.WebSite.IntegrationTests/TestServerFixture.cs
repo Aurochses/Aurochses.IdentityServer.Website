@@ -11,7 +11,7 @@ namespace Aurochses.IdentityServer.WebSite.IntegrationTests
     {
         public TestServerFixture()
         {
-            var environmentName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+            var environmentName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Development";
 
             var webHostBuilder = new WebHostBuilder()
                 .UseContentRoot(

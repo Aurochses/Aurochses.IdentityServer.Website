@@ -1,0 +1,53 @@
+﻿{
+  "Data": [
+    {
+      "ClientId": "PostmanUser",
+      "ClientName": "PostmanUser",
+      "AllowedGrantTypes": [
+        "password"
+      ],
+      "ClientSecrets": [
+        {
+          "Value": "K7gNU3sdo+OL0wNhqoVWhr3g6s1xYv72ol/pe/Unols=" // "secret".Sha256()
+        }
+      ],
+      "AllowedScopes": [
+        "openid",
+        "profile",
+        "email",
+        "address",
+        "phone",
+        "api"
+      ]
+    },
+    {
+      "ClientId": "angular2client",
+      "ClientName": "angular2client",
+      "AllowedGrantTypes": [
+        "implicit"
+      ],
+      "AllowAccessTokensViaBrowser": true,
+      "RequireConsent": false, // to not show consent page
+      "AccessTokenLifetime": 300, // 5 minute, default 60 minutes
+      "RedirectUris": [
+        "http://localhost:4100/auth",
+        "http://localhost:4100/renew"
+      ],
+      "PostLogoutRedirectUris": [
+        "http://localhost:4100/unauthorized"
+      ],
+      "AllowedCorsOrigins": [
+        "http://localhost:4100"
+      ],
+      "AllowedScopes": [
+        "openid",
+        "profile",
+        "email",
+        "address",
+        "phone",
+        "api",
+        "permissions"
+      ]
+    }
+  ] 
+}
