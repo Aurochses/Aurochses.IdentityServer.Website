@@ -26,9 +26,9 @@ namespace Aurochses.IdentityServer.WebSite.SeleniumTests
             driver.Navigate().GoToUrl(_fixture.GetUrl());
 
             // Assert
-            var img = driver.FindElement(By.ClassName("icon-banner"));
+            var a = driver.FindElement(By.ClassName("navbar-brand"));
 
-            Assert.Equal("img", img.TagName);
+            Assert.Equal("a", a.TagName);
         }
     }
 }

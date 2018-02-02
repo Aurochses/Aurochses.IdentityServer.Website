@@ -16,4 +16,5 @@
 [Bb]uild[Ll]og.*
 
 # Others
+bower_components/
 node_modules/

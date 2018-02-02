@@ -1,38 +1,21 @@
-﻿using System.IO;
-using IdentityServer4.EntityFramework.DbContexts;
-using IdentityServer4.EntityFramework.Options;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Aurochses.IdentityServer.Database.Data
 {
-    public class Startup
+    public class Startup : Database.Startup
     {
-        public Startup(string environmentName)
+        public Startup(IConfiguration configuration)
+            : base(configuration)
         {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json")
-                .AddJsonFile($"appsettings.{environmentName}.json", true)
-                .AddEnvironmentVariables();
 
-            Configuration = builder.Build();
         }
 
-        public IConfiguration Configuration { get; set; }
-
-        public void ConfigureServices(IServiceCollection services)
+        public override void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient(
-                provider => new ConfigurationStoreOptions
-                {
-                    DefaultSchema = Configuration["IdentityServer:ConfigurationStore:DefaultSchema"]
-                }
-            );
+            base.ConfigureServices(services);
 
-            services.AddDbContext<ConfigurationDbContext>(
-                options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddTransient<IdentityServer.IdentityServerService>();
 
             services.AddTransient<Service>();
         }
