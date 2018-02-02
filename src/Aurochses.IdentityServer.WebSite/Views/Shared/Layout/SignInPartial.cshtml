@@ -8,19 +8,23 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-    <ul class="nav navbar-nav navbar-right">
-        <li>
-            <a asp-controller="User" asp-action="Index">@UserManager.GetUserName(User)</a>
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+            <a asp-controller="User" asp-action="Index" class="nav-link">@UserManager.GetUserName(User)</a>
         </li>
-        <li>
-            <a asp-controller="SignOut" asp-action="Index">@ViewLocalization["SignOut"]</a>
+        <li class="nav-item">
+            <a asp-controller="SignOut" asp-action="Index" class="nav-link">@ViewLocalization["SignOut"]</a>
         </li>
     </ul>
 }
 else
 {
-    <ul class="nav navbar-nav navbar-right">
-        <li><a asp-controller="Registration" asp-action="Index">@ViewLocalization["Registration"]</a></li>
-        <li><a asp-controller="SignIn" asp-action="Index">@ViewLocalization["SignIn"]</a></li>
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+            <a asp-controller="Registration" asp-action="Index" class="nav-link">@ViewLocalization["Registration"]</a>
+        </li>
+        <li class="nav-item">
+            <a asp-controller="SignIn" asp-action="Index" class="nav-link">@ViewLocalization["SignIn"]</a>
+        </li>
     </ul>
 }

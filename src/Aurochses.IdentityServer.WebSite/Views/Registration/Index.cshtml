@@ -13,123 +13,106 @@
     @ViewLocalization["Page.Header"]
 }
 
-<form asp-controller="Registration" asp-action="Index" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
-    
+<form asp-controller="Registration" asp-action="Index" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
+
     @if (!modelState.IsValid)
     {
         <div class="alert alert-warning" role="alert">
-            <h5>
-                <strong>@ViewLocalization["Errors.Header"]</strong>
+            <h5 class="alert-heading">
+                @ViewLocalization["Errors.Header"]
             </h5>
-            
-            <div asp-validation-summary="ModelOnly"></div>
+
+            <p>
+                <div asp-validation-summary="ModelOnly"></div>
+            </p>
         </div>
     }
 
-    <div class="form-group">
-        <label asp-for="Email" class="col-md-3 control-label"></label>
-        <div class="col-md-9">
-            <div class="row">
-                <div class="col-md-6 col-sm-12">
-                    <input asp-for="Email" class="form-control"/>
+    <div class="form-group row">
+        <label asp-for="Email" class="col-md-3 col-form-label"></label>
 
-                    <div class="help-block">
-                        <div asp-description-for="Email"></div>
-                    </div>
-                </div>
-                <div class="help-block col-md-6 col-sm-12">
-                    <span asp-validation-for="Email" class="text-danger"></span>
-                </div>
+        <div class="col-md-9">
+            <input asp-for="Email" class="form-control" />
+
+            <div asp-description-for="Email" class="text-secondary"></div>
+
+            <div class="invalid-tooltip">
+                <span asp-validation-for="Email"></span>
             </div>
         </div>
     </div>
 
-    <div class="form-group">
-        <label asp-for="Password" class="col-md-3 control-label"></label>
-        <div class="col-md-9">
-            <div class="row">
-                <div class="col-md-6 col-sm-12">
-                    <input asp-for="Password" class="form-control"/>
+    <div class="form-group row">
+        <label asp-for="Password" class="col-md-3 col-form-label"></label>
 
-                    <div class="help-block">
-                        <div asp-description-for="Password"></div>
-                    </div>
-                </div>
-                <div class="help-block col-md-6 col-sm-12">
-                    <span asp-validation-for="Password" class="text-danger"></span>
-                </div>
+        <div class="col-md-9">
+            <input asp-for="Password" class="form-control" />
+
+            <div asp-description-for="Password" class="text-secondary"></div>
+
+            <div class="invalid-tooltip">
+                <span asp-validation-for="Password"></span>
             </div>
         </div>
     </div>
 
-    <div class="form-group">
-        <label asp-for="ConfirmPassword" class="col-md-3 control-label"></label>
-        <div class="col-md-9">
-            <div class="row">
-                <div class="col-md-6 col-sm-12">
-                    <input asp-for="ConfirmPassword" class="form-control"/>
+    <div class="form-group row">
+        <label asp-for="ConfirmPassword" class="col-md-3 col-form-label"></label>
 
-                    <div class="help-block">
-                        <div asp-description-for="ConfirmPassword"></div>
-                    </div>
-                </div>
-                <div class="help-block col-md-6 col-sm-12">
-                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-                </div>
+        <div class="col-md-9">
+            <input asp-for="ConfirmPassword" class="form-control" />
+
+            <div asp-description-for="ConfirmPassword" class="text-secondary"></div>
+
+            <div class="invalid-tooltip">
+                <span asp-validation-for="ConfirmPassword"></span>
             </div>
         </div>
     </div>
 
-    <div class="form-group">
-        <label asp-for="FirstName" class="col-md-3 control-label"></label>
-        <div class="col-md-9">
-            <div class="row">
-                <div class="col-md-6 col-sm-12">
-                    <input asp-for="FirstName" class="form-control"/>
+    <div class="form-group row">
+        <label asp-for="FirstName" class="col-md-3 col-form-label"></label>
 
-                    <div class="help-block">
-                        <div asp-description-for="FirstName"></div>
-                    </div>
-                </div>
-                <div class="help-block col-md-6 col-sm-12">
-                    <span asp-validation-for="FirstName" class="text-danger"></span>
-                </div>
+        <div class="col-md-9">
+            <input asp-for="FirstName" class="form-control" />
+
+            <div asp-description-for="FirstName" class="text-secondary"></div>
+
+            <div class="invalid-tooltip">
+                <span asp-validation-for="FirstName"></span>
             </div>
         </div>
     </div>
 
-    <div class="form-group">
-        <label asp-for="LastName" class="col-md-3 control-label"></label>
-        <div class="col-md-9">
-            <div class="row">
-                <div class="col-md-6 col-sm-12">
-                    <input asp-for="LastName" class="form-control"/>
+    <div class="form-group row">
+        <label asp-for="LastName" class="col-md-3 col-form-label"></label>
 
-                    <div class="help-block">
-                        <div asp-description-for="LastName"></div>
-                    </div>
-                </div>
-                <div class="help-block col-md-6 col-sm-12">
-                    <span asp-validation-for="LastName" class="text-danger"></span>
-                </div>
+        <div class="col-md-9">
+            <input asp-for="LastName" class="form-control" />
+
+            <div asp-description-for="LastName" class="text-secondary"></div>
+
+            <div class="invalid-tooltip">
+                <span asp-validation-for="LastName"></span>
             </div>
         </div>
     </div>
 
-    <div class="form-group">
-        <div class="col-md-9 col-md-offset-3">
-            <recaptcha/>
+    <div class="form-group row">
+        <div class="col-md-9 offset-md-3">
+            <recaptcha />
 
-            <div id="recaptchaErrorMessage" class="text-danger"></div>
+            <div id="recaptchaErrorMessage" class="invalid-tooltip"></div>
         </div>
     </div>
 
-    <div class="form-group">
-        <div class="col-md-9 col-md-offset-3">
+    <div class="form-group row">
+        <div class="col-md-9 offset-md-3">
             <button class="btn btn-primary" type="submit">
                 @ViewLocalization["Form.Button.Submit"]
             </button>
-            <a class="btn btn-default" href="@Url.Action("Index", "Home")">
+
+            <a class="btn btn-light" href="@Url.Action("Index", "Home")" role="button">
                 @ViewLocalization["Form.Button.Cancel"]
             </a>
         </div>
