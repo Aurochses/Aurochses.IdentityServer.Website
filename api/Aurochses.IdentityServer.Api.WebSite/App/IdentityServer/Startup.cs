@@ -22,6 +22,7 @@ namespace Aurochses.IdentityServer.Api.WebSite.App.IdentityServer
                     {
                         options.Authority = configuration.GetValue<string>("IdentityServer:Authority");
                         options.RequireHttpsMetadata = configuration.GetValue<bool>("IdentityServer:RequireHttpsMetadata");
+                        options.ApiName = configuration.GetValue<string>("IdentityServer:ApiName");
                     }
                 );
         }
