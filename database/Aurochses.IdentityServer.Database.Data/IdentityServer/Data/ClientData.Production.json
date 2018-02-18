@@ -21,6 +21,21 @@
       ]
     },
     {
+      "ClientId": "ConsoleClient",
+      "ClientName": "ConsoleClient",
+      "AllowedGrantTypes": [
+        "client_credentials"
+      ],
+      "ClientSecrets": [
+        {
+          "Value": "K7gNU3sdo+OL0wNhqoVWhr3g6s1xYv72ol/pe/Unols=" // "secret".Sha256()
+        }
+      ],
+      "AllowedScopes": [
+        "api"
+      ]
+    },
+    {
       "ClientId": "angular2client",
       "ClientName": "angular2client",
       "AllowedGrantTypes": [
