@@ -4,7 +4,7 @@
 
 Type        | Web | Api 
 ------------|-----|-----
-Development | [web](http://identityserver.development.csharp.aurochses.demo.by) | [api](http://api.identityserver.development.csharp.aurochses.demo.by/swagger)
+Test | [web](http://identityserver.test.csharp.aurochses.demo.by) | [api](http://api.identityserver.test.csharp.aurochses.demo.by/swagger)
 Staging     | [web](http://identityserver.staging.csharp.aurochses.demo.by) | [api](http://api.identityserver.staging.csharp.aurochses.demo.by/swagger)
 Production  | [web](http://identityserver.production.csharp.aurochses.demo.by) | [api](http://api.identityserver.production.csharp.aurochses.demo.by/swagger)
 
