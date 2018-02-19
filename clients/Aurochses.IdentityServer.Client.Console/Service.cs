@@ -1,7 +1,7 @@
-﻿using System;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json.Linq;
 
 namespace Aurochses.IdentityServer.Client.Console
 {
@@ -27,9 +27,20 @@ namespace Aurochses.IdentityServer.Client.Console
         /// <summary>
         /// Run.
         /// </summary>
-        public Task Run()
+        public async Task Run()
         {
-            throw new NotImplementedException();
+            var response = await _httpClient.GetAsync($"{_serviceSettings.ApiUrl}/api/values");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var content = await response.Content.ReadAsStringAsync();
+
+                System.Console.WriteLine(JArray.Parse(content));
+            }
+            else
+            {
+                System.Console.WriteLine(response.StatusCode);
+            }
         }
     }
 }

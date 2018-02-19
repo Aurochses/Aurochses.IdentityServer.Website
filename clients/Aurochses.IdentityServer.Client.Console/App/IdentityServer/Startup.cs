@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Net.Http;
 using System.Threading.Tasks;
 using IdentityModel.Client;
 using Microsoft.Extensions.Configuration;
@@ -20,12 +21,12 @@ namespace Aurochses.IdentityServer.Client.Console.App.IdentityServer
         {
             // discover endpoints from metadata
             var discoveryClient = await DiscoveryClient.GetAsync(configuration.GetValue<string>("IdentityServer:Authority"));
-            if (discoveryClient.IsError) return;
+            if (discoveryClient.IsError) throw new Exception(discoveryClient.Error);
 
             // request token
             var tokenClient = new TokenClient(discoveryClient.TokenEndpoint, configuration.GetValue<string>("IdentityServer:ClientId"), configuration.GetValue<string>("IdentityServer:ClientSecret"));
             var tokenResponse = await tokenClient.RequestClientCredentialsAsync(configuration.GetValue<string>("IdentityServer:Scope"));
-            if (tokenResponse.IsError) return;
+            if (tokenResponse.IsError) throw new Exception(tokenResponse.Error);
 
             // configure HTTP client
             var httpClient = new HttpClient();
