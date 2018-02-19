@@ -32,7 +32,7 @@
         }
       ],
       "AllowedScopes": [
-        "api"
+        "consoleClientOnly"
       ]
     },
     {

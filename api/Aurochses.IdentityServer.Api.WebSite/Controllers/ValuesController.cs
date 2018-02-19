@@ -25,6 +25,7 @@ namespace Aurochses.IdentityServer.Api.WebSite.Controllers
         /// Get by id
         /// </summary>
         /// <returns></returns>
+        [Authorize("ConsoleClientOnly")]
         [HttpGet("{id}")]
         public string Get(int id)
         {

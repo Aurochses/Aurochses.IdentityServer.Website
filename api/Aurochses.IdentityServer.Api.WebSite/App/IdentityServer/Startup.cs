@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using IdentityServer4.AccessTokenValidation;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -16,7 +17,7 @@ namespace Aurochses.IdentityServer.Api.WebSite.App.IdentityServer
         /// <param name="configuration">The configuration.</param>
         public static void ConfigureServices(IServiceCollection services, IConfiguration configuration)
         {
-            services.AddAuthentication("Bearer")
+            services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
                 .AddIdentityServerAuthentication(
                     options =>
                     {

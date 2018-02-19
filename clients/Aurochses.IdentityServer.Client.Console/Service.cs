@@ -1,7 +1,6 @@
 ﻿using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
-using Newtonsoft.Json.Linq;
 
 namespace Aurochses.IdentityServer.Client.Console
 {
@@ -29,13 +28,13 @@ namespace Aurochses.IdentityServer.Client.Console
         /// </summary>
         public async Task Run()
         {
-            var response = await _httpClient.GetAsync($"{_serviceSettings.ApiUrl}/api/values");
+            var response = await _httpClient.GetAsync($"{_serviceSettings.ApiUrl}/api/values/1");
 
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
 
-                System.Console.WriteLine(JArray.Parse(content));
+                System.Console.WriteLine(content);
             }
             else
             {
