@@ -1,4 +1,4 @@
-﻿namespace Aurochses.IdentityServer.Client.Console
+﻿namespace Aurochses.IdentityServer.Client.Console.Settings
 {
     /// <summary>
     /// Class ServiceSettings.
