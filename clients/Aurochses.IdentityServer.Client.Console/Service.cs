@@ -11,17 +11,17 @@ namespace Aurochses.IdentityServer.Client.Console
     public class Service
     {
         private readonly ServiceSettings _serviceSettings;
-        private readonly HttpClient _httpClient;
+        private readonly ApiHttpClient _apiHttpClient;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Service"/> class.
         /// </summary>
         /// <param name="serviceSettings">The service settings.</param>
-        /// <param name="httpClient">The HTTP client.</param>
-        public Service(IOptions<ServiceSettings> serviceSettings, HttpClient httpClient)
+        /// <param name="apiHttpClient">The api HTTP client.</param>
+        public Service(IOptions<ServiceSettings> serviceSettings, ApiHttpClient apiHttpClient)
         {
             _serviceSettings = serviceSettings.Value;
-            _httpClient = httpClient;
+            _apiHttpClient = apiHttpClient;
         }
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace Aurochses.IdentityServer.Client.Console
         /// </summary>
         public async Task Run()
         {
-            var response = await _httpClient.GetAsync($"{_serviceSettings.ApiUrl}/api/values/1");
+            var response = await _apiHttpClient.GetAsync($"{_serviceSettings.ApiUrl}/api/values/1");
 
             if (response.IsSuccessStatusCode)
             {

@@ -29,10 +29,10 @@ namespace Aurochses.IdentityServer.Client.Console.App.IdentityServer
             if (tokenResponse.IsError) throw new Exception(tokenResponse.Error);
 
             // configure HTTP client
-            var httpClient = new HttpClient();
-            httpClient.SetBearerToken(tokenResponse.AccessToken);
+            var apiHttpClient = new ApiHttpClient();
+            apiHttpClient.SetBearerToken(tokenResponse.AccessToken);
 
-            services.AddTransient(provider => httpClient);
+            services.AddTransient(provider => apiHttpClient);
         }
     }
 }
