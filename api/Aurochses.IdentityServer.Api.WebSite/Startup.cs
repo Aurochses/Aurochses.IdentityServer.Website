@@ -71,6 +71,9 @@ namespace Aurochses.IdentityServer.Api.WebSite
             // Swagger
             App.Swagger.Startup.Configure(app, Configuration);
 
+            // StaticFiles
+            app.UseStaticFiles();
+
             // Authentication
             app.UseAuthentication();
 
