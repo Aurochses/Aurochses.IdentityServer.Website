@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace Aurochses.IdentityServer.WebSite.App.Logging
+namespace Aurochses.IdentityServer.Api.WebSite.App.Logging
 {
     /// <summary>
     /// Class Startup.
