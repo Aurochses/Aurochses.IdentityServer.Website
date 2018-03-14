@@ -1,5 +1,4 @@
-﻿using System.Net.Http;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Aurochses.IdentityServer.Client.Console.Settings;
 using Microsoft.Extensions.Options;
 
