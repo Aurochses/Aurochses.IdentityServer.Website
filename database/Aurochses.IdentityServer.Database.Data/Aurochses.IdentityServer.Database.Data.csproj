@@ -6,6 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Aurochses.Extensions.Configuration" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Aurochses.IdentityServer.Database\Aurochses.IdentityServer.Database.csproj" />
   </ItemGroup>
 
