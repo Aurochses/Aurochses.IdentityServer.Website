@@ -3,7 +3,7 @@
   "name": "api",
   "private": true,
   "devDependencies": {
-    "gulp": "4.0.0",
+    "gulp": "^4.0.0",
     "lodash": "4.7.0"
   }
 }
