@@ -20,15 +20,23 @@ namespace Aurochses.IdentityServer.Client.Console.App.IdentityServer
         public static async Task ConfigureServices(IServiceCollection services, IConfiguration configuration)
         {
             // discover endpoints from metadata
-            var discoveryClient = await DiscoveryClient.GetAsync(configuration.GetValue<string>("IdentityServer:Authority"));
-            if (discoveryClient.IsError) throw new Exception(discoveryClient.Error);
+            var discoveryClient = new DiscoveryClient(configuration.GetValue<string>("IdentityServer:Authority"))
+            {
+                Policy =
+                {
+                    RequireHttps = configuration.GetValue<bool>("IdentityServer:RequireHttps")
+                }
+            };
+
+            var discoveryResponse = await discoveryClient.GetAsync();
+            if (discoveryResponse.IsError) throw new Exception(discoveryResponse.Error);
 
             // request token
-            var tokenClient = new TokenClient(discoveryClient.TokenEndpoint, configuration.GetValue<string>("IdentityServer:ClientId"), configuration.GetValue<string>("IdentityServer:ClientSecret"));
+            var tokenClient = new TokenClient(discoveryResponse.TokenEndpoint, configuration.GetValue<string>("IdentityServer:ClientId"), configuration.GetValue<string>("IdentityServer:ClientSecret"));
             var tokenResponse = await tokenClient.RequestClientCredentialsAsync(configuration.GetValue<string>("IdentityServer:Scope"));
             if (tokenResponse.IsError) throw new Exception(tokenResponse.Error);
 
-            // configure HTTP client
+            // configure api HTTP client
             var apiHttpClient = new ApiHttpClient();
             apiHttpClient.SetBearerToken(tokenResponse.AccessToken);
 

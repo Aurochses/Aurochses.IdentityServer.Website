@@ -1,0 +1,1 @@
+dotnet Aurochses.IdentityServer.Client.Console.dll
