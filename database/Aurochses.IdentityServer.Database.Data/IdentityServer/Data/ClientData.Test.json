@@ -45,11 +45,11 @@
       "RequireConsent": false, // to not show consent page
       "AccessTokenLifetime": 300, // 5 minute, default 60 minutes
       "RedirectUris": [
-        "http://localhost:4200/auth",
-        "http://localhost:4200/renew"
+        "http://localhost:4200/auth.html",
+        "http://localhost:4200/silent-renew.html"
       ],
       "PostLogoutRedirectUris": [
-        "http://localhost:4200/unauthorized"
+        "http://localhost:4200"
       ],
       "AllowedCorsOrigins": [
         "http://localhost:4200"
@@ -64,5 +64,5 @@
         "permissions"
       ]
     }
-  ] 
+  ]
 }
