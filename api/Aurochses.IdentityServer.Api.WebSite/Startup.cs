@@ -46,19 +46,20 @@ namespace Aurochses.IdentityServer.Api.WebSite
             App.Swagger.Startup.ConfigureServices(services, Configuration);
 
             // MVC
-            services.AddMvc(
-                config =>
-                {
-                    config.Filters.Add(
-                        // Authorize All
-                        new AuthorizeFilter(
-                            new AuthorizationPolicyBuilder()
-                                .RequireAuthenticatedUser()
-                                .Build()
-                        )
-                    );
-                }
-            );
+            services
+                .AddMvc(
+                    config =>
+                    {
+                        config.Filters.Add(
+                            // Authorize All
+                            new AuthorizeFilter(
+                                new AuthorizationPolicyBuilder()
+                                    .RequireAuthenticatedUser()
+                                    .Build()
+                            )
+                        );
+                    }
+                );
         }
 
         /// <summary>
