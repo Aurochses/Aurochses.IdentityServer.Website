@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2010
+VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "database", "database", "{803E30F9-A342-40A6-8A87-E78EE070C01E}"
 EndProject
@@ -24,6 +24,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "api", "api", "{1611AC2B-D5D6-424C-9ED8-C301BAD9FD7F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aurochses.IdentityServer.Api.WebSite", "api\Aurochses.IdentityServer.Api.WebSite\Aurochses.IdentityServer.Api.WebSite.csproj", "{2625D737-DA7C-45AF-9738-8252799AE845}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "clients", "clients", "{C63F3BC6-9A14-4876-BCF8-27103226B9E2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurochses.IdentityServer.Client.Console", "clients\Aurochses.IdentityServer.Client.Console\Aurochses.IdentityServer.Client.Console.csproj", "{345B68FF-5FF1-4662-8170-B7DB42DCD1C4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,6 +63,10 @@ Global
 		{2625D737-DA7C-45AF-9738-8252799AE845}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2625D737-DA7C-45AF-9738-8252799AE845}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2625D737-DA7C-45AF-9738-8252799AE845}.Release|Any CPU.Build.0 = Release|Any CPU
+		{345B68FF-5FF1-4662-8170-B7DB42DCD1C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{345B68FF-5FF1-4662-8170-B7DB42DCD1C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{345B68FF-5FF1-4662-8170-B7DB42DCD1C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{345B68FF-5FF1-4662-8170-B7DB42DCD1C4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -71,6 +79,7 @@ Global
 		{DC84D874-E628-4430-9B0C-61CDDDDBB068} = {DD3A6381-5A08-4395-A918-913947D91850}
 		{3CE58275-3F26-4852-9D3B-AAF4C2970FAA} = {DD3A6381-5A08-4395-A918-913947D91850}
 		{2625D737-DA7C-45AF-9738-8252799AE845} = {1611AC2B-D5D6-424C-9ED8-C301BAD9FD7F}
+		{345B68FF-5FF1-4662-8170-B7DB42DCD1C4} = {C63F3BC6-9A14-4876-BCF8-27103226B9E2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C1EB2964-9157-4F7D-BBD9-39029A7EABB1}

@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using IdentityServer4.AccessTokenValidation;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -16,12 +18,20 @@ namespace Aurochses.IdentityServer.Api.WebSite.App.IdentityServer
         /// <param name="configuration">The configuration.</param>
         public static void ConfigureServices(IServiceCollection services, IConfiguration configuration)
         {
-            services.AddAuthentication("Bearer")
+            services
+                .AddAuthentication(
+                    options =>
+                    {
+                        options.DefaultAuthenticateScheme = IdentityServerAuthenticationDefaults.AuthenticationScheme;
+                        options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                    }
+                )
                 .AddIdentityServerAuthentication(
                     options =>
                     {
                         options.Authority = configuration.GetValue<string>("IdentityServer:Authority");
                         options.RequireHttpsMetadata = configuration.GetValue<bool>("IdentityServer:RequireHttpsMetadata");
+                        options.ApiName = configuration.GetValue<string>("IdentityServer:ApiName");
                     }
                 );
         }

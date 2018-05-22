@@ -4,9 +4,19 @@
 
 Type        | Web | Api 
 ------------|-----|-----
-Development | [web](http://identityserver.development.csharp.aurochses.demo.by) | [api](http://api.identityserver.development.csharp.aurochses.demo.by/swagger)
+Test        | [web](http://identityserver.test.csharp.aurochses.demo.by) | [api](http://api.identityserver.test.csharp.aurochses.demo.by/swagger)
 Staging     | [web](http://identityserver.staging.csharp.aurochses.demo.by) | [api](http://api.identityserver.staging.csharp.aurochses.demo.by/swagger)
 Production  | [web](http://identityserver.production.csharp.aurochses.demo.by) | [api](http://api.identityserver.production.csharp.aurochses.demo.by/swagger)
+
+## Clients
+
+**test credentials:** test@aurochses.com / Aurochses1234!
+
+Name | Web | Source Code
+-----|-----|-------------
+.NET Core Console | - | [source code](https://github.com/Aurochses/Aurochses.IdentityServer.WebSite/tree/master/clients/Aurochses.IdentityServer.Client.Console)
+Aurochses.Angular.Auth | [web](http://auth.production.angular.aurochses.demo.by) | [source code](https://github.com/Aurochses/Aurochses.Angular.Auth)
+Aurochses.Angular.Template | [web](http://template.production.angular.aurochses.demo.by) | [source code](https://github.com/Aurochses/Aurochses.Angular.Template)
 
 ## Builds
 

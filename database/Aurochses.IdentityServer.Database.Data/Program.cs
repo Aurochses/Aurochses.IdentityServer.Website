@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using Aurochses.Extensions.Configuration;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -28,7 +29,7 @@ namespace Aurochses.IdentityServer.Database.Data
 
         public static IConfigurationRoot BuildConfiguration(string environmentName) =>
             new ConfigurationBuilder()
-                .SetBasePath(Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), @"..\Aurochses.IdentityServer.Database")))
+                .SetBasePath(ProjectHelpers.GetProjectPath(@"", typeof(Database.Startup).Assembly))
                 .AddJsonFile("appsettings.json")
                 .AddJsonFile($"appsettings.{environmentName}.json", true)
                 .AddEnvironmentVariables()

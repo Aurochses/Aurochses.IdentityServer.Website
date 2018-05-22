@@ -32,6 +32,9 @@ namespace Aurochses.IdentityServer.WebSite
         /// <param name="services">The services.</param>
         public void ConfigureServices(IServiceCollection services)
         {
+            // Logging
+            App.Logging.Startup.Configure(services, Configuration);
+
             // Localization
             App.Localization.Startup.ConfigureServices(services, Configuration);
 

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
 namespace Aurochses.IdentityServer.WebSite.App.Logging
@@ -11,12 +12,19 @@ namespace Aurochses.IdentityServer.WebSite.App.Logging
         /// <summary>
         /// Configures the specified application.
         /// </summary>
-        /// <param name="loggerFactory">The logger factory.</param>
+        /// <param name="services">The services.</param>
         /// <param name="configuration">The configuration.</param>
-        public static void Configure(ILoggerFactory loggerFactory, IConfigurationRoot configuration)
+        public static void Configure(IServiceCollection services, IConfiguration configuration)
         {
             // Logging
-            loggerFactory.AddConsole(configuration.GetSection("Logging"));
+            services.AddLogging(
+                builder =>
+                {
+                    builder.AddConfiguration(configuration.GetSection("Logging"))
+                        .AddConsole()
+                        .AddDebug();
+                }
+            );
         }
     }
 }

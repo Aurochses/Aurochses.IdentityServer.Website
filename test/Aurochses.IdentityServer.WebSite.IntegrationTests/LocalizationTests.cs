@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Reflection;
-using Aurochses.Xunit;
+using Aurochses.Extensions.Configuration;
 using Aurochses.Xunit.AspNetCore.Mvc.Localization;
 using Xunit;
 
