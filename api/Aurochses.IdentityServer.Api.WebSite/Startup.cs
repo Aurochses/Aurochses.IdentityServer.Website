@@ -33,6 +33,9 @@ namespace Aurochses.IdentityServer.Api.WebSite
         /// <param name="services">The services.</param>
         public void ConfigureServices(IServiceCollection services)
         {
+            // Logging
+            App.Logging.Startup.Configure(services, Configuration);
+
             // Authorization
             App.Authorization.Startup.ConfigureServices(services);
 
@@ -43,19 +46,20 @@ namespace Aurochses.IdentityServer.Api.WebSite
             App.Swagger.Startup.ConfigureServices(services, Configuration);
 
             // MVC
-            services.AddMvc(
-                config =>
-                {
-                    config.Filters.Add(
-                        // Authorize All
-                        new AuthorizeFilter(
-                            new AuthorizationPolicyBuilder()
-                                .RequireAuthenticatedUser()
-                                .Build()
-                        )
-                    );
-                }
-            );
+            services
+                .AddMvc(
+                    config =>
+                    {
+                        config.Filters.Add(
+                            // Authorize All
+                            new AuthorizeFilter(
+                                new AuthorizationPolicyBuilder()
+                                    .RequireAuthenticatedUser()
+                                    .Build()
+                            )
+                        );
+                    }
+                );
         }
 
         /// <summary>
@@ -70,6 +74,9 @@ namespace Aurochses.IdentityServer.Api.WebSite
 
             // Swagger
             App.Swagger.Startup.Configure(app, Configuration);
+
+            // StaticFiles
+            app.UseStaticFiles();
 
             // Authentication
             app.UseAuthentication();

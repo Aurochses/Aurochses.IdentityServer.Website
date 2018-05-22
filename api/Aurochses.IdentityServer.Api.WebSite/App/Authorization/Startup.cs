@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Aurochses.IdentityServer.Api.WebSite.App.Authorization
 {
@@ -16,6 +17,7 @@ namespace Aurochses.IdentityServer.Api.WebSite.App.Authorization
             services.AddAuthorization(
                 options =>
                 {
+                    options.AddPolicy("ConsoleClientOnly", policy => policy.RequireScope("consoleClientOnly"));
                     options.AddPolicy("ValueRead", policy => policy.RequireClaim("permission", "value.read"));
                 }
             );

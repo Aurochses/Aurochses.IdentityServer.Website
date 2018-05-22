@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Aurochses.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Aurochses.IdentityServer.Database.Data
@@ -14,6 +15,12 @@ namespace Aurochses.IdentityServer.Database.Data
         public override void ConfigureServices(IServiceCollection services)
         {
             base.ConfigureServices(services);
+
+            // Add Identity
+            services.AddIdentity<ApplicationUser, ApplicationRole>()
+                .AddEntityFrameworkStores<IdentityDbContext>();
+
+            services.AddTransient<Identity.IdentityService>();
 
             services.AddTransient<IdentityServer.IdentityServerService>();
 

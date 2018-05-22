@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using IdentityServer4.Extensions;
 using IdentityServer4.Models;
 using Microsoft.Extensions.Configuration;
 
@@ -10,7 +11,17 @@ namespace Aurochses.IdentityServer.Database.Data.IdentityServer.Data
         {
             var configuration = Program.BuildConfiguration(@"IdentityServer\Data", nameof(ApiResourceData), environmentName);
 
-            return configuration.GetSection("Data").Get<IList<ApiResource>>();
+            var apiResources = configuration.GetSection("Data").Get<IList<ApiResource>>();
+
+            foreach (var apiResource in apiResources)
+            {
+                if (apiResource.Scopes.IsNullOrEmpty())
+                {
+                    apiResource.Scopes.Add(new Scope(apiResource.Name, apiResource.DisplayName));
+                }
+            }
+
+            return apiResources;
         }
     }
 }

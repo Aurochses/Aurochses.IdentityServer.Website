@@ -12,3 +12,7 @@ dotnet ef migrations remove -c:BaseContext
 dotnet ef database update
 dotnet ef database update 0 -c:BaseContext
 ```
+
+### ASPNETCORE_ENVIRONMENT
+set ASPNETCORE_ENVIRONMENT=Development
+echo %ASPNETCORE_ENVIRONMENT%

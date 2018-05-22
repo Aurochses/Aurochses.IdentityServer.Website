@@ -2,7 +2,17 @@
   "Data": [
     {
       "Name": "api",
-      "DisplayName": "API"
+      "DisplayName": "API",
+      "Scopes": [
+        {
+          "Name": "api",
+          "DisplayName": "API"
+        },
+        {
+          "Name": "consoleClientOnly",
+          "DisplayName": "Console Client Only"
+        }
+      ] 
     }
   ]
 }
