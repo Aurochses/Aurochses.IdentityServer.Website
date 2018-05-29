@@ -16,6 +16,9 @@ namespace Aurochses.IdentityServer.Database.Data
         {
             base.ConfigureServices(services);
 
+            // AutoMapper
+            App.AutoMapper.Startup.ConfigureServices(services);
+
             // Add Identity
             services.AddIdentity<ApplicationUser, ApplicationRole>()
                 .AddEntityFrameworkStores<IdentityDbContext>();
