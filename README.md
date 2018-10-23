@@ -8,15 +8,23 @@ Test        | [web](http://identityserver.test.csharp.aurochses.demo.by) | [api]
 Staging     | [web](http://identityserver.staging.csharp.aurochses.demo.by) | [api](http://api.identityserver.staging.csharp.aurochses.demo.by/swagger)
 Production  | [web](http://identityserver.production.csharp.aurochses.demo.by) | [api](http://api.identityserver.production.csharp.aurochses.demo.by/swagger)
 
-## Clients
+## Users
 
-**test credentials:** test@aurochses.com / Aurochses1234!
+Login | Password | Role | Permissions
+------|----------|------|-------------
+test@aurochses.com | Aurochses1234! | - | -
+user@aurochses.com | Aurochses1234! | user | user
+admin@aurochses.com | Aurochses1234! | admin | user, admin
+
+## Clients
 
 Name | Web | Source Code
 -----|-----|-------------
 .NET Core Console | - | [source code](https://github.com/Aurochses/Aurochses.IdentityServer.WebSite/tree/master/clients/Aurochses.IdentityServer.Client.Console)
 Aurochses.Angular.Auth | [web](http://auth.production.angular.aurochses.demo.by) | [source code](https://github.com/Aurochses/Aurochses.Angular.Auth)
 Aurochses.Angular.Template | [web](http://template.production.angular.aurochses.demo.by) | [source code](https://github.com/Aurochses/Aurochses.Angular.Template)
+
+**test credentials:**  / 
 
 ## Builds
 
