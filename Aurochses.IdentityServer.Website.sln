@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.329
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B1C63DDA-BE8B-47D2-ADAE-68F89D93AC4A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{8B1A3CDD-C944-4094-B287-5F2C8D73D55C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurochses.IdentityServer.Website", "src\Aurochses.IdentityServer.Website\Aurochses.IdentityServer.Website.csproj", "{FC6E08A9-9889-431F-A7F0-6618C741D89C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FC6E08A9-9889-431F-A7F0-6618C741D89C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC6E08A9-9889-431F-A7F0-6618C741D89C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC6E08A9-9889-431F-A7F0-6618C741D89C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC6E08A9-9889-431F-A7F0-6618C741D89C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FC6E08A9-9889-431F-A7F0-6618C741D89C} = {B1C63DDA-BE8B-47D2-ADAE-68F89D93AC4A}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EEA9EB59-DC2F-4B53-BDDC-A201862F313B}
+	EndGlobalSection
+EndGlobal
