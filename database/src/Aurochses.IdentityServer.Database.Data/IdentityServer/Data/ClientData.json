@@ -1,0 +1,68 @@
+﻿{
+  "Data": [
+    {
+      "ClientId": "PostmanUser",
+      "ClientName": "PostmanUser",
+      "AllowedGrantTypes": [
+        "password"
+      ],
+      "ClientSecrets": [
+        {
+          "Value": "K7gNU3sdo+OL0wNhqoVWhr3g6s1xYv72ol/pe/Unols=" // "secret".Sha256()
+        }
+      ],
+      "AllowedScopes": [
+        "openid",
+        "profile",
+        "email",
+        "address",
+        "phone",
+        "api"
+      ]
+    },
+    {
+      "ClientId": "ConsoleClient",
+      "ClientName": "ConsoleClient",
+      "AllowedGrantTypes": [
+        "client_credentials"
+      ],
+      "ClientSecrets": [
+        {
+          "Value": "K7gNU3sdo+OL0wNhqoVWhr3g6s1xYv72ol/pe/Unols=" // "secret".Sha256()
+        }
+      ],
+      "AllowedScopes": [
+        "consoleClientOnly"
+      ]
+    },
+    {
+      "ClientId": "angular2client",
+      "ClientName": "angular2client",
+      "AllowedGrantTypes": [
+        "implicit"
+      ],
+      "AllowAccessTokensViaBrowser": true,
+      "RequireConsent": false, // to not show consent page
+      "AccessTokenLifetime": 300, // 5 minute, default 60 minutes
+      "RedirectUris": [
+        "http://localhost:4200/auth.html",
+        "http://localhost:4200/silent-renew.html"
+      ],
+      "PostLogoutRedirectUris": [
+        "http://localhost:4200"
+      ],
+      "AllowedCorsOrigins": [
+        "http://localhost:4200"
+      ],
+      "AllowedScopes": [
+        "openid",
+        "profile",
+        "email",
+        "address",
+        "phone",
+        "api",
+        "permissions"
+      ]
+    }
+  ] 
+}
