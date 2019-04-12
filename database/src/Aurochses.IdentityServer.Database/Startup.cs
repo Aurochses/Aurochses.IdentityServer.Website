@@ -18,6 +18,12 @@ namespace Aurochses.IdentityServer.Database
 
         public override void ConfigureServices(IServiceCollection services)
         {
+            // Logging
+            App.Logging.Startup.ConfigureServices(services, Configuration);
+
+            // add options
+            services.AddOptions();
+
             // IdentityServer
             App.IdentityServer.Startup.ConfigureServices(services, Configuration);
 
@@ -45,8 +51,6 @@ namespace Aurochses.IdentityServer.Database
             // have to add this context because IdentityServerPersistedGrantContext use it
             services.AddDbContext<PersistedGrantDbContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
-            services.AddOptions();
         }
     }
 }

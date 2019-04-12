@@ -1,6 +1,5 @@
 ﻿using Aurochses.Database.EntityFrameworkCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Logging;
 
 namespace Aurochses.IdentityServer.Database
 {
@@ -11,15 +10,9 @@ namespace Aurochses.IdentityServer.Database
             Main<Startup, Service>(args);
         }
 
+        // ReSharper disable once UnusedMember.Global
+        // this method is required by dotnet ef migrations commands
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            CreateWebHostBuilder<Startup>(args)
-                .ConfigureLogging(
-                    (context, builder) =>
-                    {
-                        builder.AddConfiguration(context.Configuration.GetSection("Logging"))
-                            .AddConsole()
-                            .AddDebug();
-                    }
-                );
+            CreateWebHostBuilder<Startup>(args);
     }
 }
