@@ -1,12 +1,25 @@
-﻿using System;
+﻿using Aurochses.Database.EntityFrameworkCore;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Logging;
 
 namespace Aurochses.IdentityServer.Database
 {
-    class Program
+    public class Program : ProgramBase
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Main<Startup, Service>(args);
         }
+
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+            CreateWebHostBuilder<Startup>(args)
+                .ConfigureLogging(
+                    (context, builder) =>
+                    {
+                        builder.AddConfiguration(context.Configuration.GetSection("Logging"))
+                            .AddConsole()
+                            .AddDebug();
+                    }
+                );
     }
 }
