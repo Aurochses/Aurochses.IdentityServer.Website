@@ -15,4 +15,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Aurochses.IdentityServer.Database\Aurochses.IdentityServer.Database.csproj" />
+  </ItemGroup>
+
 </Project>

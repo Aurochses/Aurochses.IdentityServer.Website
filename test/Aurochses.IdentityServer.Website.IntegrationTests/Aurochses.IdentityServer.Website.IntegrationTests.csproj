@@ -15,4 +15,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Aurochses.IdentityServer.Website\Aurochses.IdentityServer.Website.csproj" />
+  </ItemGroup>
+
 </Project>
