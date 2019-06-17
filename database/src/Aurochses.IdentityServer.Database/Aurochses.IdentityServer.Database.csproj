@@ -6,6 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove=".gitattributes" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Aurochses.AspNetCore.Identity.EntityFrameworkCore" Version="2.2.0" />
     <PackageReference Include="Aurochses.Database.EntityFrameworkCore" Version="2.2.0" />
     <PackageReference Include="IdentityServer4.EntityFramework" Version="2.4.0" />
