@@ -1,31 +1,43 @@
-﻿using System.Threading.Tasks;
+﻿using System.Net;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Xunit;
 
 namespace Aurochses.IdentityServer.Website.IntegrationTests.Controllers
 {
-    public class HomeControllerTests : IClassFixture<WebApplicationFactory<Startup>>
+    public class HomeControllerTests
     {
-        private readonly WebApplicationFactory<Startup> _factory;
-
-        public HomeControllerTests(WebApplicationFactory<Startup> factory)
-        {
-            _factory = factory;
-        }
-
         [Fact]
-        public async Task Index()
+        public async Task Index_WhenHostingEnvironmentIsDevelopment_ReturnView()
         {
             // Arrange
-            var client = _factory.CreateClient();
+            var client = new WebApplicationFactory<Startup>().CreateClient();
 
             // Act
             var response = await client.GetAsync("/");
 
             // Assert
-            response.EnsureSuccessStatusCode(); // Status Code 200-299
-            Assert.Equal("text/html; charset=utf-8",
-                response.Content.Headers.ContentType.ToString());
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            Assert.Equal("text/html; charset=utf-8", response.Content.Headers.ContentType.ToString());
+        }
+
+        [Fact]
+        public async Task Index_WhenHostingEnvironmentIsNotDevelopment_RedirectToSignIn()
+        {
+            // Arrange
+            var client = new TestWebApplicationFactory().CreateClient(
+                new WebApplicationFactoryClientOptions
+                {
+                    AllowAutoRedirect = false
+                }
+            );
+
+            // Act
+            var response = await client.GetAsync("/");
+
+            // Assert
+            Assert.Equal(HttpStatusCode.Redirect, response.StatusCode);
+            Assert.Equal("/SignIn", response.Headers.Location.OriginalString);
         }
     }
 }

@@ -21,6 +21,29 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
             TypeAssert.HasAttribute<HomeController>(attributeType);
         }
 
+        [Fact]
+        public void Inherit_Controller()
+        {
+            // Arrange & Act
+            var controller = new HomeController(new NullLogger<HomeController>(), new HostingEnvironment());
+
+            // Assert
+            Assert.IsAssignableFrom<Controller>(controller);
+        }
+
+        [Fact]
+        public void Index_WhenHostingEnvironmentIsDevelopment_ReturnViewResult()
+        {
+            // Arrange
+            var controller = new HomeController(new NullLogger<HomeController>(), new HostingEnvironment {EnvironmentName = "Development"});
+
+            // Act
+            var actionResult = controller.Index();
+
+            // Assert
+            MvcAssert.ViewResult(actionResult);
+        }
+
         [Theory]
         [InlineData(null)]
         [InlineData("http://www.example.com")]
@@ -42,29 +65,6 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
                     new KeyValuePair<string, object>("ReturnUrl", returnUrl)
                 }
             );
-        }
-
-        [Fact]
-        public void Index_WhenHostingEnvironmentIsDevelopment_ReturnViewResult()
-        {
-            // Arrange
-            var controller = new HomeController(new NullLogger<HomeController>(), new HostingEnvironment {EnvironmentName = "Development"});
-
-            // Act
-            var actionResult = controller.Index();
-
-            // Assert
-            MvcAssert.ViewResult(actionResult);
-        }
-
-        [Fact]
-        public void Inherit_Controller()
-        {
-            // Arrange & Act
-            var controller = new HomeController(new NullLogger<HomeController>(), new HostingEnvironment());
-
-            // Assert
-            Assert.IsAssignableFrom<Controller>(controller);
         }
     }
 }
