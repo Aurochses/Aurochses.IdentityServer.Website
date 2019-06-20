@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using Aurochses.IdentityServer.Website.Filters;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace Aurochses.IdentityServer.Website.Controllers
 {
+    [SecurityHeaders]
     public class HomeController : Controller
     {
         private readonly ILogger _logger;
