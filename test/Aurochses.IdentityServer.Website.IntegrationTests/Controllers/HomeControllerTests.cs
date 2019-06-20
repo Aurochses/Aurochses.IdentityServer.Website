@@ -6,12 +6,12 @@ namespace Aurochses.IdentityServer.Website.IntegrationTests.Controllers
 {
     public class HomeControllerTests : IClassFixture<WebApplicationFactory<Startup>>
     {
+        private readonly WebApplicationFactory<Startup> _factory;
+
         public HomeControllerTests(WebApplicationFactory<Startup> factory)
         {
             _factory = factory;
         }
-
-        private readonly WebApplicationFactory<Startup> _factory;
 
         [Fact]
         public async Task Index()

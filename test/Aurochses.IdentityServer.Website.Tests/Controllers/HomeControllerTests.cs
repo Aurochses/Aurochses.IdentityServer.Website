@@ -48,8 +48,7 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
         public void Index_WhenHostingEnvironmentIsDevelopment_ReturnViewResult()
         {
             // Arrange
-            var controller = new HomeController(new NullLogger<HomeController>(),
-                new HostingEnvironment {EnvironmentName = "Development"});
+            var controller = new HomeController(new NullLogger<HomeController>(), new HostingEnvironment {EnvironmentName = "Development"});
 
             // Act
             var actionResult = controller.Index();
