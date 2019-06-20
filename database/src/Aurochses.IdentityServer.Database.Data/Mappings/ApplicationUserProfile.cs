@@ -3,15 +3,8 @@ using AutoMapper;
 
 namespace Aurochses.IdentityServer.Database.Data.Mappings
 {
-    /// <summary>
-    /// Class ApplicationUserProfile.
-    /// </summary>
-    /// <seealso cref="AutoMapper.Profile" />
     public class ApplicationUserProfile : Profile
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ApplicationUserProfile"/> class.
-        /// </summary>
         public ApplicationUserProfile()
         {
             CreateMap<ApplicationUser, ApplicationUser>()
