@@ -1,0 +1,32 @@
+﻿{
+  "Data": [
+    {
+      "Role": {
+        "Id": "00000000-0000-0000-0000-000000000001",
+        "Name": "user"
+      },
+      "RoleClaims": [
+        {
+          "ClaimType": "permission",
+          "ClaimValue": "user"
+        }
+      ]
+    },
+    {
+      "Role": {
+        "Id": "00000000-0000-0000-0000-000000000002",
+        "Name": "admin"
+      },
+      "RoleClaims": [
+        {
+          "ClaimType": "permission",
+          "ClaimValue": "user"
+        },
+        {
+          "ClaimType": "permission",
+          "ClaimValue": "admin"
+        }
+      ]
+    }
+  ]
+}
