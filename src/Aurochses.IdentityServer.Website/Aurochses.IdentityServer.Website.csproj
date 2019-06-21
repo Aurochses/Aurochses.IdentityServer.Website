@@ -3,6 +3,9 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+
+    <!-- SonarQube needs this -->
+    <ProjectGuid>{00000000-0000-0000-0000-000000000001}</ProjectGuid>
   </PropertyGroup>
 
   <ItemGroup>
