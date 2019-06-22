@@ -7,17 +7,18 @@ namespace Aurochses.IdentityServer.Website.App.Authentication
     {
         public static void Configure(IServiceCollection services, IConfiguration configuration)
         {
+            var builder = services.AddAuthentication();
+
             // Enable Facebook Authentication
             if (configuration.GetValue<bool>("Authentication:HasFacebook"))
             {
-                services.AddAuthentication()
-                    .AddFacebook(
-                        options =>
-                        {
-                            options.AppId = configuration["Facebook:AppId"];
-                            options.AppSecret = configuration["Facebook:AppSecret"];
-                        }
-                    );
+                builder.AddFacebook(
+                    options =>
+                    {
+                        options.AppId = configuration["Facebook:AppId"];
+                        options.AppSecret = configuration["Facebook:AppSecret"];
+                    }
+                );
             }
         }
     }

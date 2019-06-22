@@ -16,8 +16,7 @@ namespace Aurochses.IdentityServer.Website.App.Identity
         public static void ConfigureServices(IServiceCollection services, IConfiguration configuration)
         {
             // Add IdentityDbContext
-            services.AddDbContext<IdentityDbContext>(
-                options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<IdentityDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
             // Add Identity
             services.AddIdentity<ApplicationUser, ApplicationRole>()

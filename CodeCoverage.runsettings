@@ -14,9 +14,11 @@
                 <ModulePath>.*\\automapper\.dll$</ModulePath>
                 <ModulePath>.*\\identitymodel\.dll$</ModulePath>
                 <ModulePath>.*\\identityserver4\.dll$</ModulePath>
+                <ModulePath>.*\\identityserver4\.aspnetidentity\.dll$</ModulePath>
                 <ModulePath>.*\\identityserver4\.entityframework\.dll$</ModulePath>
                 <ModulePath>.*\\identityserver4\.entityframework\.storage\.dll$</ModulePath>
                 <ModulePath>.*\\identityserver4\.storage\.dll$</ModulePath>
+                <ModulePath>.*\\sendgrid\.dll$</ModulePath>
               </Exclude>
             </ModulePaths>
 

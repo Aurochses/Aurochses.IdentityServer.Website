@@ -8,11 +8,13 @@ namespace Aurochses.IdentityServer.Website
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IHostingEnvironment hostingEnvironment, IConfiguration configuration)
         {
+            HostingEnvironment = hostingEnvironment;
             Configuration = configuration;
         }
 
+        public IHostingEnvironment HostingEnvironment { get; }
         public IConfiguration Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services)
@@ -23,15 +25,15 @@ namespace Aurochses.IdentityServer.Website
 
             App.Identity.Startup.ConfigureServices(services, Configuration);
 
-            App.IdentityServer.Startup.ConfigureServices(services, Configuration);
+            App.IdentityServer.Startup.ConfigureServices(services, HostingEnvironment, Configuration);
 
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app)
         {
-            App.ExceptionHandler.Startup.Configure(app, env, Configuration);
+            App.ExceptionHandler.Startup.Configure(app, HostingEnvironment, Configuration);
 
             App.CookiePolicy.Startup.Configure(app);
 

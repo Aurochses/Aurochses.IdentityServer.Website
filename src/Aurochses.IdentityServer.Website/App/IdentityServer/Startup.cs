@@ -2,6 +2,7 @@
 using System.Security.Cryptography.X509Certificates;
 using Aurochses.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,9 +11,9 @@ namespace Aurochses.IdentityServer.Website.App.IdentityServer
 {
     public static class Startup
     {
-        public static void ConfigureServices(IServiceCollection services, IConfiguration configuration)
+        public static void ConfigureServices(IServiceCollection services, IHostingEnvironment env, IConfiguration configuration)
         {
-            services
+            var builder = services
                 .AddIdentityServer(
                     options =>
                     {
@@ -22,21 +23,12 @@ namespace Aurochses.IdentityServer.Website.App.IdentityServer
                         options.UserInteraction.ErrorUrl = configuration["IdentityServer:UserInteraction:ErrorUrl"];
                     }
                 )
-                .AddSigningCredential(
-                    new X509Certificate2(
-                        Path.Combine(
-                            Directory.GetCurrentDirectory(),
-                            configuration["IdentityServer:SigningCredential:Certificate:Path"]
-                        ),
-                        configuration["IdentityServer:SigningCredential:Certificate:Password"]
-                    )
-                )
                 .AddConfigurationStore(
                     options =>
                     {
-                        options.ConfigureDbContext = builder =>
+                        options.ConfigureDbContext = builder1 =>
                         {
-                            builder.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+                            builder1.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
                         };
                         options.DefaultSchema = configuration["IdentityServer:ConfigurationStore:DefaultSchema"];
                     }
@@ -44,9 +36,9 @@ namespace Aurochses.IdentityServer.Website.App.IdentityServer
                 .AddOperationalStore(
                     options =>
                     {
-                        options.ConfigureDbContext = builder =>
+                        options.ConfigureDbContext = builder1 =>
                         {
-                            builder.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+                            builder1.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
                         };
                         options.DefaultSchema = configuration["IdentityServer:OperationalStore:DefaultSchema"];
                         options.EnableTokenCleanup = configuration.GetValue<bool>("IdentityServer:OperationalStore:EnableTokenCleanup");
@@ -55,6 +47,25 @@ namespace Aurochses.IdentityServer.Website.App.IdentityServer
                 )
                 .AddAspNetIdentity<ApplicationUser>()
                 .AddProfileService<IdentityProfileService>();
+
+            if (env.IsDevelopment())
+            {
+                builder.AddDeveloperSigningCredential();
+            }
+            else
+            {
+                // todo: solve this
+                // https://tatvog.wordpress.com/2018/06/05/identityserver4-addsigningcredential-using-certificate-stored-in-azure-key-vault/
+                //                builder.AddSigningCredential(
+                //                    new X509Certificate2(
+                //                        Path.Combine(
+                //                            Directory.GetCurrentDirectory(),
+                //                            configuration["IdentityServer:SigningCredential:Certificate:Path"]
+                //                        ),
+                //                        configuration["IdentityServer:SigningCredential:Certificate:Password"]
+                //                    )
+                //                );
+            }
         }
 
         public static void Configure(IApplicationBuilder app)
