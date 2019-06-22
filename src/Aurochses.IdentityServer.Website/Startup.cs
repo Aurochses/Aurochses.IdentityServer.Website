@@ -21,6 +21,10 @@ namespace Aurochses.IdentityServer.Website
 
             App.CookiePolicy.Startup.ConfigureServices(services, Configuration);
 
+            App.Identity.Startup.ConfigureServices(services, Configuration);
+
+            App.IdentityServer.Startup.ConfigureServices(services, Configuration);
+
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
@@ -30,6 +34,8 @@ namespace Aurochses.IdentityServer.Website
             App.ExceptionHandler.Startup.Configure(app, env, Configuration);
 
             App.CookiePolicy.Startup.Configure(app);
+
+            App.IdentityServer.Startup.Configure(app);
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

@@ -10,10 +10,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove=".gitattributes" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Aurochses.Xunit.Selenium" Version="2.2.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.1.1" />
     <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="75.0.3770.90" />
@@ -22,6 +18,10 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove=".gitattributes" />
   </ItemGroup>
 
   <ItemGroup>
