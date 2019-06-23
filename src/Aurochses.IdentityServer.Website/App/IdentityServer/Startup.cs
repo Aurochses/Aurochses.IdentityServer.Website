@@ -46,7 +46,7 @@ namespace Aurochses.IdentityServer.Website.App.IdentityServer
                     }
                 )
                 .AddAspNetIdentity<ApplicationUser>()
-                .AddProfileService<IdentityProfileService>();
+                .AddProfileService<IdentityServerProfileService>();
 
             if (env.IsDevelopment())
             {

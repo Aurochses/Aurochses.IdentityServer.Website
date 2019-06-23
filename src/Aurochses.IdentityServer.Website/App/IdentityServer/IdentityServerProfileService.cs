@@ -8,12 +8,12 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Aurochses.IdentityServer.Website.App.IdentityServer
 {
-    public class IdentityProfileService : IProfileService
+    public class IdentityServerProfileService : IProfileService
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IUserClaimsPrincipalFactory<ApplicationUser> _userClaimsPrincipalFactory;
 
-        public IdentityProfileService(UserManager<ApplicationUser> userManager, IUserClaimsPrincipalFactory<ApplicationUser> userClaimsPrincipalFactory)
+        public IdentityServerProfileService(UserManager<ApplicationUser> userManager, IUserClaimsPrincipalFactory<ApplicationUser> userClaimsPrincipalFactory)
         {
             _userManager = userManager;
             _userClaimsPrincipalFactory = userClaimsPrincipalFactory;
