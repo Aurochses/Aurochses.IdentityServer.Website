@@ -9,7 +9,6 @@ namespace Aurochses.IdentityServer.Website.App.CookiePolicy
     {
         public static void ConfigureServices(IServiceCollection services, IConfiguration configuration)
         {
-            // todo: solve this using appsettings
             services.Configure<CookiePolicyOptions>(
                 options =>
                 {

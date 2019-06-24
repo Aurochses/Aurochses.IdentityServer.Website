@@ -25,7 +25,7 @@ namespace Aurochses.IdentityServer.Website.IntegrationTests.Controllers
         public async Task Index_WhenHostingEnvironmentIsNotDevelopment_RedirectToSignIn()
         {
             // Arrange
-            var client = new TestWebApplicationFactory().CreateClient(
+            var client = new TestWebApplicationFactory("IsNotDevelopment").CreateClient(
                 new WebApplicationFactoryClientOptions
                 {
                     AllowAutoRedirect = false
