@@ -4,6 +4,7 @@ using Aurochses.IdentityServer.Website.Controllers;
 using Aurochses.IdentityServer.Website.Filters;
 using Aurochses.Xunit;
 using Aurochses.Xunit.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting.Internal;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging.Abstractions;
@@ -15,6 +16,7 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
     {
         [Theory]
         [InlineData(typeof(SecurityHeadersAttribute))]
+        [InlineData(typeof(AllowAnonymousAttribute))]
         public void Attribute_Defined(Type attributeType)
         {
             // Arrange & Act & Assert

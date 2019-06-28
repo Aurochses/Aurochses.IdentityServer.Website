@@ -11,7 +11,12 @@ namespace Aurochses.IdentityServer.Website.IntegrationTests.Controllers
         public async Task Index_WhenHostingEnvironmentIsDevelopment_ReturnView()
         {
             // Arrange
-            var client = new WebApplicationFactory<Startup>().CreateClient();
+            var client = new TestWebApplicationFactory("Development").CreateClient(
+                new WebApplicationFactoryClientOptions
+                {
+                    AllowAutoRedirect = false
+                }
+            );
 
             // Act
             var response = await client.GetAsync("/");
