@@ -29,6 +29,8 @@ namespace Aurochses.IdentityServer.Website
 
             App.IdentityServer.Startup.ConfigureServices(services, HostingEnvironment, Configuration);
 
+            App.Authentication.Startup.Configure(services, Configuration);
+
             services.AddMvc(
                     options =>
                     {
