@@ -13,6 +13,8 @@ namespace Aurochses.IdentityServer.Website.Filters
                                                      "base-uri 'self';" +
                                                      "upgrade-insecure-requests;";
 
+        private const string ReferrerPolicy = "no-referrer";
+
         public override void OnResultExecuting(ResultExecutingContext context)
         {
             var result = context.Result;
@@ -43,10 +45,9 @@ namespace Aurochses.IdentityServer.Website.Filters
                 }
 
                 // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy
-                var referrer_policy = "no-referrer";
                 if (!context.HttpContext.Response.Headers.ContainsKey("Referrer-Policy"))
                 {
-                    context.HttpContext.Response.Headers.Add("Referrer-Policy", referrer_policy);
+                    context.HttpContext.Response.Headers.Add("Referrer-Policy", ReferrerPolicy);
                 }
             }
         }
