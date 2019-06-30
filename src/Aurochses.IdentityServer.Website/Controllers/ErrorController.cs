@@ -16,7 +16,11 @@ namespace Aurochses.IdentityServer.Website.Controllers
         private readonly IHostingEnvironment _hostingEnvironment;
         private readonly IIdentityServerInteractionService _identityServerInteractionService;
 
-        public ErrorController(ILogger<ErrorController> logger, IHostingEnvironment hostingEnvironment, IIdentityServerInteractionService identityServerInteractionService)
+        public ErrorController(
+            ILogger<ErrorController> logger,
+            IHostingEnvironment hostingEnvironment,
+            IIdentityServerInteractionService identityServerInteractionService
+        )
         {
             _logger = logger;
             _hostingEnvironment = hostingEnvironment;

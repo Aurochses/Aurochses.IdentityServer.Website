@@ -13,7 +13,10 @@ namespace Aurochses.IdentityServer.Website.Controllers
         private readonly ILogger _logger;
         private readonly IHostingEnvironment _hostingEnvironment;
 
-        public HomeController(ILogger<HomeController> logger, IHostingEnvironment hostingEnvironment)
+        public HomeController(
+            ILogger<HomeController> logger,
+            IHostingEnvironment hostingEnvironment
+        )
         {
             _logger = logger;
             _hostingEnvironment = hostingEnvironment;

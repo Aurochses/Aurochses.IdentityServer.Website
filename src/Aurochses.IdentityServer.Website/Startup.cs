@@ -21,6 +21,8 @@ namespace Aurochses.IdentityServer.Website
 
         public void ConfigureServices(IServiceCollection services)
         {
+            App.Options.Startup.ConfigureServices(services, Configuration);
+
             App.Logging.Startup.Configure(services, Configuration);
 
             App.CookiePolicy.Startup.ConfigureServices(services, Configuration);
