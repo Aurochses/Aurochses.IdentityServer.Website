@@ -1,6 +1,7 @@
 # Aurochses.IdentityServer.Website
 
 Aurochses.IdentityServer.Website is IdentityServer website.
+created based on code: https://github.com/IdentityServer/IdentityServer4.Templates/commit/bdc4d576326f3377d3e41007b47c01c910ef4860
 
 ## Web
 
