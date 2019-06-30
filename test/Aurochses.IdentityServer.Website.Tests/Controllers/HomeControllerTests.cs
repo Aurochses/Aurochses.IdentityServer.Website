@@ -40,7 +40,7 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
             var controller = new HomeController(new NullLogger<HomeController>(), new HostingEnvironment {EnvironmentName = "Development"});
 
             // Act
-            var actionResult = controller.Index();
+            var actionResult = controller.Index(string.Empty);
 
             // Assert
             MvcAssert.ViewResult(actionResult);

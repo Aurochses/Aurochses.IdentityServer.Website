@@ -6,13 +6,24 @@ namespace Aurochses.IdentityServer.Website.IntegrationTests
 {
     public class TestWebApplicationFactory : WebApplicationFactory<Startup>
     {
-        private readonly string _environmentName;
+        private string _environmentName;
 
-        public TestWebApplicationFactory(string environmentName = "")
+        public TestWebApplicationFactory()
         {
-            _environmentName = string.IsNullOrWhiteSpace(environmentName)
-                ? Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Development"
-                : environmentName;
+            _environmentName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Development";
+
+            ClientOptions.AllowAutoRedirect = false;
+        }
+
+        public string EnvironmentName
+        {
+            get => _environmentName;
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value)) return;
+
+                _environmentName = value;
+            }
         }
 
         protected override void ConfigureWebHost(IWebHostBuilder builder)

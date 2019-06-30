@@ -19,7 +19,7 @@ namespace Aurochses.IdentityServer.Website.Controllers
             _hostingEnvironment = hostingEnvironment;
         }
 
-        public IActionResult Index(string returnUrl = null)
+        public IActionResult Index(string returnUrl)
         {
             if (_hostingEnvironment.IsDevelopment())
             {

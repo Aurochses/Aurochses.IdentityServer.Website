@@ -8,7 +8,7 @@ namespace Aurochses.IdentityServer.Website.Controllers
     public class SignInController : Controller
     {
         [HttpGet]
-        public async Task<IActionResult> Index(string returnUrl = null)
+        public async Task<IActionResult> Index(string returnUrl)
         {
             // build a model so we know what to show on the login page
             var viewModel = await BuildSignInViewModel(returnUrl);

@@ -1,6 +1,5 @@
 ﻿using System.Net;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc.Testing;
 using Xunit;
 
 namespace Aurochses.IdentityServer.Website.IntegrationTests.Controllers
@@ -11,12 +10,7 @@ namespace Aurochses.IdentityServer.Website.IntegrationTests.Controllers
         public async Task Index_WhenHostingEnvironmentIsDevelopment_ReturnView()
         {
             // Arrange
-            var client = new TestWebApplicationFactory("Development").CreateClient(
-                new WebApplicationFactoryClientOptions
-                {
-                    AllowAutoRedirect = false
-                }
-            );
+            var client = new TestWebApplicationFactory {EnvironmentName = "Development"}.CreateClient();
 
             // Act
             var response = await client.GetAsync("/");
@@ -30,12 +24,7 @@ namespace Aurochses.IdentityServer.Website.IntegrationTests.Controllers
         public async Task Index_WhenHostingEnvironmentIsNotDevelopment_RedirectToSignIn()
         {
             // Arrange
-            var client = new TestWebApplicationFactory("IsNotDevelopment").CreateClient(
-                new WebApplicationFactoryClientOptions
-                {
-                    AllowAutoRedirect = false
-                }
-            );
+            var client = new TestWebApplicationFactory {EnvironmentName = "IsNotDevelopment"}.CreateClient();
 
             // Act
             var response = await client.GetAsync("/");
