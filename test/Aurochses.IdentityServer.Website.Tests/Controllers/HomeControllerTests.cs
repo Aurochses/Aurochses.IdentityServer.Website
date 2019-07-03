@@ -5,15 +5,25 @@ using Aurochses.IdentityServer.Website.Filters;
 using Aurochses.Xunit;
 using Aurochses.Xunit.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Hosting.Internal;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging.Abstractions;
+using Microsoft.Extensions.Logging;
+using Moq;
 using Xunit;
 
 namespace Aurochses.IdentityServer.Website.Tests.Controllers
 {
-    public class HomeControllerTests
+    public class HomeControllerTests : ControllerTestsBase<HomeController>
     {
+        private readonly HomeController _controller;
+
+        public HomeControllerTests()
+        {
+            _controller = new HomeController(
+                MockLogger.Object,
+                MockHostingEnvironment.Object
+            );
+        }
+
         [Theory]
         [InlineData(typeof(SecurityHeadersAttribute))]
         [InlineData(typeof(AllowAnonymousAttribute))]
@@ -26,21 +36,18 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
         [Fact]
         public void Inherit_Controller()
         {
-            // Arrange & Act
-            var controller = new HomeController(new NullLogger<HomeController>(), new HostingEnvironment());
-
-            // Assert
-            Assert.IsAssignableFrom<Controller>(controller);
+            // Arrange & Act & Assert
+            Assert.IsAssignableFrom<Controller>(_controller);
         }
 
         [Fact]
         public void Index_WhenHostingEnvironmentIsDevelopment_ReturnViewResult()
         {
             // Arrange
-            var controller = new HomeController(new NullLogger<HomeController>(), new HostingEnvironment {EnvironmentName = "Development"});
+            SetupHostingEnvironmentName("Development");
 
             // Act
-            var actionResult = controller.Index(string.Empty);
+            var actionResult = _controller.Index(string.Empty);
 
             // Assert
             MvcAssert.ViewResult(actionResult);
@@ -51,13 +58,12 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
         [InlineData("http://www.example.com")]
         public void Index_WhenHostingEnvironmentIsNotDevelopment_RedirectToActionResult(string returnUrl)
         {
-            // Arrange
-            var controller = new HomeController(new NullLogger<HomeController>(), new HostingEnvironment());
-
-            // Act
-            var actionResult = controller.Index(returnUrl);
+            // Arrange & Act
+            var actionResult = _controller.Index(returnUrl);
 
             // Assert
+            VerifyLogger(LogLevel.Information, Times.Once);
+
             MvcAssert.RedirectToActionResult(
                 actionResult,
                 "Index",

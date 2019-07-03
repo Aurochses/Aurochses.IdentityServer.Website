@@ -7,20 +7,28 @@ using Aurochses.Xunit.AspNetCore.Mvc;
 using IdentityServer4.Models;
 using IdentityServer4.Services;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Hosting.Internal;
-using Microsoft.Extensions.Logging.Abstractions;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Moq;
 using Xunit;
 
 namespace Aurochses.IdentityServer.Website.Tests.Controllers
 {
-    public class ErrorControllerTests
+    public class ErrorControllerTests : ControllerTestsBase<ErrorController>
     {
         private readonly Mock<IIdentityServerInteractionService> _mockIdentityServerInteractionService;
+
+        private readonly ErrorController _controller;
 
         public ErrorControllerTests()
         {
             _mockIdentityServerInteractionService = new Mock<IIdentityServerInteractionService>(MockBehavior.Strict);
+
+            _controller = new ErrorController(
+                MockLogger.Object,
+                MockHostingEnvironment.Object,
+                _mockIdentityServerInteractionService.Object
+            );
         }
 
         [Theory]
@@ -33,19 +41,24 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
         }
 
         [Fact]
+        public void Inherit_Controller()
+        {
+            // Arrange & Act & Assert
+            Assert.IsAssignableFrom<Controller>(_controller);
+        }
+
+        [Fact]
         public async Task Index_WhenIdentityServerInteractionServiceErrorMessageIsNull_ReturnViewResult()
         {
             // Arrange
             const string errorId = "Test ErrorId";
-
-            var controller = new ErrorController(new NullLogger<ErrorController>(), new HostingEnvironment(), _mockIdentityServerInteractionService.Object);
 
             _mockIdentityServerInteractionService
                 .Setup(x => x.GetErrorContextAsync(errorId))
                 .ReturnsAsync(() => null);
 
             // Act
-            var actionResult = await controller.Index(errorId);
+            var actionResult = await _controller.Index(errorId);
 
             // Assert
             MvcAssert.ViewResult(actionResult, "Error");
@@ -56,8 +69,6 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
         {
             // Arrange
             const string errorId = "Test ErrorId";
-
-            var controller = new ErrorController(new NullLogger<ErrorController>(), new HostingEnvironment(), _mockIdentityServerInteractionService.Object);
 
             _mockIdentityServerInteractionService
                 .Setup(x => x.GetErrorContextAsync(errorId))
@@ -75,9 +86,11 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
                 );
 
             // Act
-            var actionResult = await controller.Index(errorId);
+            var actionResult = await _controller.Index(errorId);
 
             // Assert
+            VerifyLogger(LogLevel.Error, Times.Once);
+
             MvcAssert.ViewResult(
                 actionResult,
                 "Error",
@@ -98,9 +111,9 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
         public async Task Index_WhenIdentityServerInteractionServiceErrorMessageIsNotNullAndHostingEnvironmentIsDevelopment_ReturnViewResult()
         {
             // Arrange
-            const string errorId = "Test ErrorId";
+            SetupHostingEnvironmentName("Development");
 
-            var controller = new ErrorController(new NullLogger<ErrorController>(), new HostingEnvironment { EnvironmentName = "Development" }, _mockIdentityServerInteractionService.Object);
+            const string errorId = "Test ErrorId";
 
             _mockIdentityServerInteractionService
                 .Setup(x => x.GetErrorContextAsync(errorId))
@@ -118,7 +131,7 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
                 );
 
             // Act
-            var actionResult = await controller.Index(errorId);
+            var actionResult = await _controller.Index(errorId);
 
             // Assert
             MvcAssert.ViewResult(

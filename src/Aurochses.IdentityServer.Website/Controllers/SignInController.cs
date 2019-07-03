@@ -1,17 +1,21 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Aurochses.IdentityServer.Website.Filters;
 using Aurochses.IdentityServer.Website.Models.SignIn;
 using Aurochses.IdentityServer.Website.Options;
 using IdentityServer4.Services;
 using IdentityServer4.Stores;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
 namespace Aurochses.IdentityServer.Website.Controllers
 {
+    [SecurityHeaders]
+    [AllowAnonymous]
     public class SignInController : Controller
     {
         private readonly ILogger _logger;
