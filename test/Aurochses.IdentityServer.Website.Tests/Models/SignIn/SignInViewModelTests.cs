@@ -140,7 +140,7 @@ namespace Aurochses.IdentityServer.Website.Tests.Models.SignIn
             _signInViewModel.ExternalProviders = externalProviders;
 
             // Assert
-            ObjectAssert.ValueEquals(expectedValue, _signInViewModel.VisibleExternalProviders);
+            ObjectAssert.DeepEquals(expectedValue, _signInViewModel.VisibleExternalProviders);
         }
 
         public static IEnumerable<object[]> IsExternalLoginOnlyMemberData => new[]
@@ -218,7 +218,7 @@ namespace Aurochses.IdentityServer.Website.Tests.Models.SignIn
         public void IsExternalLoginOnly_Get_Success(SignInViewModel signInViewModel, bool expectedValue)
         {
             // Arrange & Act & Assert
-            ObjectAssert.ValueEquals(expectedValue, signInViewModel.IsExternalLoginOnly);
+            ObjectAssert.DeepEquals(expectedValue, signInViewModel.IsExternalLoginOnly);
         }
 
         public static IEnumerable<object[]> ExternalLoginSchemeMemberData => new[]
@@ -275,7 +275,7 @@ namespace Aurochses.IdentityServer.Website.Tests.Models.SignIn
         public void ExternalLoginScheme_Get_Success(SignInViewModel signInViewModel, string expectedValue)
         {
             // Arrange & Act & Assert
-            ObjectAssert.ValueEquals(expectedValue, signInViewModel.ExternalLoginScheme);
+            ObjectAssert.DeepEquals(expectedValue, signInViewModel.ExternalLoginScheme);
         }
     }
 }
