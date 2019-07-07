@@ -67,7 +67,7 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
             MvcAssert.RedirectToActionResult(
                 actionResult,
                 "Index",
-                "SignIn",
+                "Login",
                 new List<KeyValuePair<string, object>>
                 {
                     new KeyValuePair<string, object>("ReturnUrl", returnUrl)

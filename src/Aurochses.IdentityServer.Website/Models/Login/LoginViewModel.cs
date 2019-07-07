@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Aurochses.IdentityServer.Website.Models.SignIn
+namespace Aurochses.IdentityServer.Website.Models.Login
 {
-    public class SignInViewModel : SignInInputModel
+    public class LoginViewModel : LoginInputModel
     {
         public bool AllowRememberLogin { get; set; }
         public bool EnableLocalLogin { get; set; }

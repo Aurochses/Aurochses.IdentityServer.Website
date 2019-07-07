@@ -21,7 +21,7 @@ namespace Aurochses.IdentityServer.Website.IntegrationTests.Controllers
         }
 
         [Fact]
-        public async Task Index_WhenHostingEnvironmentIsNotDevelopment_RedirectToSignIn()
+        public async Task Index_WhenHostingEnvironmentIsNotDevelopment_RedirectToLogin()
         {
             // Arrange
             var client = new TestWebApplicationFactory {EnvironmentName = "IsNotDevelopment"}.CreateClient();
@@ -31,7 +31,7 @@ namespace Aurochses.IdentityServer.Website.IntegrationTests.Controllers
 
             // Assert
             Assert.Equal(HttpStatusCode.Redirect, response.StatusCode);
-            Assert.Equal("/SignIn", response.Headers.Location.OriginalString);
+            Assert.Equal("/Login", response.Headers.Location.OriginalString);
         }
     }
 }

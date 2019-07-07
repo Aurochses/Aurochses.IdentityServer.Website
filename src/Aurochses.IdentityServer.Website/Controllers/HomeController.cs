@@ -30,8 +30,8 @@ namespace Aurochses.IdentityServer.Website.Controllers
                 return View();
             }
 
-            _logger.LogInformation("Homepage is disabled in production. Redirect to SignIn page.");
-            return RedirectToAction("Index", "SignIn", new { ReturnUrl = returnUrl });
+            _logger.LogInformation("Homepage is disabled in production. Redirect to Login page.");
+            return RedirectToAction("Index", "Login", new { ReturnUrl = returnUrl });
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace Aurochses.IdentityServer.Website.Models.SignIn
+﻿namespace Aurochses.IdentityServer.Website.Models.Login
 {
     public class ExternalProvider
     {

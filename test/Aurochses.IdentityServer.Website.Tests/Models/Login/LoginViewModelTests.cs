@@ -1,32 +1,32 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Aurochses.IdentityServer.Website.Models.SignIn;
+using Aurochses.IdentityServer.Website.Models.Login;
 using Aurochses.Xunit;
 using Xunit;
 
-namespace Aurochses.IdentityServer.Website.Tests.Models.SignIn
+namespace Aurochses.IdentityServer.Website.Tests.Models.Login
 {
-    public class SignInViewModelTests
+    public class LoginViewModelTests
     {
-        private readonly SignInViewModel _signInViewModel;
+        private readonly LoginViewModel _loginViewModel;
 
-        public SignInViewModelTests()
+        public LoginViewModelTests()
         {
-            _signInViewModel = new SignInViewModel();
+            _loginViewModel = new LoginViewModel();
         }
 
         [Fact]
-        public void Inherit_SignInInputModel()
+        public void Inherit_LoginInputModel()
         {
             // Arrange & Act & Assert
-            Assert.IsAssignableFrom<SignInInputModel>(_signInViewModel);
+            Assert.IsAssignableFrom<LoginInputModel>(_loginViewModel);
         }
 
         [Fact]
         public void AllowRememberLogin_Get_Success()
         {
             // Arrange & Act & Assert
-            Assert.Equal(default(bool), _signInViewModel.AllowRememberLogin);
+            Assert.Equal(default(bool), _loginViewModel.AllowRememberLogin);
         }
 
         [Fact]
@@ -36,17 +36,17 @@ namespace Aurochses.IdentityServer.Website.Tests.Models.SignIn
             const bool expectedValue = true;
 
             // Act
-            _signInViewModel.AllowRememberLogin = expectedValue;
+            _loginViewModel.AllowRememberLogin = expectedValue;
 
             // Assert
-            Assert.Equal(expectedValue, _signInViewModel.AllowRememberLogin);
+            Assert.Equal(expectedValue, _loginViewModel.AllowRememberLogin);
         }
 
         [Fact]
         public void EnableLocalLogin_Get_Success()
         {
             // Arrange & Act & Assert
-            Assert.Equal(default(bool), _signInViewModel.EnableLocalLogin);
+            Assert.Equal(default(bool), _loginViewModel.EnableLocalLogin);
         }
 
         [Fact]
@@ -56,17 +56,17 @@ namespace Aurochses.IdentityServer.Website.Tests.Models.SignIn
             const bool expectedValue = true;
 
             // Act
-            _signInViewModel.EnableLocalLogin = expectedValue;
+            _loginViewModel.EnableLocalLogin = expectedValue;
 
             // Assert
-            Assert.Equal(expectedValue, _signInViewModel.EnableLocalLogin);
+            Assert.Equal(expectedValue, _loginViewModel.EnableLocalLogin);
         }
 
         [Fact]
         public void ExternalProviders_Get_Success()
         {
             // Arrange & Act & Assert
-            Assert.Equal(Enumerable.Empty<ExternalProvider>(), _signInViewModel.ExternalProviders);
+            Assert.Equal(Enumerable.Empty<ExternalProvider>(), _loginViewModel.ExternalProviders);
         }
 
         [Fact]
@@ -83,10 +83,10 @@ namespace Aurochses.IdentityServer.Website.Tests.Models.SignIn
             };
 
             // Act
-            _signInViewModel.ExternalProviders = expectedValue;
+            _loginViewModel.ExternalProviders = expectedValue;
 
             // Assert
-            Assert.Equal(expectedValue, _signInViewModel.ExternalProviders);
+            Assert.Equal(expectedValue, _loginViewModel.ExternalProviders);
         }
 
         [Fact]
@@ -137,22 +137,22 @@ namespace Aurochses.IdentityServer.Website.Tests.Models.SignIn
             };
 
             // Act
-            _signInViewModel.ExternalProviders = externalProviders;
+            _loginViewModel.ExternalProviders = externalProviders;
 
             // Assert
-            ObjectAssert.DeepEquals(expectedValue, _signInViewModel.VisibleExternalProviders);
+            ObjectAssert.DeepEquals(expectedValue, _loginViewModel.VisibleExternalProviders);
         }
 
         public static IEnumerable<object[]> IsExternalLoginOnlyMemberData => new[]
         {
             new object[]
             {
-                new SignInViewModel(),
+                new LoginViewModel(),
                 false
             },
             new object[]
             {
-                new SignInViewModel
+                new LoginViewModel
                 {
                     EnableLocalLogin = false
                 },
@@ -160,7 +160,7 @@ namespace Aurochses.IdentityServer.Website.Tests.Models.SignIn
             },
             new object[]
             {
-                new SignInViewModel
+                new LoginViewModel
                 {
                     EnableLocalLogin = true
                 },
@@ -168,7 +168,7 @@ namespace Aurochses.IdentityServer.Website.Tests.Models.SignIn
             },
             new object[]
             {
-                new SignInViewModel
+                new LoginViewModel
                 {
                     ExternalProviders = null
                 },
@@ -176,7 +176,7 @@ namespace Aurochses.IdentityServer.Website.Tests.Models.SignIn
             },
             new object[]
             {
-                new SignInViewModel
+                new LoginViewModel
                 {
                     EnableLocalLogin = true,
                     ExternalProviders = new List<ExternalProvider>
@@ -188,7 +188,7 @@ namespace Aurochses.IdentityServer.Website.Tests.Models.SignIn
             },
             new object[]
             {
-                new SignInViewModel
+                new LoginViewModel
                 {
                     EnableLocalLogin = false,
                     ExternalProviders = new List<ExternalProvider>
@@ -201,7 +201,7 @@ namespace Aurochses.IdentityServer.Website.Tests.Models.SignIn
             },
             new object[]
             {
-                new SignInViewModel
+                new LoginViewModel
                 {
                     EnableLocalLogin = false,
                     ExternalProviders = new List<ExternalProvider>
@@ -215,22 +215,22 @@ namespace Aurochses.IdentityServer.Website.Tests.Models.SignIn
 
         [Theory]
         [MemberData(nameof(IsExternalLoginOnlyMemberData))]
-        public void IsExternalLoginOnly_Get_Success(SignInViewModel signInViewModel, bool expectedValue)
+        public void IsExternalLoginOnly_Get_Success(LoginViewModel loginViewModel, bool expectedValue)
         {
             // Arrange & Act & Assert
-            ObjectAssert.DeepEquals(expectedValue, signInViewModel.IsExternalLoginOnly);
+            ObjectAssert.DeepEquals(expectedValue, loginViewModel.IsExternalLoginOnly);
         }
 
         public static IEnumerable<object[]> ExternalLoginSchemeMemberData => new[]
         {
             new object[]
             {
-                new SignInViewModel(),
+                new LoginViewModel(),
                 null
             },
             new object[]
             {
-                new SignInViewModel
+                new LoginViewModel
                 {
                     EnableLocalLogin = false,
                     ExternalProviders = new List<ExternalProvider>
@@ -243,7 +243,7 @@ namespace Aurochses.IdentityServer.Website.Tests.Models.SignIn
             },
             new object[]
             {
-                new SignInViewModel
+                new LoginViewModel
                 {
                     EnableLocalLogin = false,
                     ExternalProviders = new List<ExternalProvider>
@@ -255,7 +255,7 @@ namespace Aurochses.IdentityServer.Website.Tests.Models.SignIn
             },
             new object[]
             {
-                new SignInViewModel
+                new LoginViewModel
                 {
                     EnableLocalLogin = false,
                     ExternalProviders = new List<ExternalProvider>
@@ -272,10 +272,10 @@ namespace Aurochses.IdentityServer.Website.Tests.Models.SignIn
 
         [Theory]
         [MemberData(nameof(ExternalLoginSchemeMemberData))]
-        public void ExternalLoginScheme_Get_Success(SignInViewModel signInViewModel, string expectedValue)
+        public void ExternalLoginScheme_Get_Success(LoginViewModel loginViewModel, string expectedValue)
         {
             // Arrange & Act & Assert
-            ObjectAssert.DeepEquals(expectedValue, signInViewModel.ExternalLoginScheme);
+            ObjectAssert.DeepEquals(expectedValue, loginViewModel.ExternalLoginScheme);
         }
     }
 }

@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Aurochses.IdentityServer.Website.Filters;
-using Aurochses.IdentityServer.Website.Models.SignIn;
+using Aurochses.IdentityServer.Website.Models.Login;
 using Aurochses.IdentityServer.Website.Options;
 using IdentityServer4.Services;
 using IdentityServer4.Stores;
@@ -16,7 +16,7 @@ namespace Aurochses.IdentityServer.Website.Controllers
 {
     [SecurityHeaders]
     [AllowAnonymous]
-    public class SignInController : Controller
+    public class LoginController : Controller
     {
         private readonly ILogger _logger;
         private readonly AccountOptions _accountOptions;
@@ -24,8 +24,8 @@ namespace Aurochses.IdentityServer.Website.Controllers
         private readonly IAuthenticationSchemeProvider _authenticationSchemeProvider;
         private readonly IClientStore _clientStore;
 
-        public SignInController(
-            ILogger<SignInController> logger,
+        public LoginController(
+            ILogger<LoginController> logger,
             IOptions<AccountOptions> accountOptions,
             IIdentityServerInteractionService identityServerInteractionService,
             IAuthenticationSchemeProvider authenticationSchemeProvider,
@@ -43,7 +43,7 @@ namespace Aurochses.IdentityServer.Website.Controllers
         public async Task<IActionResult> Index(string returnUrl)
         {
             // build a model so we know what to show on the login page
-            var viewModel = await BuildSignInViewModel(returnUrl);
+            var viewModel = await BuildLoginViewModel(returnUrl);
 
             if (viewModel.IsExternalLoginOnly)
             {
@@ -57,18 +57,18 @@ namespace Aurochses.IdentityServer.Website.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Index(SignInInputModel model, string button)
+        public async Task<IActionResult> Index(LoginInputModel model, string button)
         {
             throw new NotImplementedException();
         }
 
-        private async Task<SignInViewModel> BuildSignInViewModel(string returnUrl)
+        private async Task<LoginViewModel> BuildLoginViewModel(string returnUrl)
         {
             var context = await _identityServerInteractionService.GetAuthorizationContextAsync(returnUrl);
             if (context?.IdP != null)
             {
                 // this is meant to short circuit the UI and only trigger the one external IdP
-                return new SignInViewModel
+                return new LoginViewModel
                 {
                     UserName = context.LoginHint,
                     ReturnUrl = returnUrl,
@@ -116,7 +116,7 @@ namespace Aurochses.IdentityServer.Website.Controllers
                 }
             }
 
-            return new SignInViewModel
+            return new LoginViewModel
             {
                 UserName = context?.LoginHint,
                 ReturnUrl = returnUrl,

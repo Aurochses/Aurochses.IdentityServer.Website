@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Aurochses.IdentityServer.Website.Controllers;
 using Aurochses.IdentityServer.Website.Filters;
-using Aurochses.IdentityServer.Website.Models.SignIn;
+using Aurochses.IdentityServer.Website.Models.Login;
 using Aurochses.IdentityServer.Website.Options;
 using Aurochses.Xunit;
 using Aurochses.Xunit.AspNetCore.Mvc;
@@ -20,7 +20,7 @@ using Xunit;
 
 namespace Aurochses.IdentityServer.Website.Tests.Controllers
 {
-    public class SignInControllerTests : ControllerTestsBase<SignInController>
+    public class LoginControllerTests : ControllerTestsBase<LoginController>
     {
         private const string WindowsAuthenticationSchemeName = "Test WindowsAuthenticationSchemeName";
 
@@ -28,9 +28,9 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
         private readonly Mock<IAuthenticationSchemeProvider> _mockAuthenticationSchemeProvider;
         private readonly Mock<IClientStore> _mockClientStore;
 
-        private readonly SignInController _controller;
+        private readonly LoginController _controller;
 
-        public SignInControllerTests()
+        public LoginControllerTests()
         {
             var mockAccountOptions = new Mock<IOptions<AccountOptions>>(MockBehavior.Strict);
             mockAccountOptions
@@ -48,7 +48,7 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
             _mockAuthenticationSchemeProvider = new Mock<IAuthenticationSchemeProvider>(MockBehavior.Strict);
             _mockClientStore = new Mock<IClientStore>(MockBehavior.Strict);
 
-            _controller = new SignInController(
+            _controller = new LoginController(
                 MockLogger.Object,
                 mockAccountOptions.Object,
                 _mockIdentityServerInteractionService.Object,
@@ -63,7 +63,7 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
         public void Attribute_Defined(Type attributeType)
         {
             // Arrange & Act & Assert
-            TypeAssert.HasAttribute<SignInController>(attributeType);
+            TypeAssert.HasAttribute<LoginController>(attributeType);
         }
 
         [Fact]
@@ -138,7 +138,7 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
                     }
                 );
 
-            var expectedModel = new SignInViewModel
+            var expectedModel = new LoginViewModel
             {
                 UserName = loginHint,
                 ReturnUrl = returnUrl,
@@ -250,7 +250,7 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
                     }
                 );
 
-            var expectedModel = new SignInViewModel
+            var expectedModel = new LoginViewModel
             {
                 UserName = loginHint,
                 ReturnUrl = returnUrl,
@@ -300,7 +300,7 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
                     }
                 );
 
-            var expectedModel = new SignInViewModel
+            var expectedModel = new LoginViewModel
             {
                 UserName = null,
                 ReturnUrl = returnUrl,

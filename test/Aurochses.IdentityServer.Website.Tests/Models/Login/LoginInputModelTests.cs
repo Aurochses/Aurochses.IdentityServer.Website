@@ -1,18 +1,18 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using Aurochses.IdentityServer.Website.Models.SignIn;
+using Aurochses.IdentityServer.Website.Models.Login;
 using Aurochses.Xunit;
 using Xunit;
 
-namespace Aurochses.IdentityServer.Website.Tests.Models.SignIn
+namespace Aurochses.IdentityServer.Website.Tests.Models.Login
 {
-    public class SignInInputModelTests
+    public class LoginInputModelTests
     {
-        private readonly SignInInputModel _signInInputModel;
+        private readonly LoginInputModel _loginInputModel;
 
-        public SignInInputModelTests()
+        public LoginInputModelTests()
         {
-            _signInInputModel = new SignInInputModel();
+            _loginInputModel = new LoginInputModel();
         }
 
         [Theory]
@@ -20,14 +20,14 @@ namespace Aurochses.IdentityServer.Website.Tests.Models.SignIn
         public void UserName_Attribute_Defined(Type attributeType)
         {
             // Arrange & Act & Assert
-            TypeAssert.PropertyHasAttribute<SignInInputModel>("UserName", attributeType);
+            TypeAssert.PropertyHasAttribute<LoginInputModel>("UserName", attributeType);
         }
 
         [Fact]
         public void UserName_Get_Success()
         {
             // Arrange & Act & Assert
-            Assert.Equal(default(string), _signInInputModel.UserName);
+            Assert.Equal(default(string), _loginInputModel.UserName);
         }
 
         [Fact]
@@ -37,10 +37,10 @@ namespace Aurochses.IdentityServer.Website.Tests.Models.SignIn
             const string expectedValue = "ExpectedValue";
 
             // Act
-            _signInInputModel.UserName = expectedValue;
+            _loginInputModel.UserName = expectedValue;
 
             // Assert
-            Assert.Equal(expectedValue, _signInInputModel.UserName);
+            Assert.Equal(expectedValue, _loginInputModel.UserName);
         }
 
         [Theory]
@@ -49,7 +49,7 @@ namespace Aurochses.IdentityServer.Website.Tests.Models.SignIn
         public void Password_Attribute_Defined(Type attributeType, string attributePropertyName, object attributePropertyValue)
         {
             // Arrange & Act & Assert
-            var propertyInfo = TypeAssert.PropertyHasAttribute<SignInInputModel>("Password", attributeType);
+            var propertyInfo = TypeAssert.PropertyHasAttribute<LoginInputModel>("Password", attributeType);
 
             if (attributePropertyName != null)
             {
@@ -61,7 +61,7 @@ namespace Aurochses.IdentityServer.Website.Tests.Models.SignIn
         public void Password_Get_Success()
         {
             // Arrange & Act & Assert
-            Assert.Equal(default(string), _signInInputModel.Password);
+            Assert.Equal(default(string), _loginInputModel.Password);
         }
 
         [Fact]
@@ -71,17 +71,17 @@ namespace Aurochses.IdentityServer.Website.Tests.Models.SignIn
             const string expectedValue = "ExpectedValue";
 
             // Act
-            _signInInputModel.Password = expectedValue;
+            _loginInputModel.Password = expectedValue;
 
             // Assert
-            Assert.Equal(expectedValue, _signInInputModel.Password);
+            Assert.Equal(expectedValue, _loginInputModel.Password);
         }
 
         [Fact]
         public void RememberLogin_Get_Success()
         {
             // Arrange & Act & Assert
-            Assert.Equal(default(bool), _signInInputModel.RememberLogin);
+            Assert.Equal(default(bool), _loginInputModel.RememberLogin);
         }
 
         [Fact]
@@ -91,17 +91,17 @@ namespace Aurochses.IdentityServer.Website.Tests.Models.SignIn
             const bool expectedValue = true;
 
             // Act
-            _signInInputModel.RememberLogin = expectedValue;
+            _loginInputModel.RememberLogin = expectedValue;
 
             // Assert
-            Assert.Equal(expectedValue, _signInInputModel.RememberLogin);
+            Assert.Equal(expectedValue, _loginInputModel.RememberLogin);
         }
 
         [Fact]
         public void ReturnUrl_Get_Success()
         {
             // Arrange & Act & Assert
-            Assert.Equal(default(string), _signInInputModel.ReturnUrl);
+            Assert.Equal(default(string), _loginInputModel.ReturnUrl);
         }
 
         [Fact]
@@ -111,10 +111,10 @@ namespace Aurochses.IdentityServer.Website.Tests.Models.SignIn
             const string expectedValue = "ExpectedValue";
 
             // Act
-            _signInInputModel.ReturnUrl = expectedValue;
+            _loginInputModel.ReturnUrl = expectedValue;
 
             // Assert
-            Assert.Equal(expectedValue, _signInInputModel.ReturnUrl);
+            Assert.Equal(expectedValue, _loginInputModel.ReturnUrl);
         }
     }
 }

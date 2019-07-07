@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Aurochses.IdentityServer.Website.Models.SignIn
+namespace Aurochses.IdentityServer.Website.Models.Login
 {
-    public class SignInInputModel
+    public class LoginInputModel
     {
         [Required]
         public string UserName { get; set; }

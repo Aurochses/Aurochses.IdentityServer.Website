@@ -1,7 +1,7 @@
-﻿using Aurochses.IdentityServer.Website.Models.SignIn;
+﻿using Aurochses.IdentityServer.Website.Models.Login;
 using Xunit;
 
-namespace Aurochses.IdentityServer.Website.Tests.Models.SignIn
+namespace Aurochses.IdentityServer.Website.Tests.Models.Login
 {
     public class ExternalProviderTests
     {
