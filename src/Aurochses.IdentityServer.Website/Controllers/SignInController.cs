@@ -48,6 +48,7 @@ namespace Aurochses.IdentityServer.Website.Controllers
             if (viewModel.IsExternalLoginOnly)
             {
                 // we only have one option for logging in and it's an external provider
+                _logger.LogInformation("We only have one option for logging in and it's an external provider.");
                 return RedirectToAction("Challenge", "External", new { Provider = viewModel.ExternalLoginScheme, ReturnUrl = returnUrl });
             }
 

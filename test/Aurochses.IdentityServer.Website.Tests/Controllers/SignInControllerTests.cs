@@ -13,14 +13,14 @@ using IdentityServer4.Stores;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging.Abstractions;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Moq;
 using Xunit;
 
 namespace Aurochses.IdentityServer.Website.Tests.Controllers
 {
-    public class SignInControllerTests
+    public class SignInControllerTests : ControllerTestsBase<SignInController>
     {
         private const string WindowsAuthenticationSchemeName = "Test WindowsAuthenticationSchemeName";
 
@@ -49,7 +49,7 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
             _mockClientStore = new Mock<IClientStore>(MockBehavior.Strict);
 
             _controller = new SignInController(
-                new NullLogger<SignInController>(),
+                MockLogger.Object,
                 mockAccountOptions.Object,
                 _mockIdentityServerInteractionService.Object,
                 _mockAuthenticationSchemeProvider.Object,
@@ -88,6 +88,8 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
             var actionResult = await _controller.Index(returnUrl);
 
             // Assert
+            VerifyLogger(LogLevel.Information, Times.Once);
+
             MvcAssert.RedirectToActionResult(
                 actionResult,
                 "Challenge",
@@ -106,10 +108,11 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
             // Arrange
             const string returnUrl = "Test ReturnUrl";
             const string clientId = "Test ClientId";
+            const string loginHint = "Test LoginHint";
 
             _mockIdentityServerInteractionService
                 .Setup(x => x.GetAuthorizationContextAsync(returnUrl))
-                .ReturnsAsync(new AuthorizationRequest {ClientId = clientId});
+                .ReturnsAsync(new AuthorizationRequest {ClientId = clientId, LoginHint = loginHint});
 
             _mockAuthenticationSchemeProvider
                 .Setup(x => x.GetAllSchemesAsync())
@@ -137,6 +140,168 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
 
             var expectedModel = new SignInViewModel
             {
+                UserName = loginHint,
+                ReturnUrl = returnUrl,
+
+                AllowRememberLogin = true,
+                EnableLocalLogin = true,
+
+                ExternalProviders = new[]
+                {
+                    new ExternalProvider
+                    {
+                        DisplayName = null,
+                        AuthenticationScheme = WindowsAuthenticationSchemeName
+                    }
+                }
+            };
+
+            // Act
+            var actionResult = await _controller.Index(returnUrl);
+
+            // Assert
+            MvcAssert.ViewResult(actionResult, model: expectedModel);
+        }
+
+        [Fact]
+        public async Task Index_WhenIdentityServerInteractionServiceAuthorizationContextClientIdIsNotNull_And_ClientEnableLocalLoginIsFalse_ReturnViewResult()
+        {
+            // Arrange
+            const string returnUrl = "Test ReturnUrl";
+            const string clientId = "Test ClientId";
+            const string loginHint = "Test LoginHint";
+
+            _mockIdentityServerInteractionService
+                .Setup(x => x.GetAuthorizationContextAsync(returnUrl))
+                .ReturnsAsync(new AuthorizationRequest { ClientId = clientId, LoginHint = loginHint });
+
+            _mockAuthenticationSchemeProvider
+                .Setup(x => x.GetAllSchemesAsync())
+                .ReturnsAsync(
+                    new List<AuthenticationScheme>
+                    {
+                        new AuthenticationScheme("Test Name", "Test DisplayName", typeof(IAuthenticationHandler)),
+                        new AuthenticationScheme(WindowsAuthenticationSchemeName, null, typeof(IAuthenticationHandler))
+                    }
+                );
+
+            _mockClientStore
+                .Setup(x => x.FindClientByIdAsync(clientId))
+                .ReturnsAsync(
+                    new Client
+                    {
+                        Enabled = true,
+                        EnableLocalLogin = false,
+                        IdentityProviderRestrictions = new List<string>
+                        {
+                            WindowsAuthenticationSchemeName
+                        }
+                    }
+                );
+
+            // Act
+            var actionResult = await _controller.Index(returnUrl);
+
+            // Assert
+            VerifyLogger(LogLevel.Information, Times.Once);
+
+            MvcAssert.RedirectToActionResult(
+                actionResult,
+                "Challenge",
+                "External",
+                new List<KeyValuePair<string, object>>
+                {
+                    new KeyValuePair<string, object>("Provider", WindowsAuthenticationSchemeName),
+                    new KeyValuePair<string, object>("ReturnUrl", returnUrl)
+                }
+            );
+        }
+
+        [Fact]
+        public async Task Index_WhenIdentityServerInteractionServiceAuthorizationContextClientIdIsNotNull_And_IdentityProviderRestrictionsIsNull_ReturnViewResult()
+        {
+            // Arrange
+            const string returnUrl = "Test ReturnUrl";
+            const string clientId = "Test ClientId";
+            const string loginHint = "Test LoginHint";
+
+            _mockIdentityServerInteractionService
+                .Setup(x => x.GetAuthorizationContextAsync(returnUrl))
+                .ReturnsAsync(new AuthorizationRequest { ClientId = clientId, LoginHint = loginHint });
+
+            _mockAuthenticationSchemeProvider
+                .Setup(x => x.GetAllSchemesAsync())
+                .ReturnsAsync(
+                    new List<AuthenticationScheme>
+                    {
+                        new AuthenticationScheme("Test Name", "Test DisplayName", typeof(IAuthenticationHandler)),
+                        new AuthenticationScheme(WindowsAuthenticationSchemeName, null, typeof(IAuthenticationHandler))
+                    }
+                );
+
+            _mockClientStore
+                .Setup(x => x.FindClientByIdAsync(clientId))
+                .ReturnsAsync(
+                    new Client
+                    {
+                        Enabled = true,
+                        EnableLocalLogin = true,
+                        IdentityProviderRestrictions = null
+                    }
+                );
+
+            var expectedModel = new SignInViewModel
+            {
+                UserName = loginHint,
+                ReturnUrl = returnUrl,
+
+                AllowRememberLogin = true,
+                EnableLocalLogin = true,
+
+                ExternalProviders = new[]
+                {
+                    new ExternalProvider
+                    {
+                        DisplayName = "Test DisplayName",
+                        AuthenticationScheme = "Test Name"
+                    },
+                    new ExternalProvider
+                    {
+                        DisplayName = null,
+                        AuthenticationScheme = WindowsAuthenticationSchemeName
+                    }
+                }
+            };
+
+            // Act
+            var actionResult = await _controller.Index(returnUrl);
+
+            // Assert
+            MvcAssert.ViewResult(actionResult, model: expectedModel);
+        }
+
+        [Fact]
+        public async Task Index_WhenIdentityServerInteractionServiceAuthorizationContextIsNull_ReturnViewResult()
+        {
+            // Arrange
+            const string returnUrl = "Test ReturnUrl";
+
+            _mockIdentityServerInteractionService
+                .Setup(x => x.GetAuthorizationContextAsync(returnUrl))
+                .ReturnsAsync(() => null);
+
+            _mockAuthenticationSchemeProvider
+                .Setup(x => x.GetAllSchemesAsync())
+                .ReturnsAsync(
+                    new List<AuthenticationScheme>
+                    {
+                        new AuthenticationScheme("Test Name", "Test DisplayName", typeof(IAuthenticationHandler)),
+                        new AuthenticationScheme(WindowsAuthenticationSchemeName, null, typeof(IAuthenticationHandler))
+                    }
+                );
+
+            var expectedModel = new SignInViewModel
+            {
                 UserName = null,
                 ReturnUrl = returnUrl,
 
@@ -145,6 +310,11 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
 
                 ExternalProviders = new[]
                 {
+                    new ExternalProvider
+                    {
+                        DisplayName = "Test DisplayName",
+                        AuthenticationScheme = "Test Name"
+                    },
                     new ExternalProvider
                     {
                         DisplayName = null,

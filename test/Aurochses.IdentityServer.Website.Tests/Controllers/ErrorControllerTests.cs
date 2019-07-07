@@ -108,7 +108,7 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
         }
 
         [Fact]
-        public async Task Index_WhenIdentityServerInteractionServiceErrorMessageIsNotNullAndHostingEnvironmentIsDevelopment_ReturnViewResult()
+        public async Task Index_WhenIdentityServerInteractionServiceErrorMessageIsNotNull_And_HostingEnvironmentIsDevelopment_ReturnViewResult()
         {
             // Arrange
             SetupHostingEnvironmentName("Development");
