@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Aurochses.AspNetCore.Identity.EntityFrameworkCore;
 using Aurochses.IdentityServer.Website.Controllers;
 using Aurochses.IdentityServer.Website.Filters;
 using Aurochses.IdentityServer.Website.Models.Login;
@@ -12,6 +13,8 @@ using IdentityServer4.Services;
 using IdentityServer4.Stores;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -27,6 +30,9 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
         private readonly Mock<IIdentityServerInteractionService> _mockIdentityServerInteractionService;
         private readonly Mock<IAuthenticationSchemeProvider> _mockAuthenticationSchemeProvider;
         private readonly Mock<IClientStore> _mockClientStore;
+        private readonly Mock<SignInManager<ApplicationUser>> _mockSignInManager;
+        private readonly Mock<UserManager<ApplicationUser>> _mockUserManager;
+        private readonly Mock<IEventService> _mockEventService;
 
         private readonly LoginController _controller;
 
@@ -47,13 +53,19 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
             _mockIdentityServerInteractionService = new Mock<IIdentityServerInteractionService>(MockBehavior.Strict);
             _mockAuthenticationSchemeProvider = new Mock<IAuthenticationSchemeProvider>(MockBehavior.Strict);
             _mockClientStore = new Mock<IClientStore>(MockBehavior.Strict);
+            _mockUserManager = new Mock<UserManager<ApplicationUser>>(new Mock<IUserStore<ApplicationUser>>().Object, null, null, null, null, null, null, null, null);
+            _mockSignInManager = new Mock<SignInManager<ApplicationUser>>(_mockUserManager.Object, new Mock<IHttpContextAccessor>().Object, new Mock<IUserClaimsPrincipalFactory<ApplicationUser>>().Object, new Mock<IOptions<IdentityOptions>>().Object, new Mock<ILogger<SignInManager<ApplicationUser>>>().Object, new Mock<IAuthenticationSchemeProvider>().Object);
+            _mockEventService = new Mock<IEventService>(MockBehavior.Strict);
 
             _controller = new LoginController(
                 MockLogger.Object,
                 mockAccountOptions.Object,
                 _mockIdentityServerInteractionService.Object,
                 _mockAuthenticationSchemeProvider.Object,
-                _mockClientStore.Object
+                _mockClientStore.Object,
+                _mockSignInManager.Object,
+                _mockUserManager.Object,
+                _mockEventService.Object
             );
         }
 
@@ -71,6 +83,14 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
         {
             // Arrange & Act & Assert
             Assert.IsAssignableFrom<Controller>(_controller);
+        }
+
+        [Theory]
+        [InlineData(typeof(HttpGetAttribute))]
+        public void IndexGet_Attribute_Defined(Type attributeType)
+        {
+            // Arrange & Act & Assert
+            TypeAssert.MethodHasAttribute<LoginController>("Index", new[] { typeof(string) }, attributeType);
         }
 
         [Fact]
@@ -328,6 +348,15 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
 
             // Assert
             MvcAssert.ViewResult(actionResult, model: expectedModel);
+        }
+
+        [Theory]
+        [InlineData(typeof(HttpPostAttribute))]
+        [InlineData(typeof(ValidateAntiForgeryTokenAttribute))]
+        public void IndexPost_Attribute_Defined(Type attributeType)
+        {
+            // Arrange & Act & Assert
+            TypeAssert.MethodHasAttribute<LoginController>("Index", new[] { typeof(LoginInputModel), typeof(string) }, attributeType);
         }
     }
 }
