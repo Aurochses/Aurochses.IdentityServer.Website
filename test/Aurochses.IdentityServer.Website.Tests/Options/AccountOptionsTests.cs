@@ -16,7 +16,7 @@ namespace Aurochses.IdentityServer.Website.Tests.Options
         public void AllowLocalLogin_Get_Success()
         {
             // Arrange & Act & Assert
-            Assert.Equal(default(bool), _accountOptions.AllowLocalLogin);
+            Assert.Equal(default, _accountOptions.AllowLocalLogin);
         }
 
         [Fact]
@@ -36,7 +36,7 @@ namespace Aurochses.IdentityServer.Website.Tests.Options
         public void AllowRememberLogin_Get_Success()
         {
             // Arrange & Act & Assert
-            Assert.Equal(default(bool), _accountOptions.AllowRememberLogin);
+            Assert.Equal(default, _accountOptions.AllowRememberLogin);
         }
 
         [Fact]
@@ -56,7 +56,7 @@ namespace Aurochses.IdentityServer.Website.Tests.Options
         public void WindowsAuthenticationSchemeName_Get_Success()
         {
             // Arrange & Act & Assert
-            Assert.Equal(default(string), _accountOptions.WindowsAuthenticationSchemeName);
+            Assert.Equal(default, _accountOptions.WindowsAuthenticationSchemeName);
         }
 
         [Fact]
@@ -70,6 +70,66 @@ namespace Aurochses.IdentityServer.Website.Tests.Options
 
             // Assert
             Assert.Equal(expectedValue, _accountOptions.WindowsAuthenticationSchemeName);
+        }
+
+        [Fact]
+        public void LockoutOnFailure_Get_Success()
+        {
+            // Arrange & Act & Assert
+            Assert.Equal(default, _accountOptions.LockoutOnFailure);
+        }
+
+        [Fact]
+        public void LockoutOnFailure_Set_Success()
+        {
+            // Arrange
+            const bool expectedValue = true;
+
+            // Act
+            _accountOptions.LockoutOnFailure = expectedValue;
+
+            // Assert
+            Assert.Equal(expectedValue, _accountOptions.LockoutOnFailure);
+        }
+
+        [Fact]
+        public void RequireEmailConfirmation_Get_Success()
+        {
+            // Arrange & Act & Assert
+            Assert.Equal(default, _accountOptions.RequireEmailConfirmation);
+        }
+
+        [Fact]
+        public void RequireEmailConfirmation_Set_Success()
+        {
+            // Arrange
+            const bool expectedValue = true;
+
+            // Act
+            _accountOptions.RequireEmailConfirmation = expectedValue;
+
+            // Assert
+            Assert.Equal(expectedValue, _accountOptions.RequireEmailConfirmation);
+        }
+
+        [Fact]
+        public void AllowTwoFactorAuthentication_Get_Success()
+        {
+            // Arrange & Act & Assert
+            Assert.Equal(default, _accountOptions.AllowTwoFactorAuthentication);
+        }
+
+        [Fact]
+        public void AllowTwoFactorAuthentication_Set_Success()
+        {
+            // Arrange
+            const bool expectedValue = true;
+
+            // Act
+            _accountOptions.AllowTwoFactorAuthentication = expectedValue;
+
+            // Assert
+            Assert.Equal(expectedValue, _accountOptions.AllowTwoFactorAuthentication);
         }
     }
 }

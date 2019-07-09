@@ -27,7 +27,7 @@ namespace Aurochses.IdentityServer.Website.Tests.Models.Login
         public void UserName_Get_Success()
         {
             // Arrange & Act & Assert
-            Assert.Equal(default(string), _loginInputModel.UserName);
+            Assert.Equal(default, _loginInputModel.UserName);
         }
 
         [Fact]
@@ -61,7 +61,7 @@ namespace Aurochses.IdentityServer.Website.Tests.Models.Login
         public void Password_Get_Success()
         {
             // Arrange & Act & Assert
-            Assert.Equal(default(string), _loginInputModel.Password);
+            Assert.Equal(default, _loginInputModel.Password);
         }
 
         [Fact]
@@ -81,7 +81,7 @@ namespace Aurochses.IdentityServer.Website.Tests.Models.Login
         public void RememberLogin_Get_Success()
         {
             // Arrange & Act & Assert
-            Assert.Equal(default(bool), _loginInputModel.RememberLogin);
+            Assert.Equal(default, _loginInputModel.RememberLogin);
         }
 
         [Fact]
@@ -101,7 +101,7 @@ namespace Aurochses.IdentityServer.Website.Tests.Models.Login
         public void ReturnUrl_Get_Success()
         {
             // Arrange & Act & Assert
-            Assert.Equal(default(string), _loginInputModel.ReturnUrl);
+            Assert.Equal(default, _loginInputModel.ReturnUrl);
         }
 
         [Fact]

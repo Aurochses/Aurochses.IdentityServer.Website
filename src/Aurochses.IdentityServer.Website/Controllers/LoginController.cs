@@ -92,7 +92,7 @@ namespace Aurochses.IdentityServer.Website.Controllers
                     {
                         // if the client is PKCE then we assume it's native, so this change in how to
                         // return the response is for better UX for the end user.
-                        return View("Redirect", new RedirectViewModel { RedirectUrl = model.ReturnUrl });
+                        return View("Redirect", new RedirectViewModel {RedirectUrl = model.ReturnUrl});
                     }
 
                     return Redirect(model.ReturnUrl);
@@ -106,11 +106,18 @@ namespace Aurochses.IdentityServer.Website.Controllers
 
             if (ModelState.IsValid)
             {
-                var result = await _signInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberLogin, lockoutOnFailure: true);
+                var result = await _signInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberLogin, _accountOptions.LockoutOnFailure);
 
                 if (result.Succeeded)
                 {
                     var user = await _userManager.FindByNameAsync(model.UserName);
+
+                    if (_accountOptions.RequireEmailConfirmation && !await _userManager.IsEmailConfirmedAsync(user))
+                    {
+                        await _signInManager.SignOutAsync();
+
+                        return RedirectToAction("Index", "EmailConfirmation");
+                    }
 
                     await _eventService.RaiseAsync(new UserLoginSuccessEvent(user.UserName, user.Id.ToString(), user.UserName));
 
@@ -120,7 +127,7 @@ namespace Aurochses.IdentityServer.Website.Controllers
                         {
                             // if the client is PKCE then we assume it's native, so this change in how to
                             // return the response is for better UX for the end user.
-                            return View("Redirect", new RedirectViewModel { RedirectUrl = model.ReturnUrl });
+                            return View("Redirect", new RedirectViewModel {RedirectUrl = model.ReturnUrl});
                         }
 
                         // we can trust model.ReturnUrl since GetAuthorizationContextAsync returned non-null
@@ -141,6 +148,14 @@ namespace Aurochses.IdentityServer.Website.Controllers
                         // user might have clicked on a malicious link - should be logged
                         throw new Exception("Invalid return URL");
                     }
+                }
+                if (_accountOptions.AllowTwoFactorAuthentication && result.RequiresTwoFactor)
+                {
+                    return RedirectToAction("SendCode", "TwoFactorLogin", new {model.ReturnUrl, model.RememberLogin});
+                }
+                if (_accountOptions.LockoutOnFailure && result.IsLockedOut)
+                {
+                    return RedirectToAction("Index", "LockedOut");
                 }
 
                 await _eventService.RaiseAsync(new UserLoginFailureEvent(model.UserName, "Invalid credentials"));

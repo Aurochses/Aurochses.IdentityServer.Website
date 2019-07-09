@@ -26,7 +26,7 @@ namespace Aurochses.IdentityServer.Website.Tests.Models.Login
         public void AllowRememberLogin_Get_Success()
         {
             // Arrange & Act & Assert
-            Assert.Equal(default(bool), _loginViewModel.AllowRememberLogin);
+            Assert.Equal(default, _loginViewModel.AllowRememberLogin);
         }
 
         [Fact]
@@ -46,7 +46,7 @@ namespace Aurochses.IdentityServer.Website.Tests.Models.Login
         public void EnableLocalLogin_Get_Success()
         {
             // Arrange & Act & Assert
-            Assert.Equal(default(bool), _loginViewModel.EnableLocalLogin);
+            Assert.Equal(default, _loginViewModel.EnableLocalLogin);
         }
 
         [Fact]

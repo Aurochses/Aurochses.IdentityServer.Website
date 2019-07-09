@@ -16,7 +16,7 @@ namespace Aurochses.IdentityServer.Website.Tests.Models.Login
         public void DisplayName_Get_Success()
         {
             // Arrange & Act & Assert
-            Assert.Equal(default(string), _externalProvider.DisplayName);
+            Assert.Equal(default, _externalProvider.DisplayName);
         }
 
         [Fact]
@@ -36,7 +36,7 @@ namespace Aurochses.IdentityServer.Website.Tests.Models.Login
         public void AuthenticationScheme_Get_Success()
         {
             // Arrange & Act & Assert
-            Assert.Equal(default(string), _externalProvider.AuthenticationScheme);
+            Assert.Equal(default, _externalProvider.AuthenticationScheme);
         }
 
         [Fact]

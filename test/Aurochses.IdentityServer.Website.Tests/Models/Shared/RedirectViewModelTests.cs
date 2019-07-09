@@ -16,7 +16,7 @@ namespace Aurochses.IdentityServer.Website.Tests.Models.Shared
         public void RedirectUrl_Get_Success()
         {
             // Arrange & Act & Assert
-            Assert.Equal(default(string), _redirectViewModel.RedirectUrl);
+            Assert.Equal(default, _redirectViewModel.RedirectUrl);
         }
 
         [Fact]
