@@ -85,6 +85,8 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
             Assert.IsAssignableFrom<Controller>(_controller);
         }
 
+        #region IndexGet
+
         [Theory]
         [InlineData(typeof(HttpGetAttribute))]
         public void IndexGet_Attribute_Defined(Type attributeType)
@@ -94,7 +96,7 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
         }
 
         [Fact]
-        public async Task Index_WhenIdentityServerInteractionServiceAuthorizationContextIdPIsNotNull_ReturnViewResult()
+        public async Task IndexGet_WhenIdentityServerInteractionServiceAuthorizationContextIdPIsNotNull_ReturnViewResult()
         {
             // Arrange
             const string returnUrl = "Test ReturnUrl";
@@ -123,7 +125,7 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
         }
 
         [Fact]
-        public async Task Index_WhenIdentityServerInteractionServiceAuthorizationContextClientIdIsNotNull_ReturnViewResult()
+        public async Task IndexGet_WhenIdentityServerInteractionServiceAuthorizationContextClientIdIsNotNull_ReturnViewResult()
         {
             // Arrange
             const string returnUrl = "Test ReturnUrl";
@@ -184,7 +186,7 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
         }
 
         [Fact]
-        public async Task Index_WhenIdentityServerInteractionServiceAuthorizationContextClientIdIsNotNull_And_ClientEnableLocalLoginIsFalse_ReturnViewResult()
+        public async Task IndexGet_WhenIdentityServerInteractionServiceAuthorizationContextClientIdIsNotNull_And_ClientEnableLocalLoginIsFalse_ReturnViewResult()
         {
             // Arrange
             const string returnUrl = "Test ReturnUrl";
@@ -238,7 +240,7 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
         }
 
         [Fact]
-        public async Task Index_WhenIdentityServerInteractionServiceAuthorizationContextClientIdIsNotNull_And_IdentityProviderRestrictionsIsNull_ReturnViewResult()
+        public async Task IndexGet_WhenIdentityServerInteractionServiceAuthorizationContextClientIdIsNotNull_And_IdentityProviderRestrictionsIsNull_ReturnViewResult()
         {
             // Arrange
             const string returnUrl = "Test ReturnUrl";
@@ -301,7 +303,7 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
         }
 
         [Fact]
-        public async Task Index_WhenIdentityServerInteractionServiceAuthorizationContextIsNull_ReturnViewResult()
+        public async Task IndexGet_WhenIdentityServerInteractionServiceAuthorizationContextIsNull_ReturnViewResult()
         {
             // Arrange
             const string returnUrl = "Test ReturnUrl";
@@ -350,6 +352,10 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
             MvcAssert.ViewResult(actionResult, model: expectedModel);
         }
 
+        #endregion
+
+        #region IndexPost
+
         [Theory]
         [InlineData(typeof(HttpPostAttribute))]
         [InlineData(typeof(ValidateAntiForgeryTokenAttribute))]
@@ -358,5 +364,7 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
             // Arrange & Act & Assert
             TypeAssert.MethodHasAttribute<LoginController>("Index", new[] { typeof(LoginInputModel), typeof(string) }, attributeType);
         }
+
+        #endregion
     }
 }
