@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Aurochses.IdentityServer.Website.Controllers;
 using Aurochses.IdentityServer.Website.Filters;
+using Aurochses.IdentityServer.Website.Tests.Fakes;
 using Aurochses.Xunit;
 using Aurochses.Xunit.AspNetCore.Mvc;
 using IdentityServer4.Models;
@@ -48,7 +49,7 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
         }
 
         [Fact]
-        public async Task Index_WhenIdentityServerInteractionServiceErrorMessageIsNull_ReturnViewResult()
+        public async Task Index_WhenErrorMessageIsNull_ReturnViewResult()
         {
             // Arrange
             const string errorId = "Test ErrorId";
@@ -65,7 +66,7 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
         }
 
         [Fact]
-        public async Task Index_WhenIdentityServerInteractionServiceErrorMessageIsNotNull_ReturnViewResult()
+        public async Task Index_WhenErrorMessageIsNotNull_ReturnViewResult()
         {
             // Arrange
             const string errorId = "Test ErrorId";
@@ -108,7 +109,7 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
         }
 
         [Fact]
-        public async Task Index_WhenIdentityServerInteractionServiceErrorMessageIsNotNull_And_HostingEnvironmentIsDevelopment_ReturnViewResult()
+        public async Task Index_WhenErrorMessageIsNotNull_And_IsDevelopment_ReturnViewResult()
         {
             // Arrange
             SetupHostingEnvironmentName("Development");

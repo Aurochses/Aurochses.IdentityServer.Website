@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Internal;
 using Moq;
 
-namespace Aurochses.IdentityServer.Website.Tests.Controllers
+namespace Aurochses.IdentityServer.Website.Tests.Fakes
 {
     public class ControllerTestsBase<TController>
         where TController : Controller

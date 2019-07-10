@@ -5,7 +5,9 @@ using Aurochses.AspNetCore.Identity.EntityFrameworkCore;
 using Aurochses.IdentityServer.Website.Controllers;
 using Aurochses.IdentityServer.Website.Filters;
 using Aurochses.IdentityServer.Website.Models.Login;
+using Aurochses.IdentityServer.Website.Models.Shared;
 using Aurochses.IdentityServer.Website.Options;
+using Aurochses.IdentityServer.Website.Tests.Fakes;
 using Aurochses.Xunit;
 using Aurochses.Xunit.AspNetCore.Mvc;
 using IdentityServer4.Models;
@@ -96,7 +98,7 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
         }
 
         [Fact]
-        public async Task IndexGet_WhenIdentityServerInteractionServiceAuthorizationContextIdPIsNotNull_ReturnViewResult()
+        public async Task IndexGet_WhenContextIdPIsNotNull_ReturnRedirectToActionResult()
         {
             // Arrange
             const string returnUrl = "Test ReturnUrl";
@@ -104,7 +106,12 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
 
             _mockIdentityServerInteractionService
                 .Setup(x => x.GetAuthorizationContextAsync(returnUrl))
-                .ReturnsAsync(new AuthorizationRequest {IdP = idP});
+                .ReturnsAsync(
+                    new AuthorizationRequest
+                    {
+                        IdP = idP
+                    }
+                );
 
             // Act
             var actionResult = await _controller.Index(returnUrl);
@@ -125,7 +132,7 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
         }
 
         [Fact]
-        public async Task IndexGet_WhenIdentityServerInteractionServiceAuthorizationContextClientIdIsNotNull_ReturnViewResult()
+        public async Task IndexGet_WhenContextClientIdIsNotNull_ReturnViewResult()
         {
             // Arrange
             const string returnUrl = "Test ReturnUrl";
@@ -134,7 +141,13 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
 
             _mockIdentityServerInteractionService
                 .Setup(x => x.GetAuthorizationContextAsync(returnUrl))
-                .ReturnsAsync(new AuthorizationRequest {ClientId = clientId, LoginHint = loginHint});
+                .ReturnsAsync(
+                    new AuthorizationRequest
+                    {
+                        ClientId = clientId,
+                        LoginHint = loginHint
+                    }
+                );
 
             _mockAuthenticationSchemeProvider
                 .Setup(x => x.GetAllSchemesAsync())
@@ -160,7 +173,7 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
                     }
                 );
 
-            var expectedModel = new LoginViewModel
+            var expectedViewModel = new LoginViewModel
             {
                 UserName = loginHint,
                 ReturnUrl = returnUrl,
@@ -182,11 +195,11 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
             var actionResult = await _controller.Index(returnUrl);
 
             // Assert
-            MvcAssert.ViewResult(actionResult, model: expectedModel);
+            MvcAssert.ViewResult(actionResult, model: expectedViewModel);
         }
 
         [Fact]
-        public async Task IndexGet_WhenIdentityServerInteractionServiceAuthorizationContextClientIdIsNotNull_And_ClientEnableLocalLoginIsFalse_ReturnViewResult()
+        public async Task IndexGet_WhenContextClientIdIsNotNull_And_ClientEnableLocalLoginIsFalse_ReturnRedirectToActionResult()
         {
             // Arrange
             const string returnUrl = "Test ReturnUrl";
@@ -195,7 +208,13 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
 
             _mockIdentityServerInteractionService
                 .Setup(x => x.GetAuthorizationContextAsync(returnUrl))
-                .ReturnsAsync(new AuthorizationRequest { ClientId = clientId, LoginHint = loginHint });
+                .ReturnsAsync(
+                    new AuthorizationRequest
+                    {
+                        ClientId = clientId,
+                        LoginHint = loginHint
+                    }
+                );
 
             _mockAuthenticationSchemeProvider
                 .Setup(x => x.GetAllSchemesAsync())
@@ -240,7 +259,7 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
         }
 
         [Fact]
-        public async Task IndexGet_WhenIdentityServerInteractionServiceAuthorizationContextClientIdIsNotNull_And_IdentityProviderRestrictionsIsNull_ReturnViewResult()
+        public async Task IndexGet_WhenContextClientIdIsNotNull_And_IdentityProviderRestrictionsIsNull_ReturnViewResult()
         {
             // Arrange
             const string returnUrl = "Test ReturnUrl";
@@ -249,7 +268,13 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
 
             _mockIdentityServerInteractionService
                 .Setup(x => x.GetAuthorizationContextAsync(returnUrl))
-                .ReturnsAsync(new AuthorizationRequest { ClientId = clientId, LoginHint = loginHint });
+                .ReturnsAsync(
+                    new AuthorizationRequest
+                    {
+                        ClientId = clientId,
+                        LoginHint = loginHint
+                    }
+                );
 
             _mockAuthenticationSchemeProvider
                 .Setup(x => x.GetAllSchemesAsync())
@@ -272,7 +297,7 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
                     }
                 );
 
-            var expectedModel = new LoginViewModel
+            var expectedViewModel = new LoginViewModel
             {
                 UserName = loginHint,
                 ReturnUrl = returnUrl,
@@ -299,11 +324,11 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
             var actionResult = await _controller.Index(returnUrl);
 
             // Assert
-            MvcAssert.ViewResult(actionResult, model: expectedModel);
+            MvcAssert.ViewResult(actionResult, model: expectedViewModel);
         }
 
         [Fact]
-        public async Task IndexGet_WhenIdentityServerInteractionServiceAuthorizationContextIsNull_ReturnViewResult()
+        public async Task IndexGet_WhenContextIsNull_ReturnViewResult()
         {
             // Arrange
             const string returnUrl = "Test ReturnUrl";
@@ -322,7 +347,7 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
                     }
                 );
 
-            var expectedModel = new LoginViewModel
+            var expectedViewModel = new LoginViewModel
             {
                 UserName = null,
                 ReturnUrl = returnUrl,
@@ -349,7 +374,7 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
             var actionResult = await _controller.Index(returnUrl);
 
             // Assert
-            MvcAssert.ViewResult(actionResult, model: expectedModel);
+            MvcAssert.ViewResult(actionResult, model: expectedViewModel);
         }
 
         #endregion
@@ -363,6 +388,133 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
         {
             // Arrange & Act & Assert
             TypeAssert.MethodHasAttribute<LoginController>("Index", new[] { typeof(LoginInputModel), typeof(string) }, attributeType);
+        }
+
+        [Fact]
+        public async Task IndexPost_WhenButtonIsNotLogin_And_ContextIsNotNull_And_IsPkceClientIsTrue_ReturnViewResult()
+        {
+            // Arrange
+            const string returnUrl = "Test ReturnUrl";
+            const string button = "Not login";
+            const string clientId = "Test ClientId";
+
+            var loginInputModel = new LoginInputModel
+            {
+                ReturnUrl = returnUrl
+            };
+
+            var context = new AuthorizationRequest
+            {
+                ClientId = clientId
+            };
+
+            _mockIdentityServerInteractionService
+                .Setup(x => x.GetAuthorizationContextAsync(returnUrl))
+                .ReturnsAsync(context);
+
+            _mockIdentityServerInteractionService
+                .Setup(x => x.GrantConsentAsync(context, ConsentResponse.Denied, null))
+                .Returns(Task.CompletedTask)
+                .Verifiable();
+
+            _mockClientStore
+                .Setup(x => x.FindClientByIdAsync(clientId))
+                .ReturnsAsync(
+                    new Client
+                    {
+                        RequirePkce = true
+                    }
+                );
+
+            var expectedViewModel = new RedirectViewModel
+            {
+                RedirectUrl = returnUrl
+            };
+
+            // Act
+            var actionResult = await _controller.Index(loginInputModel, button);
+
+            // Assert
+            _mockIdentityServerInteractionService
+                .Verify(x => x.GrantConsentAsync(context, ConsentResponse.Denied, null), Times.Once);
+
+            MvcAssert.ViewResult(actionResult, "Redirect", expectedViewModel);
+        }
+
+        [Fact]
+        public async Task IndexPost_WhenButtonIsNotLogin_And_ContextIsNotNull_And_IsPkceClientIsFalse_ReturnViewResult()
+        {
+            // Arrange
+            const string returnUrl = "Test ReturnUrl";
+            const string button = "Not login";
+            const string clientId = "Test ClientId";
+
+            var loginInputModel = new LoginInputModel
+            {
+                ReturnUrl = returnUrl
+            };
+
+            var context = new AuthorizationRequest
+            {
+                ClientId = clientId
+            };
+
+            _mockIdentityServerInteractionService
+                .Setup(x => x.GetAuthorizationContextAsync(returnUrl))
+                .ReturnsAsync(context);
+
+            _mockIdentityServerInteractionService
+                .Setup(x => x.GrantConsentAsync(context, ConsentResponse.Denied, null))
+                .Returns(Task.CompletedTask)
+                .Verifiable();
+
+            _mockClientStore
+                .Setup(x => x.FindClientByIdAsync(clientId))
+                .ReturnsAsync(
+                    new Client
+                    {
+                        RequirePkce = false
+                    }
+                );
+
+            // Act
+            var actionResult = await _controller.Index(loginInputModel, button);
+
+            // Assert
+            _mockIdentityServerInteractionService
+                .Verify(x => x.GrantConsentAsync(context, ConsentResponse.Denied, null), Times.Once);
+
+            MvcAssert.RedirectResult(
+                actionResult,
+                returnUrl
+            );
+        }
+
+        [Fact]
+        public async Task IndexPost_WhenButtonIsNotLogin_And_ContextIsNull_ReturnRedirectToAction()
+        {
+            // Arrange
+            const string returnUrl = "Test ReturnUrl";
+            const string button = "Not login";
+
+            var loginInputModel = new LoginInputModel
+            {
+                ReturnUrl = returnUrl
+            };
+
+            _mockIdentityServerInteractionService
+                .Setup(x => x.GetAuthorizationContextAsync(returnUrl))
+                .ReturnsAsync(() => null);
+
+            // Act
+            var actionResult = await _controller.Index(loginInputModel, button);
+
+            // Assert
+            MvcAssert.RedirectToActionResult(
+                actionResult,
+                "Index",
+                "Home"
+            );
         }
 
         #endregion

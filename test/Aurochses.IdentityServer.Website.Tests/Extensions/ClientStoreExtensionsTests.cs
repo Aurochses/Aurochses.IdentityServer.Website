@@ -48,7 +48,12 @@ namespace Aurochses.IdentityServer.Website.Tests.Extensions
 
             _mockClientStore
                 .Setup(x => x.FindClientByIdAsync(clientId))
-                .ReturnsAsync(new Client {RequirePkce = false});
+                .ReturnsAsync(
+                    new Client
+                    {
+                        RequirePkce = false
+                    }
+                );
 
             // Act & Assert
             Assert.False(await _mockClientStore.Object.IsPkceClient(clientId));
@@ -62,7 +67,12 @@ namespace Aurochses.IdentityServer.Website.Tests.Extensions
 
             _mockClientStore
                 .Setup(x => x.FindClientByIdAsync(clientId))
-                .ReturnsAsync(new Client {RequirePkce = true});
+                .ReturnsAsync(
+                    new Client
+                    {
+                        RequirePkce = true
+                    }
+                );
 
             // Act & Assert
             Assert.True(await _mockClientStore.Object.IsPkceClient(clientId));

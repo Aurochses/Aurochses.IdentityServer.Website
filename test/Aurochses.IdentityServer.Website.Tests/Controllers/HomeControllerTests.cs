@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Aurochses.IdentityServer.Website.Controllers;
 using Aurochses.IdentityServer.Website.Filters;
+using Aurochses.IdentityServer.Website.Tests.Fakes;
 using Aurochses.Xunit;
 using Aurochses.Xunit.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
@@ -41,7 +42,7 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
         }
 
         [Fact]
-        public void Index_WhenHostingEnvironmentIsDevelopment_ReturnViewResult()
+        public void Index_WhenIsDevelopment_ReturnViewResult()
         {
             // Arrange
             SetupHostingEnvironmentName("Development");
@@ -56,7 +57,7 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
         [Theory]
         [InlineData(null)]
         [InlineData("http://www.example.com")]
-        public void Index_WhenHostingEnvironmentIsNotDevelopment_RedirectToActionResult(string returnUrl)
+        public void Index_WhenIsNotDevelopment_RedirectToActionResult(string returnUrl)
         {
             // Arrange & Act
             var actionResult = _controller.Index(returnUrl);
