@@ -164,10 +164,9 @@ namespace Aurochses.IdentityServer.Website.Controllers
             }
 
             // something went wrong, show form with error
-            // todo: solve this
-            //var vm = await BuildLoginViewModel(model);
-            //return View(vm);
-            return View();
+            var viewModel = await BuildLoginViewModel(model);
+
+            return View(viewModel);
         }
 
         private async Task<LoginViewModel> BuildLoginViewModel(string returnUrl)
@@ -234,6 +233,16 @@ namespace Aurochses.IdentityServer.Website.Controllers
 
                 ExternalProviders = providers.ToArray()
             };
+        }
+
+        private async Task<LoginViewModel> BuildLoginViewModel(LoginInputModel model)
+        {
+            var viewModel = await BuildLoginViewModel(model.ReturnUrl);
+
+            viewModel.UserName = model.UserName;
+            viewModel.RememberLogin = model.RememberLogin;
+
+            return viewModel;
         }
     }
 }
