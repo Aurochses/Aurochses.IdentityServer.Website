@@ -118,6 +118,7 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
 
             // Assert
             VerifyLogger(LogLevel.Information, Times.Once);
+            VerifyLoggerNoOtherCalls();
 
             MvcAssert.RedirectToActionResult(
                 actionResult,
@@ -195,6 +196,8 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
             var actionResult = await _controller.Index(returnUrl);
 
             // Assert
+            VerifyLoggerNoOtherCalls();
+
             MvcAssert.ViewResult(actionResult, model: expectedViewModel);
         }
 
@@ -245,6 +248,7 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
 
             // Assert
             VerifyLogger(LogLevel.Information, Times.Once);
+            VerifyLoggerNoOtherCalls();
 
             MvcAssert.RedirectToActionResult(
                 actionResult,
@@ -324,6 +328,8 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
             var actionResult = await _controller.Index(returnUrl);
 
             // Assert
+            VerifyLoggerNoOtherCalls();
+
             MvcAssert.ViewResult(actionResult, model: expectedViewModel);
         }
 
@@ -374,6 +380,8 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
             var actionResult = await _controller.Index(returnUrl);
 
             // Assert
+            VerifyLoggerNoOtherCalls();
+
             MvcAssert.ViewResult(actionResult, model: expectedViewModel);
         }
 
@@ -435,6 +443,8 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
             var actionResult = await _controller.Index(loginInputModel, button);
 
             // Assert
+            VerifyLoggerNoOtherCalls();
+
             _mockIdentityServerInteractionService
                 .Verify(x => x.GrantConsentAsync(context, ConsentResponse.Denied, null), Times.Once);
 
@@ -481,6 +491,8 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
             var actionResult = await _controller.Index(loginInputModel, button);
 
             // Assert
+            VerifyLoggerNoOtherCalls();
+
             _mockIdentityServerInteractionService
                 .Verify(x => x.GrantConsentAsync(context, ConsentResponse.Denied, null), Times.Once);
 
@@ -510,6 +522,8 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
             var actionResult = await _controller.Index(loginInputModel, button);
 
             // Assert
+            VerifyLoggerNoOtherCalls();
+
             MvcAssert.RedirectToActionResult(
                 actionResult,
                 "Index",

@@ -51,6 +51,8 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
             var actionResult = _controller.Index(string.Empty);
 
             // Assert
+            VerifyLoggerNoOtherCalls();
+
             MvcAssert.ViewResult(actionResult);
         }
 
@@ -64,6 +66,7 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
 
             // Assert
             VerifyLogger(LogLevel.Information, Times.Once);
+            VerifyLoggerNoOtherCalls();
 
             MvcAssert.RedirectToActionResult(
                 actionResult,

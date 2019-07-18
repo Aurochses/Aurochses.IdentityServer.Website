@@ -51,7 +51,7 @@ namespace Aurochses.IdentityServer.Website.Controllers
             {
                 // if the request for logout was properly authenticated from IdentityServer, then
                 // we don't need to show the prompt and can just log the user out directly.
-                return await Logout(vm);
+                return await Index(vm);
             }
 
             return View(vm);
@@ -83,7 +83,7 @@ namespace Aurochses.IdentityServer.Website.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Logout(LogoutInputModel model)
+        public async Task<IActionResult> Index(LogoutInputModel model)
         {
             // build a model so the logged out page knows what to display
             var vm = await BuildLoggedOutViewModelAsync(model.LogoutId);

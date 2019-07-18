@@ -47,6 +47,11 @@ namespace Aurochses.IdentityServer.Website.Tests.Fakes
                 );
         }
 
+        public void VerifyLoggerNoOtherCalls()
+        {
+            MockLogger.VerifyNoOtherCalls();
+        }
+
         public void SetupHostingEnvironmentName(string environmentName)
         {
             MockHostingEnvironment

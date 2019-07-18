@@ -62,6 +62,8 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
             var actionResult = await _controller.Index(errorId);
 
             // Assert
+            VerifyLoggerNoOtherCalls();
+
             MvcAssert.ViewResult(actionResult, "Error");
         }
 
@@ -91,6 +93,7 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
 
             // Assert
             VerifyLogger(LogLevel.Error, Times.Once);
+            VerifyLoggerNoOtherCalls();
 
             MvcAssert.ViewResult(
                 actionResult,
@@ -135,6 +138,9 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
             var actionResult = await _controller.Index(errorId);
 
             // Assert
+            VerifyLogger(LogLevel.Error, Times.Once);
+            VerifyLoggerNoOtherCalls();
+
             MvcAssert.ViewResult(
                 actionResult,
                 "Error",

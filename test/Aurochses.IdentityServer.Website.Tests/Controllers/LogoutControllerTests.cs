@@ -2,6 +2,7 @@
 using Aurochses.AspNetCore.Identity.EntityFrameworkCore;
 using Aurochses.IdentityServer.Website.Controllers;
 using Aurochses.IdentityServer.Website.Filters;
+using Aurochses.IdentityServer.Website.Models.Logout;
 using Aurochses.IdentityServer.Website.Options;
 using Aurochses.IdentityServer.Website.Tests.Fakes;
 using Aurochses.Xunit;
@@ -72,5 +73,30 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
             // Arrange & Act & Assert
             Assert.IsAssignableFrom<Controller>(_controller);
         }
+
+        #region IndexGet
+
+        [Theory]
+        [InlineData(typeof(HttpGetAttribute))]
+        public void IndexGet_Attribute_Defined(Type attributeType)
+        {
+            // Arrange & Act & Assert
+            TypeAssert.MethodHasAttribute<LogoutController>("Index", new[] { typeof(string) }, attributeType);
+        }
+
+        #endregion
+
+        #region IndexPost
+
+        [Theory]
+        [InlineData(typeof(HttpPostAttribute))]
+        [InlineData(typeof(ValidateAntiForgeryTokenAttribute))]
+        public void IndexPost_Attribute_Defined(Type attributeType)
+        {
+            // Arrange & Act & Assert
+            TypeAssert.MethodHasAttribute<LogoutController>("Index", new[] { typeof(LogoutInputModel) }, attributeType);
+        }
+
+        #endregion
     }
 }
