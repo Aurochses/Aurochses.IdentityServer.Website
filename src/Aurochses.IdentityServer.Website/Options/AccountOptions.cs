@@ -8,5 +8,8 @@
         public bool LockoutOnFailure { get; set; }
         public bool RequireEmailConfirmation { get; set; }
         public bool AllowTwoFactorAuthentication { get; set; }
+
+        public bool ShowLogoutPrompt { get; set; }
+        public bool AutomaticRedirectAfterSignOut { get; set; }
     }
 }

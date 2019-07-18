@@ -131,5 +131,45 @@ namespace Aurochses.IdentityServer.Website.Tests.Options
             // Assert
             Assert.Equal(expectedValue, _accountOptions.AllowTwoFactorAuthentication);
         }
+
+        [Fact]
+        public void ShowLogoutPrompt_Get_Success()
+        {
+            // Arrange & Act & Assert
+            Assert.Equal(default, _accountOptions.ShowLogoutPrompt);
+        }
+
+        [Fact]
+        public void ShowLogoutPrompt_Set_Success()
+        {
+            // Arrange
+            const bool expectedValue = true;
+
+            // Act
+            _accountOptions.ShowLogoutPrompt = expectedValue;
+
+            // Assert
+            Assert.Equal(expectedValue, _accountOptions.ShowLogoutPrompt);
+        }
+
+        [Fact]
+        public void AutomaticRedirectAfterSignOut_Get_Success()
+        {
+            // Arrange & Act & Assert
+            Assert.Equal(default, _accountOptions.AutomaticRedirectAfterSignOut);
+        }
+
+        [Fact]
+        public void AutomaticRedirectAfterSignOut_Set_Success()
+        {
+            // Arrange
+            const bool expectedValue = true;
+
+            // Act
+            _accountOptions.AutomaticRedirectAfterSignOut = expectedValue;
+
+            // Assert
+            Assert.Equal(expectedValue, _accountOptions.AutomaticRedirectAfterSignOut);
+        }
     }
 }
