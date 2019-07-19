@@ -93,7 +93,8 @@ namespace Aurochses.IdentityServer.Website.Controllers
                 };
             }
 
-            var schemes = await _authenticationSchemeProvider.GetAllSchemesAsync();
+            var schemes = await _authenticationSchemeProvider.GetAllSchemesAsync()
+                          ?? Enumerable.Empty<AuthenticationScheme>();
 
             var providers = schemes
                 .Where(

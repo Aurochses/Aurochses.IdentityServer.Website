@@ -153,7 +153,7 @@ namespace Aurochses.IdentityServer.Website.Tests.Models.Logout
                     ExternalAuthenticationScheme = "Test ExternalAuthenticationScheme"
                 },
                 true
-            },
+            }
         };
 
         [Theory]

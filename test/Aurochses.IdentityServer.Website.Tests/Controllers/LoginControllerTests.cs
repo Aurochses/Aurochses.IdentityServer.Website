@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Aurochses.AspNetCore.Identity.EntityFrameworkCore;
 using Aurochses.IdentityServer.Website.Controllers;
@@ -132,8 +133,34 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
             );
         }
 
-        [Fact]
-        public async Task IndexGet_WhenContextClientIdIsNotNull_ReturnViewResult()
+        public static IEnumerable<object[]> AuthenticationSchemesMemberData => new[]
+        {
+            new object[]
+            {
+                null,
+                Enumerable.Empty<ExternalProvider>()
+            },
+            new object[]
+            {
+                new List<AuthenticationScheme>
+                {
+                    new AuthenticationScheme("Test Name", "Test DisplayName", typeof(IAuthenticationHandler)),
+                    new AuthenticationScheme(WindowsAuthenticationSchemeName, null, typeof(IAuthenticationHandler))
+                },
+                new[]
+                {
+                    new ExternalProvider
+                    {
+                        DisplayName = null,
+                        AuthenticationScheme = WindowsAuthenticationSchemeName
+                    }
+                }
+            }
+        };
+
+        [Theory]
+        [MemberData(nameof(AuthenticationSchemesMemberData))]
+        public async Task IndexGet_WhenContextClientIdIsNotNull_ReturnViewResult(List<AuthenticationScheme> authenticationSchemes, IEnumerable<ExternalProvider> expectedExternalProviders)
         {
             // Arrange
             const string returnUrl = "Test ReturnUrl";
@@ -152,13 +179,7 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
 
             _mockAuthenticationSchemeProvider
                 .Setup(x => x.GetAllSchemesAsync())
-                .ReturnsAsync(
-                    new List<AuthenticationScheme>
-                    {
-                        new AuthenticationScheme("Test Name", "Test DisplayName", typeof(IAuthenticationHandler)),
-                        new AuthenticationScheme(WindowsAuthenticationSchemeName, null, typeof(IAuthenticationHandler))
-                    }
-                );
+                .ReturnsAsync(authenticationSchemes);
 
             _mockClientStore
                 .Setup(x => x.FindClientByIdAsync(clientId))
@@ -182,14 +203,7 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
                 AllowRememberLogin = true,
                 EnableLocalLogin = true,
 
-                ExternalProviders = new[]
-                {
-                    new ExternalProvider
-                    {
-                        DisplayName = null,
-                        AuthenticationScheme = WindowsAuthenticationSchemeName
-                    }
-                }
+                ExternalProviders = expectedExternalProviders
             };
 
             // Act
@@ -452,7 +466,7 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
         }
 
         [Fact]
-        public async Task IndexPost_WhenButtonIsNotLogin_And_ContextIsNotNull_And_IsPkceClientIsFalse_ReturnViewResult()
+        public async Task IndexPost_WhenButtonIsNotLogin_And_ContextIsNotNull_And_IsPkceClientIsFalse_ReturnRedirectResult()
         {
             // Arrange
             const string returnUrl = "Test ReturnUrl";
@@ -529,6 +543,53 @@ namespace Aurochses.IdentityServer.Website.Tests.Controllers
                 "Index",
                 "Home"
             );
+        }
+
+        // todo: v.rodchenko: add tests when ModelState IsValid
+
+        [Fact]
+        public async Task IndexPost_WhenButtonIsLogin_And_ModelStateIsNotValid_ReturnViewResult()
+        {
+            // Arrange
+            const string userName = "Test UserName";
+            const bool rememberLogin = true;
+            const string returnUrl = "Test ReturnUrl";
+            const string button = "login";
+
+            var loginInputModel = new LoginInputModel
+            {
+                UserName = userName,
+                RememberLogin = rememberLogin,
+                ReturnUrl = returnUrl
+            };
+
+            _mockIdentityServerInteractionService
+                .Setup(x => x.GetAuthorizationContextAsync(returnUrl))
+                .ReturnsAsync(() => null);
+
+            _controller.ModelState.AddModelError("Fake Key", "Fake ErrorMessage");
+
+            _mockAuthenticationSchemeProvider
+                .Setup(x => x.GetAllSchemesAsync())
+                .ReturnsAsync(() => null);
+
+            var expectedViewModel = new LoginViewModel
+            {
+                UserName = userName,
+                RememberLogin = rememberLogin,
+                ReturnUrl = returnUrl,
+
+                AllowRememberLogin = true,
+                EnableLocalLogin = true
+            };
+
+            // Act
+            var actionResult = await _controller.Index(loginInputModel, button);
+
+            // Assert
+            VerifyLoggerNoOtherCalls();
+
+            MvcAssert.ViewResult(actionResult, model: expectedViewModel);
         }
 
         #endregion
