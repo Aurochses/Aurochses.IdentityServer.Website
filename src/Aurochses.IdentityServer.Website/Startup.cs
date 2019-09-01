@@ -23,7 +23,7 @@ namespace Aurochses.IdentityServer.Website
         {
             App.Options.Startup.ConfigureServices(services, Configuration);
 
-            App.Logging.Startup.Configure(services, Configuration);
+            App.Logging.Startup.ConfigureServices(services, Configuration);
 
             App.CookiePolicy.Startup.ConfigureServices(services, Configuration);
 
@@ -31,7 +31,7 @@ namespace Aurochses.IdentityServer.Website
 
             App.IdentityServer.Startup.ConfigureServices(services, HostingEnvironment, Configuration);
 
-            App.Authentication.Startup.Configure(services, Configuration);
+            App.Authentication.Startup.ConfigureServices(services, Configuration);
 
             services.AddMvc(
                     options =>

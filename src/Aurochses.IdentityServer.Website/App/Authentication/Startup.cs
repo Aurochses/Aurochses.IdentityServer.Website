@@ -5,7 +5,7 @@ namespace Aurochses.IdentityServer.Website.App.Authentication
 {
     public static class Startup
     {
-        public static void Configure(IServiceCollection services, IConfiguration configuration)
+        public static void ConfigureServices(IServiceCollection services, IConfiguration configuration)
         {
             var builder = services.AddAuthentication();
 

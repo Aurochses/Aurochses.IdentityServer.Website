@@ -6,7 +6,7 @@ namespace Aurochses.IdentityServer.Website.App.Logging
 {
     public static class Startup
     {
-        public static void Configure(IServiceCollection services, IConfiguration configuration)
+        public static void ConfigureServices(IServiceCollection services, IConfiguration configuration)
         {
             services.AddLogging(
                 builder =>
